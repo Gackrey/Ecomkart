@@ -234,4 +234,8 @@ input[type="range"]:focus::-ms-fill-upper {
   .Cardbox {
     width: 95vw;
   }
+  input[type="range"] {
+    margin: 10px 5px;
+    width: 45%;
+  }
 }

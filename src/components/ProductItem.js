@@ -63,13 +63,12 @@ export function ProductItem({ dataset, setroute }) {
             30% off
           </small>
         </p>
-        <p>{dataset.inStock ? "In Stock" : "Out of Stock"}</p>
         <p>{dataset.fastDelivery ? "Fast Delivery" : "3 days minimum"}</p>
-        {dataset.isinCart ? (
+        {dataset.inStock && dataset.isinCart ? (
           <button className="btn-addtoCart" onClick={() => setroute("cart")}>
             Go to Cart
           </button>
-        ) : (
+        ) : dataset.inStock && !dataset.isinCart ? (
           <button
             className="btn-addtoCart"
             onClick={() => {
@@ -77,6 +76,13 @@ export function ProductItem({ dataset, setroute }) {
             }}
           >
             Add to Cart
+          </button>
+        ) : (
+          <button
+            style={{ width: "100%", cursor: "not-allowed" }}
+            className="btn btn-secondary"
+          >
+            Out of Stock
           </button>
         )}
       </div>

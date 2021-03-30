@@ -7,6 +7,7 @@ export function Products({ setroute }) {
   const [deliveryChecker, setDeliveryState] = useState(false);
   const [sortState, setSortState] = useState(false);
   const [sliderState, setSliderState] = useState(false);
+  const [value, setValue] = useState(500);
   return (
     <>
       <br />
@@ -91,11 +92,18 @@ export function Products({ setroute }) {
             Fast Delivery Only
           </label>
         </div>
+        <br/>
+        <div class="range-value">
+          <span>{value}</span>
+        </div>
         <label style={{ display: "block", marginTop: "1rem" }}>
           Min Price: 0
           <input
             type="range"
+            min="0"
+            max="100"
             onChange={(e) => {
+              setValue(e.target.value * 10);
               setSliderState(true);
               dispatch({
                 type: "RANGE_FILTER",

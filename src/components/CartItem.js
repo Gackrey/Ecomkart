@@ -54,10 +54,16 @@ export function CartItem({ dataset, setroute }) {
             </button>
 
             <div style={{ float: "right" }}>
-              <p>Original Price: {dataset.quantity * dataset.price * 1.3}</p>
-              <p>Discount: -{dataset.quantity * dataset.price * 0.3}</p>
-              <hr />
-              <h4>Total: {dataset.quantity * dataset.price}</h4>
+            <p>
+            Original Price:{" "}
+            {Math.floor(dataset.quantity * dataset.price * 1.3)}.00
+          </p>
+          <p>
+            Discount: - {Math.floor(dataset.quantity * dataset.price * 0.3)}
+            .00
+          </p>
+          <hr />
+          <h4>Total: {dataset.quantity * dataset.price}.00</h4>
             </div>
           </div>
         </div>

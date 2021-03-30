@@ -92,14 +92,13 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isWishlisted: true, isinCart: false }
-            : item
+          item.id === action.payload.id ? { ...item, isWishlisted: true } : item
+        ),
+        cartItems: state.cartItems.map((item) =>
+          item.id === action.payload.id ? { ...item, isWishlisted: true } : item
         ),
         filterItems: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, isWishlisted: true, isinCart: false }
-            : item
+          item.id === action.payload.id ? { ...item, isWishlisted: true } : item
         ),
         wishList: state.wishList.concat(action.payload),
         wishCount: state.wishCount + 1

@@ -44,7 +44,7 @@ export function WishlistItem({ dataset, setroute }) {
           <button
             className="btn-addtoCart"
             onClick={() => {
-              dispatch({ type: "ADD_TO_CART", payload: dataset });
+              dispatch({ type: "ADD_TO_CART_FROM_WISHLISTT", payload: dataset });
             }}
           >
             Add to Cart

@@ -36,18 +36,25 @@ export function WishlistItem({ dataset, setroute }) {
             30%
           </small>
         </p>
-        {dataset.isinCart ? (
+        {dataset.inStock && dataset.isinCart ? (
           <button className="btn-addtoCart" onClick={() => setroute("cart")}>
             Go to Cart
           </button>
-        ) : (
+        ) : dataset.inStock && !dataset.isinCart ? (
           <button
             className="btn-addtoCart"
-            onClick={() =>
-              dispatch({ type: "ADD_TO_CART_FROM_WISHLIST", payload: dataset })
-            }
+            onClick={() => {
+              dispatch({ type: "ADD_TO_CART", payload: dataset });
+            }}
           >
             Add to Cart
+          </button>
+        ) : (
+          <button
+            style={{ width: "100%", marginTop: "10px", cursor: "not-allowed" }}
+            className="btn btn-secondary"
+          >
+            Out of Stock
           </button>
         )}
       </div>

@@ -46,7 +46,7 @@ $ npm run
 
 ## Screenshots
 ### Desktop view
-![ecomkart](https://user-images.githubusercontent.com/36769948/112838714-fbef1a80-90ba-11eb-9540-7acd3246ccf5.JPG)
+![ecomkart](https://user-images.githubusercontent.com/36769948/112979401-27830b00-9176-11eb-8398-5920c6cca837.JPG)
 
 ### Mobile view
-![mobile](https://user-images.githubusercontent.com/36769948/112838867-28a33200-90bb-11eb-899c-be0a378f051d.JPG)
+![mobile](https://user-images.githubusercontent.com/36769948/112979506-4aadba80-9176-11eb-8f29-293b74e497c8.JPG)

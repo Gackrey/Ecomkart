@@ -23,8 +23,8 @@ export default function setupMockServer() {
       [...initialData].forEach(({ title, image, catagory }) => {
         server.create("product", {
           id: faker.random.uuid(),
-          name: faker.commerce.productName(),
-          image: faker.random.image(),
+          name: title,
+          image: image,
           price: faker.commerce.price(),
           inStock: faker.random.boolean(),
           fastDelivery: faker.random.boolean(),

@@ -28,7 +28,7 @@ export function WishlistItem({ dataset, setroute }) {
               fontSize: "14px"
             }}
           >
-            {dataset.price * 1.3}
+          {Math.floor(dataset.price * 1.3)}.00
           </small>
           <small
             style={{ padding: "0 10px", color: "green", fontSize: "14px" }}

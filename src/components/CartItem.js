@@ -4,13 +4,7 @@ import { useCart } from "../Redux/cart-context";
 export function CartItem({ dataset, setroute }) {
   const { dispatch } = useCart();
   return dataset.quantity > 0 ? (
-    <div
-      style={{
-        margin: "10px",
-        boxShadow: "0 0 6px 0px black",
-        width: "95%"
-      }}
-    >
+    <div className="Cardbox">
       <div
         style={{
           margin: "10px",

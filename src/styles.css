@@ -102,11 +102,19 @@
   outline: none;
   margin-top: 4px;
 }
+.Cardbox {
+  margin: auto;
+  box-shadow: 0 0 6px 0px black;
+  width: 40vw;
+}
 @media only screen and (max-width: 840px) {
   .nav-body {
     width: 100%;
   }
   .logoHeading {
     font-size: 24px;
+  }
+  .Cardbox {
+    width: 95vw;
   }
 }

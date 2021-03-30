@@ -79,7 +79,7 @@ export function ProductItem({ dataset, setroute }) {
           </button>
         ) : (
           <button
-            style={{ width: "100%", cursor: "not-allowed" }}
+            style={{ width: "100%",marginTop:"10px", cursor: "not-allowed" }}
             className="btn btn-secondary"
           >
             Out of Stock

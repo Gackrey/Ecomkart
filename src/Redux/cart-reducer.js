@@ -147,15 +147,29 @@ export function reducerFunc(state, action) {
         wishCount: state.wishCount - 1
       };
     case "HIGH_TO_LOW":
-      return {
-        ...state,
-        filterItems: state.itemsInCart.sort((a, b) => b["price"] - a["price"])
-      };
+      if (action.check) {
+        return {
+          ...state,
+          filterItems: state.filterItems.sort((a, b) => b["price"] - a["price"])
+        };
+      } else {
+        return {
+          ...state,
+          filterItems: state.itemsInCart.sort((a, b) => b["price"] - a["price"])
+        };
+      }
     case "LOW_TO_HIGH":
-      return {
-        ...state,
-        filterItems: state.itemsInCart.sort((a, b) => a["price"] - b["price"])
-      };
+      if (action.check) {
+        return {
+          ...state,
+          filterItems: state.filterItems.sort((a, b) => a["price"] - b["price"])
+        };
+      } else {
+        return {
+          ...state,
+          filterItems: state.itemsInCart.sort((a, b) => a["price"] - b["price"])
+        };
+      }
     case "OUT_OF_STOCK":
       if (action.check.stockChecker && !action.check.deliveryChecker) {
         return {

@@ -224,6 +224,11 @@ input[type="range"]:focus::-ms-fill-upper {
   margin-left: -5px;
   margin-top: -1px;
 }
+.soldout {
+  transform: translate(29px, -172px) rotate(-45deg);
+  font-size: 3rem;
+  color: var(--danger);
+}
 @media only screen and (max-width: 840px) {
   .nav-body {
     width: 100%;

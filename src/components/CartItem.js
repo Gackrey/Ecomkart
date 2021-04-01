@@ -107,6 +107,7 @@ export function CartItem({ dataset, setroute }) {
         )}
         <button className="btn btn-primary">Checkout</button>
       </div>
+      <br />
     </div>
   ) : (
     ""

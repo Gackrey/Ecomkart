@@ -6,6 +6,7 @@ export function Products({ setroute }) {
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
   const [sortState, setSortState] = useState(false);
+  const [filterState, setFilterState] = useState(false);
   const [sliderState, setSliderState] = useState(false);
   const [value, setValue] = useState(500);
   return (
@@ -28,7 +29,11 @@ export function Products({ setroute }) {
             name="sort"
             onChange={() => {
               setSortState(true);
-              dispatch({ type: "LOW_TO_HIGH", payload: itemsInCart });
+              dispatch({
+                type: "LOW_TO_HIGH",
+                payload: itemsInCart,
+                check: filterState
+              });
             }}
           ></input>{" "}
           Price - Low to High
@@ -39,7 +44,11 @@ export function Products({ setroute }) {
             name="sort"
             onChange={() => {
               setSortState(true);
-              dispatch({ type: "HIGH_TO_LOW", payload: itemsInCart });
+              dispatch({
+                type: "HIGH_TO_LOW",
+                payload: itemsInCart,
+                check: filterState
+              });
             }}
           ></input>{" "}
           Price - High to Low
@@ -66,6 +75,7 @@ export function Products({ setroute }) {
               type="checkbox"
               checked={stockChecker}
               onChange={(e) => {
+                setFilterState(true);
                 setStockState(!stockChecker);
                 dispatch({
                   type: "OUT_OF_STOCK",
@@ -81,6 +91,7 @@ export function Products({ setroute }) {
               type="checkbox"
               checked={deliveryChecker}
               onChange={(e) => {
+                setFilterState(true);
                 setDeliveryState(!deliveryChecker);
                 dispatch({
                   type: "FAST_DELIVERY",
@@ -92,7 +103,7 @@ export function Products({ setroute }) {
             Fast Delivery Only
           </label>
         </div>
-        <br/>
+        <br />
         <div class="range-value">
           <span>{value}</span>
         </div>

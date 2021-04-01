@@ -4,7 +4,10 @@ import { useCart } from "../Redux/cart-context";
 export function ProductItem({ dataset, setroute }) {
   const { dispatch } = useCart();
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={dataset.inStock ? { opacity: "1" } : { opacity: "0.5" }}
+    >
       <div style={{ position: "absolute" }}>
         <div
           className="wishlist"
@@ -78,12 +81,7 @@ export function ProductItem({ dataset, setroute }) {
             Add to Cart
           </button>
         ) : (
-          <button
-            style={{ width: "100%",marginTop:"10px", cursor: "not-allowed" }}
-            className="btn btn-secondary"
-          >
-            Out of Stock
-          </button>
+          <h2 className="soldout">Sold Out</h2>
         )}
       </div>
     </div>

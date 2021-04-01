@@ -81,7 +81,7 @@ export function CartItem({ dataset, setroute }) {
             dispatch({ type: "REMOVE_FROM_CART", payload: dataset })
           }
         >
-          Delete
+        <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         {dataset.isWishlisted ? (
           <button

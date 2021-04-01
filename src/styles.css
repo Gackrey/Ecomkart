@@ -105,8 +105,32 @@
 .Cardbox {
   margin: auto;
   box-shadow: 0 0 6px 0px black;
-  width: 40vw;
+  width: fit-content;
+  margin-top: 1rem;
 }
+.incdecbtn {
+  padding: 1px 8px;
+  color: purple;
+  font-size: 22px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: rgb(221 219 219);
+}
+.cartOrder {
+  width: 18vw;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: start;
+}
+.cartdetails {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
 input[type="range"] {
   height: 11px;
   -webkit-appearance: none;
@@ -236,11 +260,11 @@ input[type="range"]:focus::-ms-fill-upper {
   .logoHeading {
     font-size: 24px;
   }
-  .Cardbox {
-    width: 95vw;
-  }
   input[type="range"] {
     margin: 10px 5px;
     width: 45%;
+  }
+  .cartOrder {
+    width: 70vw;
   }
 }

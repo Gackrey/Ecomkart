@@ -1,78 +1,71 @@
 import React from "react";
 import { useCart } from "../Redux/cart-context";
 
-export function CartItem({ dataset, setroute }) {
+export function CartItem({ dataset }) {
   const { dispatch } = useCart();
   return dataset.quantity > 0 ? (
     <div className="Cardbox">
-      <div
-        style={{
-          margin: "10px",
-          display: "flex"
-        }}
-      >
+      <div style={{ width: "fit-content", marginLeft: "10px" }}>
+        <h2 style={{ textAlign: "start" }}>{dataset.name}</h2>
+        <span
+          style={{
+            padding: "2px 5px",
+            backgroundColor: "green",
+            width: "fit-content",
+            fontSize: "14px",
+            fontWeight: "bold",
+            borderRadius: "5px",
+            display: "inherit"
+          }}
+        >
+          {dataset.ratings}★
+        </span>
+        <h1>
+          ₹{dataset.price}
+          <small
+            style={{
+              padding: "0 5px",
+              color: "gray",
+              textDecoration: "line-through 2px",
+              fontSize: "14px"
+            }}
+          >
+            {Math.floor(dataset.price * 1.3)}.00
+          </small>
+          <small
+            style={{ padding: "0 10px", color: "green", fontSize: "14px" }}
+          >
+            30% off
+          </small>
+        </h1>
         <img
           style={{ width: "200px", height: "200px" }}
           src={dataset.image}
           alt=""
         />
-        <div style={{ textAlign: "start", marginLeft: "1rem" }}>
-          <h2 style={{ marginBottom: "1rem" }}>
-            {dataset.name}
-            <span
-              style={{
-                padding: "2px 5px",
-                marginLeft: "10px",
-                backgroundColor: "green",
-                width: "fit-content",
-                fontSize: "14px",
-                fontWeight: "bold",
-                borderRadius: "5px",
-                display: "inline-block"
-              }}
-            >
-              {dataset.ratings}★
-            </span>
-          </h2>
-          <div style={{ display: "block", overflow: "auto" }}>
-            <button
-              style={{ padding: "2px 5px" }}
-              onClick={() =>
-                dispatch({ type: "DECREMENT_CART_ITEM", payload: dataset })
-              }
-            >
-              -
-            </button>
-            <span style={{ margin: "0 5px" }}>{dataset.quantity}</span>
-            <button
-              style={{ padding: "2px 5px" }}
-              onClick={() =>
-                dispatch({ type: "INCREMENT_CART_ITEM", payload: dataset })
-              }
-            >
-              +
-            </button>
-
-            <div style={{ float: "right" }}>
-            <p>
-            Original Price:{" "}
-            {Math.floor(dataset.quantity * dataset.price * 1.3)}.00
-          </p>
-          <p>
-            Discount: - {Math.floor(dataset.quantity * dataset.price * 0.3)}
-            .00
-          </p>
-          <hr />
-          <h4>Total: {dataset.quantity * dataset.price}.00</h4>
-            </div>
-          </div>
+        <div style={{ margin: "auto" }}>
+          <button
+            className="incdecbtn"
+            onClick={() => {
+              dispatch({ type: "DECREMENT_CART_ITEM", payload: dataset });
+            }}
+          >
+            -
+          </button>
+          <span style={{ margin: "0 5px" }}>{dataset.quantity}</span>
+          <button
+            className="incdecbtn"
+            onClick={() => {
+              dispatch({ type: "INCREMENT_CART_ITEM", payload: dataset });
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
       <div
         style={{
-          marginTop: "1.5rem",
-          display: "flex",
-          justifyContent: "space-around"
+          margin: "1.5rem"
         }}
       >
         <button
@@ -81,7 +74,7 @@ export function CartItem({ dataset, setroute }) {
             dispatch({ type: "REMOVE_FROM_CART", payload: dataset })
           }
         >
-        <i class="fa fa-trash" aria-hidden="true"></i>
+          <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         {dataset.isWishlisted ? (
           <button
@@ -105,7 +98,6 @@ export function CartItem({ dataset, setroute }) {
             Move to Wishlist
           </button>
         )}
-        <button className="btn btn-primary">Checkout</button>
       </div>
       <br />
     </div>

@@ -108,6 +108,10 @@
   width: fit-content;
   margin-top: 1rem;
 }
+.cartContent {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
 .incdecbtn {
   padding: 1px 8px;
   color: purple;
@@ -266,5 +270,8 @@ input[type="range"]:focus::-ms-fill-upper {
   }
   .cartOrder {
     width: 70vw;
+  }
+  .cartContent {
+    display: block;
   }
 }

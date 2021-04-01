@@ -2,7 +2,7 @@ import React from "react";
 import { useCart } from "../Redux/cart-context";
 import { CartItem } from "./CartItem";
 export function Cart({ setroute }) {
-  const { cartItems } = useCart();
+  const { cartCount, cartItems } = useCart();
   const cartCalculator = () =>
     cartItems.reduce(
       (acc, value) => {
@@ -16,7 +16,7 @@ export function Cart({ setroute }) {
     );
   const cartDetails = cartCalculator();
   return (
-    <>
+    <div className="cartContent">
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {cartItems.map((product) => (
           <CartItem key={product.id} dataset={product} />
@@ -26,7 +26,7 @@ export function Cart({ setroute }) {
         {cartItems.length > 0 ? (
           <div className="cartOrder">
             <div className="cartdetails">
-              <p>Price:</p>
+              <p>Price ({cartCount} items):</p>
               <span>₹{Math.floor(cartDetails.totalprice)}.00</span>
             </div>
             <div className="cartdetails">
@@ -55,6 +55,6 @@ export function Cart({ setroute }) {
           ""
         )}
       </div>
-    </>
+    </div>
   );
 }

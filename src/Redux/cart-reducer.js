@@ -215,13 +215,20 @@ export function reducerFunc(state, action) {
         };
       }
       return state;
-    case "RANGE_FILTER":
-      return {
-        ...state,
-        filterItems: state.itemsInCart.filter(
-          (item) => item.price >= action.payload * 10
-        )
-      };
+      case "RANGE_FILTER":
+        if (action.payload < 1000) {
+          return {
+            ...state,
+            filterItems: state.itemsInCart.filter(
+              (item) => item.price <= action.payload
+            )
+          };
+        } else {
+          return {
+            ...state,
+            filterItems: state.itemsInCart
+          };
+        }
     case "SEARCH_RESULT":
       return {
         ...state,

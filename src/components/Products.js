@@ -8,7 +8,7 @@ export function Products({ setroute }) {
   const [sortState, setSortState] = useState(false);
   const [filterState, setFilterState] = useState(false);
   const [sliderState, setSliderState] = useState(false);
-  const [value, setValue] = useState(500);
+  const [value, setValue] = useState(1000);
   return (
     <>
       <br />
@@ -103,18 +103,16 @@ export function Products({ setroute }) {
             Fast Delivery Only
           </label>
         </div>
-        <br />
-        <div class="range-value">
-          <span>{value}</span>
-        </div>
         <label style={{ display: "block", marginTop: "1rem" }}>
           Min Price: 0
           <input
             type="range"
             min="0"
-            max="100"
+            max="1000"
+            value={value}
+            step="100"
             onChange={(e) => {
-              setValue(e.target.value * 10);
+              setValue(e.target.value);
               setSliderState(true);
               dispatch({
                 type: "RANGE_FILTER",
@@ -122,7 +120,7 @@ export function Products({ setroute }) {
               });
             }}
           ></input>
-          1000
+          {value}
         </label>
       </fieldset>
       <div

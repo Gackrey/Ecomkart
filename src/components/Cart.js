@@ -44,7 +44,7 @@ export function Cart({ setroute }) {
                 {cartDetails.totalprice > 500
                   ? Math.floor(cartDetails.totalprice - cartDetails.discount)
                   : Math.floor(
-                      cartDetails.totalprice - cartDetails.discount - 50
+                      cartDetails.totalprice - cartDetails.discount + 50
                     )}
                 .00
               </span>

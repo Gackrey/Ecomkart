@@ -147,7 +147,7 @@ export function reducerFunc(state, action) {
         wishCount: state.wishCount - 1
       };
     case "HIGH_TO_LOW":
-      if (action.check) {
+      if (state.itemsInCart.length > 1) {
         return {
           ...state,
           filterItems: state.filterItems.sort((a, b) => b["price"] - a["price"])
@@ -159,7 +159,7 @@ export function reducerFunc(state, action) {
         };
       }
     case "LOW_TO_HIGH":
-      if (action.check) {
+      if (state.itemsInCart.length > 1) {
         return {
           ...state,
           filterItems: state.filterItems.sort((a, b) => a["price"] - b["price"])
@@ -216,19 +216,12 @@ export function reducerFunc(state, action) {
       }
       return state;
       case "RANGE_FILTER":
-        if (action.payload < 1000) {
-          return {
-            ...state,
-            filterItems: state.itemsInCart.filter(
-              (item) => item.price <= action.payload
-            )
-          };
-        } else {
-          return {
-            ...state,
-            filterItems: state.itemsInCart
-          };
-        }
+        return {
+          ...state,
+          filterItems: state.itemsInCart.filter(
+            (item) => Number(item.price) <= action.payload
+          )
+        };
     case "SEARCH_RESULT":
       return {
         ...state,

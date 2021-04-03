@@ -6,7 +6,6 @@ export function Products({ setroute }) {
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
   const [sortState, setSortState] = useState(false);
-  const [filterState, setFilterState] = useState(false);
   const [sliderState, setSliderState] = useState(false);
   const [sortButtonClicked, setsortClickedState] = useState(false);
   const [filterButtonClicked, setfilterClickedState] = useState(false);
@@ -31,8 +30,7 @@ export function Products({ setroute }) {
               setSortState(true);
               dispatch({
                 type: "LOW_TO_HIGH",
-                payload: itemsInCart,
-                check: filterState
+                payload: itemsInCart
               });
             }}
           ></input>
@@ -46,8 +44,7 @@ export function Products({ setroute }) {
               setSortState(true);
               dispatch({
                 type: "HIGH_TO_LOW",
-                payload: itemsInCart,
-                check: filterState
+                payload: itemsInCart
               });
             }}
           ></input>{" "}
@@ -60,7 +57,6 @@ export function Products({ setroute }) {
             type="checkbox"
             checked={stockChecker}
             onChange={(e) => {
-              setFilterState(true);
               setStockState(!stockChecker);
               dispatch({
                 type: "OUT_OF_STOCK",
@@ -76,7 +72,6 @@ export function Products({ setroute }) {
             type="checkbox"
             checked={deliveryChecker}
             onChange={(e) => {
-              setFilterState(true);
               setDeliveryState(!deliveryChecker);
               dispatch({
                 type: "FAST_DELIVERY",
@@ -215,8 +210,7 @@ export function Products({ setroute }) {
               setSortState(true);
               dispatch({
                 type: "HIGH_TO_LOW",
-                payload: itemsInCart,
-                check: filterState
+                payload: itemsInCart
               });
             }}
           >
@@ -227,8 +221,7 @@ export function Products({ setroute }) {
               setSortState(true);
               dispatch({
                 type: "LOW_TO_HIGH",
-                payload: itemsInCart,
-                check: filterState
+                payload: itemsInCart
               });
             }}
           >
@@ -257,7 +250,6 @@ export function Products({ setroute }) {
               type="checkbox"
               checked={stockChecker}
               onChange={(e) => {
-                setFilterState(true);
                 setStockState(!stockChecker);
                 dispatch({
                   type: "OUT_OF_STOCK",
@@ -273,7 +265,6 @@ export function Products({ setroute }) {
               type="checkbox"
               checked={deliveryChecker}
               onChange={(e) => {
-                setFilterState(true);
                 setDeliveryState(!deliveryChecker);
                 dispatch({
                   type: "FAST_DELIVERY",

@@ -141,7 +141,11 @@
   font-size: 3rem;
   color: var(--danger);
 }
-.filterbox {
+.productbox {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+.filterboxDesk {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-top: none;
   padding: 8px;
@@ -150,10 +154,83 @@
   text-align: start;
   top: 0;
 }
-.filterbox > label {
+.filterboxDesk > label {
   display: block;
 }
+.filterboxMobile {
+  display: none;
+}
+.filterboxMobile_buttons {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background-color: white;
+}
+.div_filters {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  width: 44vw;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.sortBox,
+.filterBox {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 95vw;
+  background-color: white;
+  position: fixed;
+  text-align: start;
+  padding-left: 1rem;
+  bottom: 0;
+  z-index: 2;
+}
+.filterBox > label {
+  display: block;
+  margin: 1rem 0;
+}
+.sortBox > p {
+  margin-bottom: 1rem;
+  cursor: default;
+}
+.closeButton_filter_sort {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.closeButton_filter_sort > button {
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  outline: none;
+  color: purple;
+}
+.dark_background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 @media only screen and (max-width: 840px) {
+  .productbox {
+    display: block;
+  }
+  .filterboxDesk {
+    display: none;
+  }
+  .filterboxMobile {
+    display: block;
+  }
+  .filterboxMobile_buttons {
+    display: flex;
+  }
   .nav-body {
     width: 100%;
   }

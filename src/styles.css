@@ -140,6 +140,7 @@
   transform: translate(29px, -172px) rotate(-45deg);
   font-size: 3rem;
   color: var(--danger);
+  position: absolute;
 }
 .productbox {
   display: grid;

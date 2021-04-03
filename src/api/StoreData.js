@@ -22,22 +22,22 @@ export const initialData = [
   },
   {
     title: "John Hardy Women's Bracelet",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Solid Gold Petite Micropave ",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "White Gold Plated Princess",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Rose Gold Plated Steel",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
   },
   {
@@ -123,22 +123,22 @@ export const initialData = [
   },
   {
     title: "John Hardy Women's Bracelet",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Solid Gold Petite Micropave ",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "White Gold Plated Princess",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Rose Gold Plated Steel",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
   },
   {
@@ -224,22 +224,22 @@ export const initialData = [
   },
   {
     title: "John Hardy Women's Bracelet",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Solid Gold Petite Micropave ",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "White Gold Plated Princess",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
   },
   {
     title: "Rose Gold Plated Steel",
-    category: "jewelery",
+    category: "jewellery",
     image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
   },
   {

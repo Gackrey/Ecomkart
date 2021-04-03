@@ -10,19 +10,9 @@ export function Products({ setroute }) {
   const [sliderState, setSliderState] = useState(false);
   const [value, setValue] = useState(1000);
   return (
-    <>
-      <br />
-      <fieldset
-        style={{
-          width: "80%",
-          margin: "auto",
-          display: "flex",
-          padding: "10px",
-          justifyContent: "space-evenly",
-          alignItems: "center"
-        }}
-      >
-        <legend>Sort By</legend>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 5fr" }}>
+      <div className="filterbox">
+        <h1 style={{ color: "gray" }}>Sort</h1>
         <label>
           <input
             type="radio"
@@ -35,7 +25,7 @@ export function Products({ setroute }) {
                 check: filterState
               });
             }}
-          ></input>{" "}
+          ></input>
           Price - Low to High
         </label>
         <label>
@@ -53,58 +43,42 @@ export function Products({ setroute }) {
           ></input>{" "}
           Price - High to Low
         </label>
-      </fieldset>
-      <br />
-      <fieldset
-        style={{
-          width: "80%",
-          margin: "auto",
-          padding: "10px"
-        }}
-      >
-        <legend>Filters</legend>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            alignItems: "center"
-          }}
-        >
-          <label>
-            <input
-              type="checkbox"
-              checked={stockChecker}
-              onChange={(e) => {
-                setFilterState(true);
-                setStockState(!stockChecker);
-                dispatch({
-                  type: "OUT_OF_STOCK",
-                  payload: itemsInCart,
-                  check: { stockChecker, deliveryChecker }
-                });
-              }}
-            ></input>{" "}
-            Include Out of Stock
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={deliveryChecker}
-              onChange={(e) => {
-                setFilterState(true);
-                setDeliveryState(!deliveryChecker);
-                dispatch({
-                  type: "FAST_DELIVERY",
-                  payload: itemsInCart,
-                  check: { stockChecker, deliveryChecker }
-                });
-              }}
-            ></input>{" "}
-            Fast Delivery Only
-          </label>
-        </div>
+        <br />
+        <h1 style={{ color: "gray" }}>Filters</h1>
+        <label>
+          <input
+            type="checkbox"
+            checked={stockChecker}
+            onChange={(e) => {
+              setFilterState(true);
+              setStockState(!stockChecker);
+              dispatch({
+                type: "OUT_OF_STOCK",
+                payload: itemsInCart,
+                check: { stockChecker, deliveryChecker }
+              });
+            }}
+          ></input>{" "}
+          Include Out of Stock
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={deliveryChecker}
+            onChange={(e) => {
+              setFilterState(true);
+              setDeliveryState(!deliveryChecker);
+              dispatch({
+                type: "FAST_DELIVERY",
+                payload: itemsInCart,
+                check: { stockChecker, deliveryChecker }
+              });
+            }}
+          ></input>{" "}
+          Fast Delivery Only
+        </label>
         <label style={{ display: "block", marginTop: "1rem" }}>
-          Min Price: 0
+          Price Range: <br />0
           <input
             type="range"
             min="0"
@@ -122,13 +96,71 @@ export function Products({ setroute }) {
           ></input>
           {value}
         </label>
-      </fieldset>
+
+        <h1 style={{ color: "gray" }}>Products</h1>
+
+        <label>
+          <input
+            type="radio"
+            name="sort"
+            onChange={() => {
+              setSortState(true);
+              dispatch({
+                type: "PRODUCT_FILTER",
+                payload: "men clothing"
+              });
+            }}
+          ></input>
+          Men Clothing
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sort"
+            onChange={() => {
+              setSortState(true);
+              dispatch({
+                type: "PRODUCT_FILTER",
+                payload: "women clothing"
+              });
+            }}
+          ></input>{" "}
+          Women Clothing
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sort"
+            onChange={() => {
+              setSortState(true);
+              dispatch({
+                type: "PRODUCT_FILTER",
+                payload: "jewellery"
+              });
+            }}
+          ></input>{" "}
+          jewellery
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sort"
+            onChange={() => {
+              setSortState(true);
+              dispatch({
+                type: "PRODUCT_FILTER",
+                payload: "electronics"
+              });
+            }}
+          ></input>{" "}
+          Electronics
+        </label>
+      </div>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          width: "80%",
           margin: "auto"
         }}
       >
@@ -152,6 +184,6 @@ export function Products({ setroute }) {
               />
             ))}
       </div>
-    </>
+    </div>
   );
 }

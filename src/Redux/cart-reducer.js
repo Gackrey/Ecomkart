@@ -236,6 +236,13 @@ export function reducerFunc(state, action) {
           item.name.includes(action.payload)
         )
       };
+    case "PRODUCT_FILTER":
+      return {
+        ...state,
+        filterItems: state.itemsInCart.filter(
+          (item) => item.category === action.payload
+        )
+      };
     default:
       return state;
   }

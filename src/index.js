@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import setupMockServer from "./api/mock.server";
 import { CartProvider } from "./Redux/cart-context";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
 setupMockServer();
@@ -10,9 +10,11 @@ setupMockServer();
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <Router>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </Router>
   </React.StrictMode>,
   rootElement
 );

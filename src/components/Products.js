@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../Redux/cart-context";
 import { ProductItem } from "./ProductItem";
-export function Products({ setroute }) {
+export function Products() {
   const { itemsInCart, filterItems, searchState, dispatch } = useCart();
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
@@ -56,7 +56,7 @@ export function Products({ setroute }) {
           <input
             type="checkbox"
             checked={stockChecker}
-            onChange={(e) => {
+            onChange={() => {
               setStockState(!stockChecker);
               dispatch({
                 type: "OUT_OF_STOCK",
@@ -71,7 +71,7 @@ export function Products({ setroute }) {
           <input
             type="checkbox"
             checked={deliveryChecker}
-            onChange={(e) => {
+            onChange={() => {
               setDeliveryState(!deliveryChecker);
               dispatch({
                 type: "FAST_DELIVERY",
@@ -369,14 +369,12 @@ export function Products({ setroute }) {
               <ProductItem
                 key={product.id}
                 dataset={product}
-                setroute={setroute}
               />
             ))
           : itemsInCart.map((product) => (
               <ProductItem
                 key={product.id}
                 dataset={product}
-                setroute={setroute}
               />
             ))}
       </div>

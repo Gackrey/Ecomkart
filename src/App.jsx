@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "./components/Navbar";
 import { Cart } from "./components/Cart";
 import { Products } from "./components/Products";
 import { Wishlist } from "./components/Wishlist";
+import { Routes, Route } from "react-router-dom";
 import "./styles.css";
 
 export default function App() {
-  const [route, setRoute] = useState("products");
   return (
     <div className="App">
-      <Navbar setroute={setRoute} />
       <div className="app-body">
-        {route === "cart" && <Cart setroute={setRoute} />}
-        {route === "products" && <Products setroute={setRoute} />}
-        {route === "wishlist" && <Wishlist setroute={setRoute} />}
+        <Navbar />
       </div>
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../Redux/cart-context";
 
-export function ProductItem({ dataset, setroute }) {
+export function ProductItem({ dataset }) {
   const { dispatch } = useCart();
   return (
     <div
@@ -68,9 +69,9 @@ export function ProductItem({ dataset, setroute }) {
         </p>
         <p>{dataset.fastDelivery ? "Fast Delivery" : "3 days minimum"}</p>
         {dataset.inStock && dataset.isinCart ? (
-          <button className="btn-addtoCart" onClick={() => setroute("cart")}>
-            Go to Cart
-          </button>
+          <Link to={"/cart"}>
+            <button className="btn-addtoCart">Go to Cart</button>
+          </Link>
         ) : dataset.inStock && !dataset.isinCart ? (
           <button
             className="btn-addtoCart"

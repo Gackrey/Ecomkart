@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../Redux/cart-context";
 import { CartItem } from "./CartItem";
-export function Cart({ setroute }) {
+export function Cart() {
   const { cartCount, cartItems } = useCart();
   const cartCalculator = () =>
     cartItems.reduce(

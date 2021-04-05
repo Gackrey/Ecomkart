@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useCart } from "../Redux/cart-context";
+import { Link } from "react-router-dom";
 
-export function Navbar({ setroute }) {
+export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
   const [searchContent, setSearchContent] = useState("");
   return (
@@ -56,46 +57,59 @@ export function Navbar({ setroute }) {
         )}
 
         <div className="navelement">
-          <span
-            style={{ padding: "10px 20px", cursor: "default" }}
-            onClick={() => setroute("products")}
-          >
-            Products
-          </span>
-
-          <div
-            className="badge"
-            style={{
-              cursor: "default",
-              marginTop: "6px",
-              marginRight: "10px"
-            }}
-            onClick={() => setroute("wishlist")}
-          >
-            <span className=" material-icons-outlined icon-size-30  icon-color-white ">
-              favorite
-            </span>
+          <Link to={"/products"} style={{ textDecoration: "none" }}>
             <span
-              className="count"
-              style={{ display: wishCount ? "inline-block" : "none" }}
+              style={{
+                padding: "10px 20px",
+                cursor: "default",
+                color: "white",
+                fontWeight: "bold"
+              }}
             >
-              {wishCount}
+              Products
             </span>
-            <span style={{ position: "relative", top: "-5px" }}></span>
-          </div>
-
-          <div className="badge" onClick={() => setroute("cart")}>
-            <i
-              className="fa fa-shopping-cart fa-2x icon"
-              aria-hidden="true"
-            ></i>
-            <span
-              className="count"
-              style={{ display: cartCount ? "inline-block" : "none" }}
+          </Link>
+          <Link to={"/wishlist"}>
+            <div
+              className="badge"
+              style={{
+                cursor: "default",
+                marginTop: "6px",
+                marginRight: "10px"
+              }}
             >
-              {cartCount}
-            </span>
-          </div>
+              <span className=" material-icons-outlined icon-size-30  icon-color-white ">
+                favorite
+              </span>
+              <span
+                className="count"
+                style={{
+                  display: wishCount ? "inline-block" : "none",
+                  padding: "3px 8px"
+                }}
+              >
+                {wishCount}
+              </span>
+              <span style={{ position: "relative", top: "-5px" }}></span>
+            </div>
+          </Link>
+          <Link to={"/cart"}>
+            <div className="badge">
+              <i
+                className="fa fa-shopping-cart fa-2x icon-color-white"
+                aria-hidden="true"
+              ></i>
+              <span
+                className="count"
+                style={{
+                  display: cartCount ? "inline-block" : "none",
+                  padding: "3px 8px"
+                }}
+              >
+                {cartCount}
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
       {window.innerWidth < 610 ? (

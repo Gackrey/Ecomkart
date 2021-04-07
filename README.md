@@ -23,7 +23,7 @@ $ npm install
 ```
 3) To run this project
 ```
-$ npm run
+$ npm start
 ```
 
 ## File Structure

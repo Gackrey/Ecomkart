@@ -1,8 +1,8 @@
 import React from "react";
 import { Navbar } from "./components/Navbar";
-import { Cart } from "./components/Cart";
-import { Products } from "./components/Products";
-import { Wishlist } from "./components/Wishlist";
+import { Cart } from "./Pages/Cart";
+import { Products } from "./Pages/Products";
+import { Wishlist } from "./Pages/Wishlist";
 import { Routes, Route } from "react-router-dom";
 import "./styles.css";
 

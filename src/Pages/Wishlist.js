@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../Redux/cart-context";
-import { WishlistItem } from "./WishlistItem";
-import { Toast } from "./Toast";
+import { WishlistItem } from "../components/WishlistItem";
+import { Toast } from "../components/Toast";
 export function Wishlist() {
   const { wishList, showToast } = useCart();
   return (

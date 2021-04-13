@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../Redux/cart-context";
-import { ProductItem } from "./ProductItem";
-import { Toast } from "./Toast";
+import { ProductItem } from "../components/ProductItem";
+import { Toast } from "../components/Toast";
 export function Products() {
   const {
     showToast,

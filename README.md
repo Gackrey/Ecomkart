@@ -34,6 +34,7 @@ $ npm start
 ├── src
 │   ├── api
 │   ├── components 
+│   ├── Pages
 │   ├── Redux_files 
 │   ├── App.js  
 │   ├── index.js  

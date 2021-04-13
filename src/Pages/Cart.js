@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../Redux/cart-context";
-import { CartItem } from "./CartItem";
-import { Toast } from "./Toast";
+import { CartItem } from "../components/CartItem";
+import { Toast } from "../components/Toast";
 export function Cart() {
   const { cartCount, cartItems, showToast } = useCart();
   const cartCalculator = () =>

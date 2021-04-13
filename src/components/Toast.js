@@ -12,7 +12,7 @@ export function Toast({ text }) {
     return () => {
       clearTimeout(timerid);
     };
-  }, []);
+  });
 
   return (
     <div

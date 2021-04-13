@@ -4,6 +4,7 @@ import { Cart } from "./Pages/Cart";
 import { Products } from "./Pages/Products";
 import { Wishlist } from "./Pages/Wishlist";
 import { Routes, Route } from "react-router-dom";
+import { Home } from './Pages/Home'
 import "./styles.css";
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
         <Navbar />
       </div>
       <Routes>
-        <Route path="/" element={<Products />} />
+        <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />

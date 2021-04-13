@@ -218,6 +218,37 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.home-image {
+  margin-top: 1rem;
+  width: 100%;
+}
+.home-card {
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin: 1rem;
+}
+.home-card:hover {
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+.image-size {
+  width: 240px;
+  height: 240px;
+}
+.text-overlay-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;

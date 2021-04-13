@@ -8,9 +8,10 @@ export function WishlistItem({ dataset }) {
       <div className="check">
         <button
           className="dismiss-card"
-          onClick={() =>
-            dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset })
-          }
+          onClick={() => {
+            dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
+            dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
+          }}
         >
           X
         </button>
@@ -45,6 +46,10 @@ export function WishlistItem({ dataset }) {
             className="btn-addtoCart"
             onClick={() => {
               dispatch({ type: "ADD_TO_CART_FROM_WISHLIST", payload: dataset });
+              dispatch({
+                type: "SHOW_TOAST",
+                payload: "Added to Cart from Wishlist"
+              });
             }}
           >
             Add to Cart

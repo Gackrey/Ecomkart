@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useCart } from "../Redux/cart-context";
 import { ProductItem } from "./ProductItem";
+import { Toast } from "./Toast";
 export function Products() {
-  const { itemsInCart, filterItems, searchState, dispatch } = useCart();
+  const {
+    showToast,
+    itemsInCart,
+    filterItems,
+    searchState,
+    dispatch
+  } = useCart();
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
   const [sortState, setSortState] = useState(false);
@@ -178,7 +185,7 @@ export function Products() {
               document.querySelector("body").style.overflow = "hidden";
             }}
           >
-            <i class="fa fa-sort"></i>Sort
+            <i className="fa fa-sort"></i>Sort
           </div>
           <div
             className="div_filters"
@@ -187,7 +194,7 @@ export function Products() {
               document.querySelector("body").style.overflow = "hidden";
             }}
           >
-            <i class="fa fa-filter"></i>Filter
+            <i className="fa fa-filter"></i>Filter
           </div>
         </div>
         <div
@@ -360,22 +367,17 @@ export function Products() {
           margin: "auto"
         }}
       >
+        {showToast.state ? <Toast text={showToast.msg} /> : ""}
         {stockChecker === false ||
         deliveryChecker === true ||
         sortState === true ||
         sliderState === true ||
         searchState === true
           ? filterItems.map((product) => (
-              <ProductItem
-                key={product.id}
-                dataset={product}
-              />
+              <ProductItem key={product.id} dataset={product} />
             ))
           : itemsInCart.map((product) => (
-              <ProductItem
-                key={product.id}
-                dataset={product}
-              />
+              <ProductItem key={product.id} dataset={product} />
             ))}
       </div>
     </div>

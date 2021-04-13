@@ -70,9 +70,10 @@ export function CartItem({ dataset }) {
       >
         <button
           className="btn btn-danger"
-          onClick={() =>
-            dispatch({ type: "REMOVE_FROM_CART", payload: dataset })
-          }
+          onClick={() => {
+            dispatch({ type: "REMOVE_FROM_CART", payload: dataset });
+            dispatch({ type: "SHOW_TOAST", payload: "Removed from Cart" });
+          }}
         >
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
@@ -88,12 +89,16 @@ export function CartItem({ dataset }) {
           <button
             className="btn btn-warning"
             style={{ margin: "0 1rem" }}
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: "ADD_TO_WISHLIST_FROM_CART",
                 payload: dataset
-              })
-            }
+              });
+              dispatch({
+                type: "SHOW_TOAST",
+                payload: "Added to Wishlist from Cart"
+              });
+            }}
           >
             Move to Wishlist
           </button>

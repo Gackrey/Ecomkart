@@ -1,8 +1,9 @@
 import React from "react";
 import { useCart } from "../Redux/cart-context";
 import { CartItem } from "./CartItem";
+import { Toast } from "./Toast";
 export function Cart() {
-  const { cartCount, cartItems } = useCart();
+  const { cartCount, cartItems, showToast } = useCart();
   const cartCalculator = () =>
     cartItems.reduce(
       (acc, value) => {
@@ -18,6 +19,7 @@ export function Cart() {
   return (
     <div className="cartContent">
       <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {showToast.state ? <Toast text={showToast.msg} /> : ""}
         {cartItems.map((product) => (
           <CartItem key={product.id} dataset={product} />
         ))}

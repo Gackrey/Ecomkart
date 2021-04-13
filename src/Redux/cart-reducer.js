@@ -1,5 +1,9 @@
 export function reducerFunc(state, action) {
   switch (action.type) {
+    case "SHOW_TOAST":
+      return { ...state, showToast: { state: true, msg: action.payload } };
+    case "HIDE_TOAST":
+      return { ...state, showToast: { state: false, msg: "" } };
     case "SET_PRODUCTS":
       return { ...state, itemsInCart: action.payload.products };
     case "INCREMENT_CART_ITEM":

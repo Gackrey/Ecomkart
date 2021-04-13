@@ -26,7 +26,8 @@ export function CartProvider({ children }) {
     cartItems,
     filterItems,
     cartCount,
-    wishCount
+    wishCount,
+    showToast: { state: false, msg: "" }
   });
   useEffect(() => {
     fetchFromServer();
@@ -41,6 +42,7 @@ export function CartProvider({ children }) {
         filterItems: state.filterItems,
         cartCount: state.cartCount,
         wishCount: state.wishCount,
+        showToast: state.showToast,
         searchState,
         setsearchState,
         dispatch

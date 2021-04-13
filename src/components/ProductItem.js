@@ -15,9 +15,14 @@ export function ProductItem({ dataset }) {
           onClick={() => {
             if (dataset.isWishlisted) {
               dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
+              dispatch({
+                type: "SHOW_TOAST",
+                payload: "Removed from Wishlist"
+              });
             }
             if (!dataset.isWishlisted) {
               dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
+              dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
             }
           }}
         >
@@ -77,6 +82,7 @@ export function ProductItem({ dataset }) {
             className="btn-addtoCart"
             onClick={() => {
               dispatch({ type: "ADD_TO_CART", payload: dataset });
+              dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
             }}
           >
             Add to Cart

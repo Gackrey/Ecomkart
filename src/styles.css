@@ -33,7 +33,19 @@
 .navelement {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+.navbuttons {
+  margin: 0 1rem;
+}
+.login-btn {
+  padding: 5px 10px;
+  font-size: 16px;
+  color: var(--primary);
+  background-color: white;
+  border: none;
+  outline: none;
+  font-weight: bold;
 }
 .btn-addtoCart {
   padding: 8px;
@@ -249,6 +261,16 @@
   color: black;
   font-weight: bold;
 }
+.toastBox {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border: 1px solid green;
+  background-color: var(--success);
+  position: fixed;
+  bottom: 4rem;
+  left: 50%;
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;
@@ -277,5 +299,8 @@
   }
   .cartContent {
     display: block;
+  }
+  .toastBox {
+    left: 25%;
   }
 }

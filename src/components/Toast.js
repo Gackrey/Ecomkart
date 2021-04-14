@@ -15,20 +15,7 @@ export function Toast({ text }) {
   });
 
   return (
-    <div
-      ref={toastRef}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        padding: "5px 15px",
-        border: "1px solid green",
-        backgroundColor: "var(--success)",
-        position: "fixed",
-        bottom: "4rem",
-        left: "50%",
-        zIndex: "5"
-      }}
-    >
+    <div ref={toastRef} className="toastBox">
       <p>{text}</p>
     </div>
   );

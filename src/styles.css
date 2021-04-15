@@ -13,6 +13,7 @@
   padding: 0;
 }
 .logoHeading {
+  color:white;
   font-family: "Racing Sans One", cursive;
   font-size: 35px;
 }
@@ -271,6 +272,71 @@
   bottom: 4rem;
   left: 50%;
 }
+.Login-container{
+  background-image: url('https://wallpaperaccess.com/full/2593042.jpg');
+  background-position: center;
+  background-size:cover;
+  /* filter: blur(8px); */
+  backdrop-filter: blur( 5.5px );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.Login-box{
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 5.5px );
+  -webkit-backdrop-filter: blur( 5.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.input-box-text{
+  margin: 10px 10px;
+}
+.input-box-text > input{
+  padding: 10px;
+  padding-right: 39px;
+  font-size: 16px;
+  outline: none;
+}
+.input-box-password{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin:10px;
+}
+.input-box-password > input{
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.password-state{
+  margin: 0 5px;
+}
+.login-click-btn{
+  padding: 10px 6.2rem;
+  font-size: 18px;
+  margin: 10px;
+  background-color: orangered;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.signup-click-btn{
+  padding: 10px 5.8rem;
+  font-size: 18px;
+  margin: 10px;
+  background-color: orangered;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;
@@ -302,5 +368,15 @@
   }
   .toastBox {
     left: 25%;
+  }
+  .Login-container{
+    height: 80vh;
+  }
+  .Login-box{
+    box-shadow: none;
+    background: none;
+    box-shadow: none;
+    border: none;
+    backdrop-filter: none;
   }
 }

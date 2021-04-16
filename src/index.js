@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import setupMockServer from "./api/mock.server";
-import { CartProvider } from "./Redux/cart-context";
+import { CartProvider } from "./Context/cart-context";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from './Redux/AuthProvider'
+import { AuthProvider } from './Context/AuthProvider'
 import App from "./App";
 
 setupMockServer();

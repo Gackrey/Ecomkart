@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Redux/cart-context";
+import { useCart } from "../Context/cart-context";
 import { WishlistItem } from "../components/WishlistItem";
 import { Toast } from "../components/Toast";
 export function Wishlist() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../Redux/cart-context";
+import { useCart } from "../Context/cart-context";
 
 export function CartItem({ dataset }) {
   const { dispatch } = useCart();

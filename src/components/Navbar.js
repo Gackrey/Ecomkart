@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useCart } from "../Redux/cart-context";
+import { useCart } from "../Context/cart-context";
 import { Link } from "react-router-dom";
-import { useAuth } from '../Redux/AuthProvider'
+import { useAuth } from '../Context/AuthProvider'
 export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
   const { isUserLogin, LogOut } = useAuth()

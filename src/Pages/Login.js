@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from "../Redux/AuthProvider"
+import { useAuth } from "../Context/AuthProvider"
 
 const Login = () => {
     const { loginUserWithCredentials } = useAuth()

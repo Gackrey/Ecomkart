@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Redux/cart-context";
+import { useCart } from "../Context/cart-context";
 
 export function ProductItem({ dataset }) {
   const { dispatch } = useCart();

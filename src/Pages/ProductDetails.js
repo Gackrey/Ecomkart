@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { useCart } from "../Redux/cart-context"
+import { useCart } from "../Context/cart-context"
 import { Link } from 'react-router-dom'
 const ProductDetails = () => {
     const { productId } = useParams();

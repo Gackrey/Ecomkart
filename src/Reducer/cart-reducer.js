@@ -5,7 +5,10 @@ export function reducerFunc(state, action) {
     case "HIDE_TOAST":
       return { ...state, showToast: { state: false, msg: "" } };
     case "SET_PRODUCTS":
-      return { ...state, itemsInCart: action.payload.products };
+      return { ...state, 
+        itemsInCart: action.payload.products,
+        filterItems: action.payload.products
+       };
     case "INCREMENT_CART_ITEM":
       return {
         ...state,

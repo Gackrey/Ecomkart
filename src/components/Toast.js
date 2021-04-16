@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useCart } from "../Redux/cart-context";
+import { useCart } from "../Context/cart-context";
 export function Toast({ text }) {
   const { dispatch } = useCart();
   const toastRef = useRef(null);

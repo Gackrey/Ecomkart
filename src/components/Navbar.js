@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useCart } from "../Redux/cart-context";
 import { Link } from "react-router-dom";
-
+import { useAuth } from '../Redux/AuthProvider'
 export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
+  const { isUserLogin, LogOut } = useAuth()
   const [searchContent, setSearchContent] = useState("");
   return (
     <div className="navbar">
@@ -100,9 +101,11 @@ export function Navbar() {
               </span>
             </div>
           </Link>
-          <Link to="/login" className="navbuttons">
-            <button className="login-btn">Login</button>
-          </Link>
+          {isUserLogin ?
+            <button className="login-btn" onClick={LogOut}>Log Out</button> :
+            <Link to="/login" className="navbuttons">
+              <button className="login-btn">Login</button>
+            </Link>}
         </div>
       </div>
       {

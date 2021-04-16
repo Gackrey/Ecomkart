@@ -37,42 +37,48 @@ export function ProductItem({ dataset }) {
           )}
         </div>
       </div>
-      <img className="card-image" src={dataset.image} alt="" />
-      <div className="card-body" style={{ marginTop: "30px" }}>
-        <h3>{dataset.name}</h3>
-        <p
-          style={{
-            padding: "2px 5px",
-            backgroundColor: "green",
-            width: "fit-content",
-            fontSize: "14px",
-            fontWeight: "bold",
-            borderRadius: "5px",
-            display: "inline-block"
-          }}
-        >
-          {dataset.ratings}★
+      <Link to={`/product/${dataset.id}`} style={{ textDecoration: "none" }}>
+        <img className="card-image" src={dataset.image} alt="" />
+      </Link>
+      <div className="card-body">
+        <Link to={`/product/${dataset.id}`} style={{ textDecoration: "none" }}>
+          <div style={{ marginTop: "30px", color: "black" }}>
+            <h3>{dataset.name}</h3>
+            <p
+              style={{
+                padding: "2px 5px",
+                backgroundColor: "green",
+                width: "fit-content",
+                fontSize: "14px",
+                fontWeight: "bold",
+                borderRadius: "5px",
+                display: "inline-block"
+              }}
+            >
+              {dataset.ratings}★
         </p>
 
-        <p style={{ fontSize: "18px" }}>
-          ₹{dataset.price}
-          <small
-            style={{
-              padding: "0 5px",
-              color: "gray",
-              textDecoration: "line-through 2px",
-              fontSize: "14px"
-            }}
-          >
-            {Math.floor(dataset.price * 1.3)}.00
+            <p style={{ fontSize: "18px" }}>
+              ₹{dataset.price}
+              <small
+                style={{
+                  padding: "0 5px",
+                  color: "gray",
+                  textDecoration: "line-through 2px",
+                  fontSize: "14px"
+                }}
+              >
+                {Math.floor(dataset.price * 1.3)}.00
           </small>
-          <small
-            style={{ padding: "0 10px", color: "green", fontSize: "14px" }}
-          >
-            30% off
+              <small
+                style={{ padding: "0 10px", color: "green", fontSize: "14px" }}
+              >
+                30% off
           </small>
-        </p>
-        <p>{dataset.fastDelivery ? "Fast Delivery" : "3 days minimum"}</p>
+            </p>
+            <p>{dataset.fastDelivery ? "Fast Delivery" : "3 days minimum"}</p>
+          </div>
+        </Link>
         {dataset.inStock && dataset.isinCart ? (
           <Link to={"/cart"}>
             <button className="btn-addtoCart">Go to Cart</button>

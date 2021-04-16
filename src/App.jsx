@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import  Home  from './Pages/Home'
 import SignUp from './Pages/SignUp'
 import Login from './Pages/Login'
+import ProductDetails from './Pages/ProductDetails'
 import "./styles.css";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

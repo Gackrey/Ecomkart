@@ -276,7 +276,6 @@
   background-image: url('https://wallpaperaccess.com/full/2593042.jpg');
   background-position: center;
   background-size:cover;
-  /* filter: blur(8px); */
   backdrop-filter: blur( 5.5px );
   display: flex;
   align-items: center;
@@ -337,6 +336,34 @@
   outline: none;
   cursor: pointer;
 }
+.product-details{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.product-image{
+  width: 400px;
+  height: 406px;
+  display: block;
+}
+.heart-product{
+  position: absolute;
+  top: 3px;
+  right: 30px;
+}
+.product-addtoCart{
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  width: 12rem;
+  cursor: pointer;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;
@@ -378,5 +405,12 @@
     box-shadow: none;
     border: none;
     backdrop-filter: none;
+  }
+  .product-details{
+    flex-direction: column;
+  }
+  .product-image{
+    width: 300px;
+    height: 306px;
   }
 }

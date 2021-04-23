@@ -48,6 +48,7 @@ export function CartItem({ dataset }) {
             className="incdecbtn"
             onClick={() => {
               dispatch({ type: "DECREMENT_CART_ITEM", payload: dataset });
+              dispatch({ type: "SHOW_TOAST", payload: "1 more item added" });
             }}
           >
             -
@@ -57,6 +58,7 @@ export function CartItem({ dataset }) {
             className="incdecbtn"
             onClick={() => {
               dispatch({ type: "INCREMENT_CART_ITEM", payload: dataset });
+              dispatch({ type: "SHOW_TOAST", payload: "1 more item removed" });
             }}
           >
             +

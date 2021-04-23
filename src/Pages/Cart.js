@@ -18,16 +18,16 @@ export function Cart() {
     );
   const cartDetails = cartCalculator();
   return (
-    <div className="cartContent">
+    <div>
+      {showToast.state ? <Toast text={showToast.msg} /> : ""}
       {cartItems.length > 0 ?
-        <div>
+        <div className="cartContent">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {showToast.state ? <Toast text={showToast.msg} /> : ""}
             {cartItems.map((product) => (
               <CartItem key={product.id} dataset={product} />
             ))}
           </div>
-          <div>
+          <div style={{ margin: "auto" }}>
             <div className="cartOrder">
               <div className="cartdetails">
                 <p>Price ({cartCount} items):</p>

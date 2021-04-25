@@ -5,8 +5,6 @@ const MobileFilter = () => {
     const [value, setValue] = useState(1000);
     const [stockChecker, setStockState] = useState(true);
     const [deliveryChecker, setDeliveryState] = useState(false);
-    const [sortState, setSortState] = useState(false);
-    const [sliderState, setSliderState] = useState(false);
     const [sortButtonClicked, setsortClickedState] = useState(false);
     const [filterButtonClicked, setfilterClickedState] = useState(false);
     return (
@@ -56,7 +54,6 @@ const MobileFilter = () => {
                 </div>
                 <p
                     onClick={() => {
-                        setSortState(true);
                         dispatch({
                             type: "HIGH_TO_LOW",
                             payload: itemsInCart
@@ -67,7 +64,6 @@ const MobileFilter = () => {
           </p>
                 <p
                     onClick={() => {
-                        setSortState(true);
                         dispatch({
                             type: "LOW_TO_HIGH",
                             payload: itemsInCart
@@ -134,7 +130,6 @@ const MobileFilter = () => {
                         step="100"
                         onChange={(e) => {
                             setValue(e.target.value);
-                            setSliderState(true);
                             dispatch({
                                 type: "RANGE_FILTER",
                                 payload: e.target.value
@@ -148,7 +143,6 @@ const MobileFilter = () => {
                         type="radio"
                         name="sort"
                         onChange={() => {
-                            setSortState(true);
                             dispatch({
                                 type: "PRODUCT_FILTER",
                                 payload: "men clothing"
@@ -162,7 +156,6 @@ const MobileFilter = () => {
                         type="radio"
                         name="sort"
                         onChange={() => {
-                            setSortState(true);
                             dispatch({
                                 type: "PRODUCT_FILTER",
                                 payload: "women clothing"
@@ -176,7 +169,6 @@ const MobileFilter = () => {
                         type="radio"
                         name="sort"
                         onChange={() => {
-                            setSortState(true);
                             dispatch({
                                 type: "PRODUCT_FILTER",
                                 payload: "jewellery"
@@ -190,7 +182,6 @@ const MobileFilter = () => {
                         type="radio"
                         name="sort"
                         onChange={() => {
-                            setSortState(true);
                             dispatch({
                                 type: "PRODUCT_FILTER",
                                 payload: "electronics"

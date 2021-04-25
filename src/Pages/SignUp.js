@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../Context/AuthProvider"
+import {useCart} from '../Context/cart-context'
 const SignUp = () => {
+    const { wishList, cartItems } = useCart();
     const [showpasswordState, setPassState] = useState(false);
     const { signinUser } = useAuth()
-    const [username, setUsername] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
@@ -15,7 +18,10 @@ const SignUp = () => {
                     <h1 style={{ color: "var(--primary)" }}>UP</h1>
                 </div>
                 <div className="input-box-text">
-                    <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} />
+                </div>
+                <div className="input-box-text">
+                    <input type="text" placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} />
                 </div>
                 <div className="input-box-text">
                     <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
@@ -29,7 +35,7 @@ const SignUp = () => {
                     </div>
                 </div>
                 <button className="signup-click-btn"
-                    onClick={() => signinUser(username, email, password)}
+                    onClick={() => signinUser(firstname, lastname, email, password,wishList, cartItems)}
                 >Sign Up</button>
                 <p style={{ fontWeight: "bold" }}>Already a member?
                 <Link to="/login" style={{ textDecoration: "none" }}>

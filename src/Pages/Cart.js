@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import { CartItem } from "../components/CartItem";
 import { Toast } from "../components/Toast";
+import AddDataToServer from '../AddDataToServer'
 export function Cart() {
-  const { cartCount, cartItems, showToast } = useCart();
+  const { cartCount, cartItems, showToast,wishList } = useCart();
+  AddDataToServer(wishList,cartItems)
   const cartCalculator = () =>
     cartItems.reduce(
       (acc, value) => {
@@ -24,7 +26,7 @@ export function Cart() {
         <div className="cartContent">
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {cartItems.map((product) => (
-              <CartItem key={product.id} dataset={product} />
+              <CartItem key={product._id} dataset={product} />
             ))}
           </div>
           <div style={{ margin: "auto" }}>

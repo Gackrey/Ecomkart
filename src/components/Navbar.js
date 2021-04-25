@@ -5,7 +5,23 @@ import { useAuth } from '../Context/AuthProvider'
 export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
   const { isUserLogin, LogOut } = useAuth()
+  function LogOutHandler(){
+    LogOut()
+    dispatch({type:"LOG_OUT"})
+  }
   const [searchContent, setSearchContent] = useState("");
+  function searchHandler(e) {
+    if (e.keyCode === 13) {
+      dispatch({ type: "SEARCH_RESULT", payload: searchContent });
+      setsearchState(true);
+      setSearchContent("");
+    }
+  }
+  function btnsearchHandler() {
+    dispatch({ type: "SEARCH_RESULT", payload: searchContent });
+    setsearchState(true);
+    setSearchContent("");
+  }
   return (
     <div className="navbar">
       <div className="nav-body">
@@ -26,14 +42,10 @@ export function Navbar() {
               placeholder="Search by product name"
               value={searchContent}
               onChange={(e) => setSearchContent(e.target.value)}
+              onKeyDown={searchHandler}
             ></input>
             <button
-              onClick={() => {
-                console.log(searchContent);
-                dispatch({ type: "SEARCH_RESULT", payload: searchContent });
-                setsearchState(true);
-                setSearchContent("");
-              }}
+              onClick={btnsearchHandler}
             >
               <svg
                 width="20"
@@ -102,7 +114,7 @@ export function Navbar() {
             </div>
           </Link>
           {isUserLogin ?
-            <button className="login-btn" onClick={LogOut}>Log Out</button> :
+            <button className="login-btn" onClick={LogOutHandler}>Log Out</button> :
             <Link to="/login" className="navbuttons">
               <button className="login-btn">Login</button>
             </Link>}
@@ -116,14 +128,10 @@ export function Navbar() {
               placeholder="Search by product name"
               value={searchContent}
               onChange={(e) => setSearchContent(e.target.value)}
+              onKeyDown={searchHandler}
             ></input>
             <button
-              onClick={() => {
-                console.log(searchContent);
-                dispatch({ type: "SEARCH_RESULT", payload: searchContent });
-                setsearchState(true);
-                setSearchContent("");
-              }}
+              onClick={btnsearchHandler}
             >
               <svg
                 width="20"

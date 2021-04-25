@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from 'axios'
+import { useCart } from './Context/cart-context'
 import { Navbar } from "./components/Navbar";
 import { Cart } from "./Pages/Cart";
 import { Products } from "./Pages/Products";
@@ -12,6 +14,25 @@ import { PrivateRoute } from './PrivateRoute'
 import "./styles.css";
 
 export default function App() {
+  const { dispatch } = useCart()
+  const fetchUserFromServer = async (id) => {
+    try {
+      await axios.get(`https://ecomkart-backend.herokuapp.com/user/${id}`).then((response) => {
+        dispatch({
+          type: "GET_USER_DATA", payload: {
+            wishlist: response.data.user.wishlist,
+            cart: response.data.user.cart
+          }
+        });
+      });
+    } catch {
+      console.error("Error");
+    }
+  };
+  useEffect(() => {
+    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
+    fetchUserFromServer(loginStatus?.userID)
+  }, []);
   return (
     <div className="App">
       <div className="app-body">

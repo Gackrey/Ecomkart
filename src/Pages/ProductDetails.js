@@ -2,11 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { useCart } from "../Context/cart-context"
 import { Link } from 'react-router-dom'
+import AddDataToServer from '../AddDataToServer'
 const ProductDetails = () => {
     const { productId } = useParams();
-    const { itemsInCart, dispatch } = useCart()
+    const { itemsInCart,wishList,cartItems, dispatch } = useCart()
+    AddDataToServer(wishList,cartItems)
     function getProduct(products, productId) {
-        return products.find(product => product.id === productId)
+        return products.find(product => product._id === productId)
     }
     const selectedProduct = getProduct(itemsInCart, productId)
     return (
@@ -57,11 +59,11 @@ const ProductDetails = () => {
                             </span>
                         )}
                     </div>
-                    
+
                 </div>
 
                 <div>
-                    <h1 style={{ marginLeft: "1rem",textAlign:"start" }}>{selectedProduct.name}</h1>
+                    <h1 style={{ marginLeft: "1rem", textAlign: "start" }}>{selectedProduct.name}</h1>
                     <p
                         style={{
                             padding: "2px 5px",
@@ -114,7 +116,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div> :
-            <div></div>
+            <div>Loading</div>
     );
 }
 

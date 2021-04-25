@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios'
 import { Link } from "react-router-dom";
+import { useCart } from '../Context/cart-context'
 const Home = () => {
-    return (
-        <div>
+  const { dispatch } = useCart()
+  const fetchUserFromServer = async (id) => {
+    try {
+      await axios.get(`https://ecomkart-backend.herokuapp.com/user/${id}`).then((response) => {
+        dispatch({
+          type: "GET_USER_DATA", payload: {
+            wishlist: response.data.user.wishlist,
+            cart: response.data.user.cart
+          }
+        });
+      });
+    } catch {
+      console.error("Error");
+    }
+  };
+  useEffect(() => {
+    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
+    fetchUserFromServer(loginStatus?.userID)
+  }, []);
+  return (
+    <div>
       <Link to={"/products"} style={{ textDecoration: "none" }}>
         <img
           src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2021/4/12/4a35e3b5-aa37-49b2-ab2b-51036b668ed21618243765586-Desktop--1-.jpg"
@@ -81,7 +102,7 @@ const Home = () => {
         </Link>
       </div>
     </div>
-    );
+  );
 }
 
 export default Home;

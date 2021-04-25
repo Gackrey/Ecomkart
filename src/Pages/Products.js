@@ -4,8 +4,10 @@ import { ProductItem } from "../components/ProductItem";
 import { Toast } from "../components/Toast";
 import SideFilterBar from '../components/SideFilterBar';
 import MobileFilter from '../components/MobileFilter'
+import AddDataToServer from '../AddDataToServer'
 export function Products() {
-  const { showToast,filterItems } = useCart();
+  const { showToast,filterItems,cartItems,wishList } = useCart();
+  AddDataToServer(wishList,cartItems)
   return (
     <div className="productbox">
       <SideFilterBar />
@@ -20,7 +22,7 @@ export function Products() {
       >
         {showToast.state ? <Toast text={showToast.msg} /> : ""}
         {filterItems.map((product) => (
-          <ProductItem key={product.id} dataset={product} />
+          <ProductItem key={product._id} dataset={product} />
         ))
         }
       </div>

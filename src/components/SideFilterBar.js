@@ -3,8 +3,6 @@ import { useCart } from '../Context/cart-context'
 const SideFilterBar = () => {
     const [stockChecker, setStockState] = useState(true);
     const [deliveryChecker, setDeliveryState] = useState(false);
-    const [sortState, setSortState] = useState(false);
-    const [sliderState, setSliderState] = useState(false);
     const { itemsInCart, dispatch } = useCart();
     const [value, setValue] = useState(1000);
     return (
@@ -15,7 +13,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "LOW_TO_HIGH",
                             payload: itemsInCart
@@ -29,7 +26,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "HIGH_TO_LOW",
                             payload: itemsInCart
@@ -80,7 +76,6 @@ const SideFilterBar = () => {
                     step="100"
                     onChange={(e) => {
                         setValue(e.target.value);
-                        setSliderState(true);
                         dispatch({
                             type: "RANGE_FILTER",
                             payload: e.target.value
@@ -97,7 +92,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "PRODUCT_FILTER",
                             payload: "men clothing"
@@ -111,7 +105,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "PRODUCT_FILTER",
                             payload: "women clothing"
@@ -125,7 +118,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "PRODUCT_FILTER",
                             payload: "jewellery"
@@ -139,7 +131,6 @@ const SideFilterBar = () => {
                     type="radio"
                     name="sort"
                     onChange={() => {
-                        setSortState(true);
                         dispatch({
                             type: "PRODUCT_FILTER",
                             payload: "electronics"

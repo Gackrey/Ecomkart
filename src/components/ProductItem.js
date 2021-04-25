@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
-
 export function ProductItem({ dataset }) {
   const { dispatch } = useCart();
   return (
@@ -37,11 +36,11 @@ export function ProductItem({ dataset }) {
           )}
         </div>
       </div>
-      <Link to={`/product/${dataset.id}`} style={{ textDecoration: "none" }}>
+      <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
         <img className="card-image" src={dataset.image} alt="" />
       </Link>
       <div className="card-body">
-        <Link to={`/product/${dataset.id}`} style={{ textDecoration: "none" }}>
+        <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
           <div style={{ marginTop: "30px", color: "black" }}>
             <h3>{dataset.name}</h3>
             <p

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../Context/AuthProvider"
-
 const Login = () => {
     const { loginUserWithCredentials } = useAuth()
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showpasswordState, setPassState] = useState(false)
     return (
@@ -15,7 +14,7 @@ const Login = () => {
                     <h1 style={{ color: "var(--primary)" }}>IN</h1>
                 </div>
                 <div className="input-box-text">
-                    <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                    <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="input-box-password">
                     <input type={showpasswordState ? "text" : "password"} placeholder="Password"
@@ -26,7 +25,7 @@ const Login = () => {
                     </div>
                 </div>
                 <button className="login-click-btn"
-                onClick={() => loginUserWithCredentials(username, password)}
+                onClick={() => loginUserWithCredentials(email, password)}
                 >Log In</button>
                 <p style={{ fontWeight: "bold" }}>Dont have a account?
                 <Link to="/signup" style={{ textDecoration: "none" }}>

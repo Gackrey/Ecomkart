@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router';
-import { fakeAuthApiLogin, fakeAuthApiSignUp } from '../api/fakeAuth'
+import { AuthApiLogin, AuthApiSignUp } from '../api/AuthHandler'
 export const AuthContext = createContext();
-
 export function AuthProvider({ children }) {
     const navigate = useNavigate();
     const [isUserLogin, setLogin] = useState(false);
@@ -11,14 +10,14 @@ export function AuthProvider({ children }) {
         loginStatus?.isUserLoggedIn && setLogin(true);
     }, []);
 
-    async function loginUserWithCredentials(username, password) {
+    async function loginUserWithCredentials(email, password) {
         try {
-            const response = await fakeAuthApiLogin(username, password);
-            if (response.success) {
+            const response = await AuthApiLogin(email, password);
+            if (response.data.success) {
                 setLogin(true);
                 localStorage.setItem(
                     "AuthDetails",
-                    JSON.stringify({ isUserLoggedIn: true })
+                    JSON.stringify({isUserLoggedIn:true, userID: response.data.id, userIcon: response.data.icon })
                 );
                 navigate("/");
             }
@@ -27,14 +26,14 @@ export function AuthProvider({ children }) {
         }
     }
 
-    async function signinUser(username, email, password) {
+    async function signinUser(firstname, lastname, email, password, wishList, cartItems) {
         try {
-            const response = await fakeAuthApiSignUp(username, email, password)
-            if (response.success) {
+            const response = await AuthApiSignUp(firstname, lastname, email, password, wishList, cartItems)
+            if (response.data.success) {
                 setLogin(true);
                 localStorage.setItem(
                     "AuthDetails",
-                    JSON.stringify({isUserLoggedIn: true })
+                    JSON.stringify({isUserLoggedIn:true, userID: response.data.id, userIcon: response.data.icon })
                 );
                 navigate("/");
             }

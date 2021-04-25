@@ -7,8 +7,8 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const fetchFromServer = async () => {
     try {
-      axios.get("/api/products").then((responce) => {
-        dispatch({ type: "SET_PRODUCTS", payload: responce.data });
+      await axios.get("https://ecomkart-backend.herokuapp.com/products").then((response) => {
+        dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
       });
     } catch {
       console.error("Error");

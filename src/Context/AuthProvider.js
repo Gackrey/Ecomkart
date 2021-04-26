@@ -36,10 +36,11 @@ export function AuthProvider({ children }) {
                     "AuthDetails",
                     JSON.stringify({ isUserLoggedIn: true, userID: response.data.id, userIcon: response.data.icon })
                 );
-                navigate("/");
+                return { success: response.data.success }
             }
         } catch (error) {
             console.log("Sahi username password nahi pata kya?", error);
+            return { success: false }
         }
     }
     function LogOut() {

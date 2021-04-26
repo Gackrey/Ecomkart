@@ -41,11 +41,13 @@ export function reducerFunc(state, action) {
     case "LOG_OUT":
       return {
         ...state,
-        filterItems: state.itemsInCart,
         cartItems: [],
         cartCount: 0,
         wishList: [],
-        wishCount: 0
+        wishCount: 0,
+        filterItems: state.itemsInCart.map(item => {
+          return {...item,isWishlisted: false, isinCart: false }
+        })
       }
     case "INCREMENT_CART_ITEM":
       return {

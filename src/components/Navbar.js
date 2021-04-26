@@ -5,9 +5,19 @@ import { useAuth } from '../Context/AuthProvider'
 export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
   const { isUserLogin, LogOut } = useAuth()
-  function LogOutHandler(){
+  function GetIcon() {
+    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
+    const icon = loginStatus?.userIcon.toUpperCase();
+    if(icon){
+      return icon
+    }
+    else {
+      return "_"
+    }
+  }
+  function LogOutHandler() {
     LogOut()
-    dispatch({type:"LOG_OUT"})
+    dispatch({ type: "LOG_OUT" })
   }
   const [searchContent, setSearchContent] = useState("");
   function searchHandler(e) {
@@ -114,7 +124,9 @@ export function Navbar() {
             </div>
           </Link>
           {isUserLogin ?
-            <button className="login-btn" onClick={LogOutHandler}>Log Out</button> :
+            <div className="avatar-circleIcon" onClick={LogOutHandler}>
+              <span><GetIcon /></span>
+            </div> :
             <Link to="/login" className="navbuttons">
               <button className="login-btn">Login</button>
             </Link>}

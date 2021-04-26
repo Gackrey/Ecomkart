@@ -29,7 +29,6 @@ export function reducerFunc(state, action) {
         else if (wishflag && cartflag) return { ...filteritem,isWishlisted: true, isinCart: true }
         else return filteritem
       })
-      console.log(updatedData);
       return {
         ...state,
         cartItems: action.payload.cart,

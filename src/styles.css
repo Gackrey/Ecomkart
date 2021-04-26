@@ -50,6 +50,20 @@
   margin-left: 10px;
   cursor: pointer;
 }
+.avatar-circleIcon{
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 11px 18px;
+  border: 1px solid var(--primary);
+  background-color: black;
+  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+}
+.avatar-circleIcon > span{
+  font-size: 24px;
+  color: yellow;
+}
 .btn-addtoCart {
   padding: 8px;
   font-size: 16px;
@@ -414,5 +428,8 @@
   .product-image{
     width: 300px;
     height: 306px;
+  }
+  .avatar-circleIcon{
+    padding: 3px 12px;
   }
 }

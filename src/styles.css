@@ -38,6 +38,7 @@
 }
 .navbuttons {
   margin: 0 1rem;
+  text-decoration: none;
 }
 .login-btn {
   padding: 5px 10px;
@@ -380,6 +381,14 @@
   outline: none;
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
 }
+.btn-logout{
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 22px;
+  outline: none;
+  border: none;
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;
@@ -431,5 +440,8 @@
   }
   .avatar-circleIcon{
     padding: 3px 12px;
+  }
+  .mobileSize{
+    font-size: 18px;
   }
 }

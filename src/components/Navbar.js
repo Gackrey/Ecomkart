@@ -4,20 +4,16 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../Context/AuthProvider'
 export function Navbar() {
   const { cartCount, wishCount, setsearchState, dispatch } = useCart();
-  const { isUserLogin, LogOut } = useAuth()
+  const { isUserLogin } = useAuth()
   function GetIcon() {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const icon = loginStatus?.userIcon.toUpperCase();
-    if(icon){
+    if (icon) {
       return icon
     }
     else {
       return "_"
     }
-  }
-  function LogOutHandler() {
-    LogOut()
-    dispatch({ type: "LOG_OUT" })
   }
   const [searchContent, setSearchContent] = useState("");
   function searchHandler(e) {
@@ -124,9 +120,11 @@ export function Navbar() {
             </div>
           </Link>
           {isUserLogin ?
-            <div className="avatar-circleIcon" onClick={LogOutHandler}>
-              <span><GetIcon /></span>
-            </div> :
+            <Link to="/userdetails" className="navbuttons">
+              <div className="avatar-circleIcon">
+                <span><GetIcon /></span>
+              </div>
+            </Link> :
             <Link to="/login" className="navbuttons">
               <button className="login-btn">Login</button>
             </Link>}

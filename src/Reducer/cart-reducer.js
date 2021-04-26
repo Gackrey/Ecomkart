@@ -11,29 +11,38 @@ export function reducerFunc(state, action) {
         filterItems: action.payload
       };
     case "GET_USER_DATA":
-      // let wishlistedId = action.payload.wishlist.map(item => item._id)
-      // let cartedId = action.payload.cart.map(item => item._id)
+      let wishlistedId = action.payload.wishlist.map(item => item._id)
+      let cartedId = action.payload.cart.map(item => item._id)
+      let updatedData = state.itemsInCart.map((filteritem) => {
+        let wishflag = false;
+        let cartflag = false;
+        wishlistedId.map(wishitem => {
+          if (wishitem === filteritem._id)
+            wishflag = true;
+        })
+        cartedId.map(cartitem => {
+          if (cartitem === filteritem._id)
+          cartflag = true;
+        })
+        if (wishflag && !cartflag) return { ...filteritem, isWishlisted: true }
+        else if (!wishflag && cartflag) return { ...filteritem, isinCart: true }
+        else if (wishflag && cartflag) return { ...filteritem,isWishlisted: true, isinCart: true }
+        else return filteritem
+      })
+      console.log(updatedData);
       return {
         ...state,
         cartItems: action.payload.cart,
         cartCount: action.payload.cart.length,
         wishList: action.payload.wishlist,
         wishCount: action.payload.wishlist.length,
-        // filterItems: state.itemsInCart.map((filteritem) =>
-        //   wishlistedId.map(wishitem =>
-        //     wishitem === filteritem._id ? { ...filteritem, isWishlisted: true } : filteritem
-        //   )
-        // ),
-        // filterItems: state.itemsInCart.map((filteritem) =>
-        //   cartedId.map(cartitem =>
-        //     cartitem === filteritem._id ? { ...filteritem, isinCart: true } : filteritem
-        //   )
-        // )
+        itemsInCart:updatedData,
+        filterItems:updatedData
       }
     case "LOG_OUT":
       return {
         ...state,
-        filterItems:state.itemsInCart,
+        filterItems: state.itemsInCart,
         cartItems: [],
         cartCount: 0,
         wishList: [],
@@ -71,11 +80,12 @@ export function reducerFunc(state, action) {
         };
       }
     case "ADD_TO_CART":
+      console.log(state.filterItems);
       return {
         ...state,
         cartItems: state.cartItems.concat(action.payload),
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id ? { ...item, isinCart: true } : item
+          item._id === action.payload._id ? { ...item, isinCart: true } : item
         ),
         filterItems: state.itemsInCart.map((item) =>
           item._id === action.payload._id ? { ...item, isinCart: true } : item
@@ -92,6 +102,9 @@ export function reducerFunc(state, action) {
           (item) => item._id !== action.payload._id
         ),
         wishList: state.wishList.map((item) =>
+          item._id === action.payload._id ? { ...item, isinCart: false } : item
+        ),
+        itemsInCart: state.itemsInCart.map((item) =>
           item._id === action.payload._id ? { ...item, isinCart: false } : item
         ),
         filterItems: state.itemsInCart.map((item) =>
@@ -118,7 +131,7 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id ? { ...item, isWishlisted: true } : item
+          item._id === action.payload._id ? { ...item, isWishlisted: true } : item
         ),
         cartItems: state.cartItems.map((item) =>
           item._id === action.payload._id ? { ...item, isWishlisted: true } : item
@@ -133,11 +146,11 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         cartItems: state.cartItems.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         ),
         wishList: state.wishList.concat(action.payload),
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, isWishlisted: true, isinCart: false }
             : item
         ),
@@ -153,10 +166,10 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         wishList: state.wishList.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         ),
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, isWishlisted: false }
             : item
         ),

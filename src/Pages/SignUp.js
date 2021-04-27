@@ -34,13 +34,13 @@ const SignUp = () => {
                     <h1 style={{ color: "var(--primary)" }}>UP</h1>
                 </div>
                 <div className="input-box-text">
-                    <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+                    <input type="text" required placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
                 </div>
                 <div className="input-box-text">
-                    <input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+                    <input type="text" required placeholder="Last Name" value={lastname} onChange={(e) => setLastname(e.target.value)} />
                 </div>
                 <div className="input-box-text">
-                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" required placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <p style={{
                     display: errorState ? "block" : "none",
@@ -49,7 +49,7 @@ const SignUp = () => {
                 }}>Enter a valid email</p>
 
                 <div className="input-box-password">
-                    <input type={showpasswordState ? "text" : "password"} placeholder="Password"
+                    <input required type={showpasswordState ? "text" : "password"} placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />

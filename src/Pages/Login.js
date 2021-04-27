@@ -9,7 +9,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showpasswordState, setPassState] = useState(false)
     const [errorState, setErrorState] = useState(false);
-    async function loginHandler(email, password) {
+    async function loginHandler(e, email, password) {
+        e.preventDefault()
         const response = await loginUserWithCredentials(email, password)
         if (response.success)
             navigate("/")
@@ -21,16 +22,16 @@ const Login = () => {
     }
     return (
         <div className="Login-container">
-            <div className="Login-box">
+            <form className="Login-box" onSubmit={(e) => loginHandler(e, email, password)}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <h1>Log </h1>
                     <h1 style={{ color: "var(--primary)" }}>IN</h1>
                 </div>
                 <div className="input-box-text">
-                    <input type="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" required value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="input-box-password">
-                    <input type={showpasswordState ? "text" : "password"} placeholder="Password"
+                    <input type={showpasswordState ? "text" : "password"} placeholder="Password" required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
@@ -38,9 +39,7 @@ const Login = () => {
                         {showpasswordState ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
                     </div>
                 </div>
-                <button className="login-click-btn"
-                    onClick={() => loginHandler(email, password)}
-                >Log In</button>
+                <button type="submit" className="login-click-btn">Log In</button>
                 <p style={{ fontWeight: "bold" }}>Dont have a account?
                 <Link to="/signup" style={{ textDecoration: "none" }}>
                         Sign Up</Link>
@@ -52,7 +51,7 @@ const Login = () => {
                     fontWeight: "bold",
                     padding: "5px 0"
                 }}>Wrong email or password entered</p>
-            </div>
+            </form>
         </div>
     );
 }

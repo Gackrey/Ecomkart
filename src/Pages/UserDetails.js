@@ -32,7 +32,6 @@ const UserDetails = () => {
         const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
         fetchUserFromServer(loginStatus?.userID)
     }, []);
-    console.log(user);
     return (
         <div style={{ marginLeft: "2rem", textAlign: "start" }}>
             <h2 className="mobileSize">Name: {user.firstname} {user.lastname}</h2>

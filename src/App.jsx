@@ -17,17 +17,19 @@ import "./styles.css";
 export default function App() {
   const { dispatch } = useCart()
   const fetchUserFromServer = async (id) => {
-    try {
-      await axios.get(`https://ecomkart-backend.herokuapp.com/user/${id}`).then((response) => {
-        dispatch({
-          type: "GET_USER_DATA", payload: {
-            wishlist: response.data.user.wishlist,
-            cart: response.data.user.cart
-          }
+    if (id) {
+      try {
+        await axios.get(`https://ecomkart-backend.herokuapp.com/user/${id}`).then((response) => {
+          dispatch({
+            type: "GET_USER_DATA", payload: {
+              wishlist: response.data.user.wishlist,
+              cart: response.data.user.cart
+            }
+          });
         });
-      });
-    } catch {
-      console.error("Error");
+      } catch {
+        console.error("Error");
+      }
     }
   };
   useEffect(() => {

@@ -81,7 +81,6 @@ export function reducerFunc(state, action) {
         };
       }
     case "ADD_TO_CART":
-      console.log(state.filterItems);
       return {
         ...state,
         cartItems: state.cartItems.concat(action.payload),

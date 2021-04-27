@@ -13,7 +13,8 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorState, setErrorState] = useState(false);
-    async function SignupHandler(firstname, lastname, email, password, wishList, cartItems) {
+    async function SignupHandler(e,firstname, lastname, email, password, wishList, cartItems) {
+        e.preventDefault()
         const response = await signinUser(firstname, lastname, email, password, wishList, cartItems)
         if (response.success)
             navigate("/")
@@ -27,7 +28,7 @@ const SignUp = () => {
     }
     return (
         <div className="Login-container">
-            <div className="Login-box">
+            <form className="Login-box" onSubmit={(e) => SignupHandler(e,firstname, lastname, email, password, wishList, cartItems)}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <h1>Sign </h1>
                     <h1 style={{ color: "var(--primary)" }}>UP</h1>
@@ -56,15 +57,13 @@ const SignUp = () => {
                         {showpasswordState ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
                     </div>
                 </div>
-                <button className="signup-click-btn"
-                    onClick={() => SignupHandler(firstname, lastname, email, password, wishList, cartItems)}
-                >Sign Up</button>
+                <button type="submit" className="signup-click-btn">Sign Up</button>
                 <p style={{ fontWeight: "bold" }}>Already a member?
                 <Link to="/login" style={{ textDecoration: "none" }}>
                         Log In</Link>
                 </p>
                 <br />
-            </div>
+            </form>
         </div>
     );
 }

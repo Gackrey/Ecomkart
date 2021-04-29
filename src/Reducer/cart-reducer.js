@@ -265,7 +265,7 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         filterItems: state.itemsInCart.filter((item) =>
-          item.name.includes(action.payload)
+          item.name.toLowerCase().includes(action.payload.toLowerCase())
         )
       };
     case "PRODUCT_FILTER":

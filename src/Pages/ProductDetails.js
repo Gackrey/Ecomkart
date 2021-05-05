@@ -1,4 +1,6 @@
 import React from 'react';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { useParams } from 'react-router';
 import { useCart } from "../Context/cart-context"
 import { Link } from 'react-router-dom'
@@ -116,7 +118,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div> :
-            <div>Loading</div>
+            <Loader type="Circles" color="#00BFFF" height={80} width={80} />
     );
 }
 

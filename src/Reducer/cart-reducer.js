@@ -261,13 +261,6 @@ export function reducerFunc(state, action) {
           (item) => Number(item.price) <= action.payload
         )
       };
-    case "SEARCH_RESULT":
-      return {
-        ...state,
-        filterItems: state.itemsInCart.filter((item) =>
-          item.name.toLowerCase().includes(action.payload.toLowerCase())
-        )
-      };
     case "PRODUCT_FILTER":
       return {
         ...state,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { createContext, useContext, useReducer } from "react";
 import { reducerFunc } from "../Reducer/cart-reducer";
 import axios from "axios";
@@ -32,7 +32,6 @@ export function CartProvider({ children }) {
   useEffect(() => {
     fetchFromServer();
   }, []);
-  const [searchState, setsearchState] = useState(false);
   return (
     <CartContext.Provider
       value={{
@@ -43,8 +42,6 @@ export function CartProvider({ children }) {
         cartCount: state.cartCount,
         wishCount: state.wishCount,
         showToast: state.showToast,
-        searchState,
-        setsearchState,
         dispatch
       }}
     >

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/cart-context";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router'
 import { useAuth } from '../Context/AuthProvider'
 export function Navbar() {
-  const { cartCount, wishCount, setsearchState, dispatch } = useCart();
+  const navigate = useNavigate()
+  const { cartCount, wishCount } = useCart();
   const { isUserLogin } = useAuth()
   function GetIcon() {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
@@ -18,15 +20,11 @@ export function Navbar() {
   const [searchContent, setSearchContent] = useState("");
   function searchHandler(e) {
     if (e.keyCode === 13) {
-      dispatch({ type: "SEARCH_RESULT", payload: searchContent });
-      setsearchState(true);
-      setSearchContent("");
+      navigate(`/search?query=${searchContent}`)
     }
   }
   function btnsearchHandler() {
-    dispatch({ type: "SEARCH_RESULT", payload: searchContent });
-    setsearchState(true);
-    setSearchContent("");
+    navigate(`/search?query=${searchContent}`)
   }
   return (
     <div className="navbar">

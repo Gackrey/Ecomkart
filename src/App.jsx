@@ -10,6 +10,7 @@ import Home from './Pages/Home'
 import UserDetails from './Pages/UserDetails'
 import SignUp from './Pages/SignUp'
 import Login from './Pages/Login'
+import Search from './Pages/Search'
 import ProductDetails from './Pages/ProductDetails'
 import { PrivateRoute } from './PrivateRoute'
 import "./styles.css";
@@ -43,6 +44,7 @@ export default function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />

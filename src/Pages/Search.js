@@ -17,9 +17,11 @@ const Search = () => {
                 margin: "auto"
             }}
         >
-            {searchResult.map((product) => (
-                <ProductItem key={product._id} dataset={product} />
-            ))
+            {searchResult.length > 0 ?
+                searchResult.map((product) => (
+                    <ProductItem key={product._id} dataset={product} />
+                )) :
+                <h1>No products found</h1>
             }
         </div>
     );

@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router';
 import { AuthApiLogin, AuthApiSignUp } from '../api/AuthHandler'
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
-    const navigate = useNavigate();
     const [isUserLogin, setLogin] = useState(false);
     useEffect(() => {
         const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));

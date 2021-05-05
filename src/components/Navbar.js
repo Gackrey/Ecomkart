@@ -20,11 +20,13 @@ export function Navbar() {
   const [searchContent, setSearchContent] = useState("");
   function searchHandler(e) {
     if (e.keyCode === 13) {
-      navigate(`/search?query=${searchContent}`)
+      if (searchContent !== '')
+        navigate(`/search?query=${searchContent}`)
     }
   }
   function btnsearchHandler() {
-    navigate(`/search?query=${searchContent}`)
+    if (searchContent !== '')
+      navigate(`/search?query=${searchContent}`)
   }
   return (
     <div className="navbar">

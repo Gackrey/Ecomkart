@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import { useCart } from '../Context/cart-context'
-const Home = () => {
+export const Home = () => {
   const { dispatch } = useCart()
   const fetchUserFromServer = async (id) => {
     if (id) {
@@ -106,5 +106,3 @@ const Home = () => {
     </div>
   );
 }
-
-export default Home;

@@ -9,7 +9,7 @@ function DateHandler({ date }) {
     newDate = newDate.slice(4, 15)
     return newDate
 }
-const UserDetails = () => {
+export const UserDetails = () => {
     const navigate = useNavigate();
     const { dispatch } = useCart();
     const { LogOut } = useAuth()
@@ -41,5 +41,3 @@ const UserDetails = () => {
         </div>
     );
 }
-
-export default UserDetails;

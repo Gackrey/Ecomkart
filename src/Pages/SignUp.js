@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useAuth } from "../Context/AuthProvider"
 import { useCart } from '../Context/cart-context'
-const SignUp = () => {
+export const SignUp = () => {
     const navigate = useNavigate();
     const { wishList, cartItems } = useCart();
     const [showpasswordState, setPassState] = useState(false);
@@ -67,5 +67,3 @@ const SignUp = () => {
         </div>
     );
 }
-
-export default SignUp;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useCart } from '../Context/cart-context'
 import { ProductItem } from "../components/ProductItem";
 import { useLocation } from 'react-router-dom'
-const Search = () => {
+export const Search = () => {
     const query = new URLSearchParams(useLocation().search).get("query")
     const { itemsInCart } = useCart()
     const searchResult = itemsInCart.filter((item) =>
@@ -26,5 +26,3 @@ const Search = () => {
         </div>
     );
 }
-
-export default Search;

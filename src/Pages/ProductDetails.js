@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import { useCart } from "../Context/cart-context"
 import { Link } from 'react-router-dom'
 import AddDataToServer from '../AddDataToServer'
-const ProductDetails = () => {
+export const ProductDetails = () => {
     const { productId } = useParams();
     const { itemsInCart,wishList,cartItems, dispatch } = useCart()
     AddDataToServer(wishList,cartItems)
@@ -121,5 +121,3 @@ const ProductDetails = () => {
             <Loader type="Circles" color="#00BFFF" height={80} width={80} />
     );
 }
-
-export default ProductDetails;

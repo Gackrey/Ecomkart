@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import axios from 'axios'
 import { useCart } from './Context/cart-context'
 import { Navbar } from "./components/Navbar";
-import { Cart } from "./Pages/Cart";
-import { Products } from "./Pages/Products";
-import { Wishlist } from "./Pages/Wishlist";
 import { Routes, Route } from "react-router-dom";
-import Home from './Pages/Home'
-import UserDetails from './Pages/UserDetails'
-import SignUp from './Pages/SignUp'
-import Login from './Pages/Login'
-import Search from './Pages/Search'
-import ProductDetails from './Pages/ProductDetails'
+import {
+  Home,
+  UserDetails,
+  Login,
+  SignUp,
+  Search,
+  Cart,
+  Wishlist,
+  ProductDetails,
+  Products
+} from './Pages/index'
 import { PrivateRoute } from './PrivateRoute'
 import "./styles.css";
 

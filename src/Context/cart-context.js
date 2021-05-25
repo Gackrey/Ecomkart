@@ -7,27 +7,25 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const fetchFromServer = async () => {
     try {
-      await axios.get("https://ecomkart-backend.herokuapp.com/products").then((response) => {
-        dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-      });
+      await axios
+        .get("https://ecomkart-backend.herokuapp.com/products")
+        .then((response) => {
+          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+        });
     } catch {
       console.error("Error");
     }
   };
-  const itemsInCart = [];
-  const wishList = [];
-  const cartItems = [];
-  const filterItems = [];
-  const cartCount = 0;
-  const wishCount = 0;
   const [state, dispatch] = useReducer(reducerFunc, {
-    itemsInCart,
-    wishList,
-    cartItems,
-    filterItems,
-    cartCount,
-    wishCount,
-    showToast: { state: false, msg: "" }
+    itemsInCart: [],
+    wishList: [],
+    cartItems: [],
+    filterItems: [],
+    Addresses: [],
+    selectedAddress: {},
+    cartCount: 0,
+    wishCount: 0,
+    showToast: { state: false, msg: "" },
   });
   useEffect(() => {
     fetchFromServer();
@@ -39,10 +37,12 @@ export function CartProvider({ children }) {
         wishList: state.wishList,
         cartItems: state.cartItems,
         filterItems: state.filterItems,
+        Addresses: state.Addresses,
+        selectedAddress: state.selectedAddress,
         cartCount: state.cartCount,
         wishCount: state.wishCount,
         showToast: state.showToast,
-        dispatch
+        dispatch,
       }}
     >
       {children}

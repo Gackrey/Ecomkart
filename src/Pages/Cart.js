@@ -3,17 +3,16 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import { CartItem } from "../components/CartItem";
 import { Toast } from "../components/Toast";
-import AddDataToServer from '../AddDataToServer'
+import AddressBox from "../components/AddressBox";
 export function Cart() {
-  const { cartCount, cartItems, showToast,wishList } = useCart();
-  AddDataToServer(wishList,cartItems)
+  const { cartCount, cartItems, showToast } = useCart();
   const cartCalculator = () =>
     cartItems.reduce(
       (acc, value) => {
         return {
           ...acc,
           totalprice: acc.totalprice + value.quantity * value.price * 1.3,
-          discount: acc.discount + value.quantity * value.price * 0.3
+          discount: acc.discount + value.quantity * value.price * 0.3,
         };
       },
       { totalprice: 0, discount: 0 }
@@ -22,17 +21,21 @@ export function Cart() {
   return (
     <div>
       {showToast.state ? <Toast text={showToast.msg} /> : ""}
-      {cartItems.length > 0 ?
+      {cartItems.length > 0 ? (
         <div className="cartContent">
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div className="cart-display">
+            <AddressBox />
             {cartItems.map((product) => (
               <CartItem key={product._id} dataset={product} />
             ))}
           </div>
-          <div style={{ margin: "auto" }}>
+          <div>
             <div className="cartOrder">
+              <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                Price Details ({cartCount} items):
+              </p>
               <div className="cartdetails">
-                <p>Price ({cartCount} items):</p>
+                <p>Total MRP:</p>
                 <span>₹{Math.floor(cartDetails.totalprice)}.00</span>
               </div>
               <div className="cartdetails">
@@ -50,22 +53,23 @@ export function Cart() {
                   {cartDetails.totalprice > 500
                     ? Math.floor(cartDetails.totalprice - cartDetails.discount)
                     : Math.floor(
-                      cartDetails.totalprice - cartDetails.discount + 50
-                    )}
-                .00
-              </span>
+                        cartDetails.totalprice - cartDetails.discount + 50
+                      )}
+                  .00
+                </span>
               </div>
               <button className="btn-addtoCart">Place Order</button>
             </div>
           </div>
         </div>
-        : <div style={{ margin: "auto" }}>
+      ) : (
+        <div style={{ margin: "auto" }}>
           <h1>No Items in cart</h1>
-          <Link to="/products" >
+          <Link to="/products">
             <button className="login-btn">Shop Now</button>
           </Link>
         </div>
-      }
+      )}
     </div>
   );
 }

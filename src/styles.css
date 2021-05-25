@@ -13,7 +13,7 @@
   padding: 0;
 }
 .logoHeading {
-  color:white;
+  color: white;
   font-family: "Racing Sans One", cursive;
   font-size: 35px;
 }
@@ -51,7 +51,7 @@
   margin-left: 10px;
   cursor: pointer;
 }
-.avatar-circleIcon{
+.avatar-circleIcon {
   margin-left: 10px;
   cursor: pointer;
   padding: 11px 18px;
@@ -61,18 +61,18 @@
   width: fit-content;
   height: fit-content;
 }
-.avatar-circleIcon > span{
+.avatar-circleIcon > span {
   font-size: 24px;
   color: yellow;
 }
 .btn-addtoCart {
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
   font-weight: bold;
   border-radius: 10px;
   width: 100%;
   margin-top: 10px;
-  outline: none;
+  border: none;
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
 }
 .icon-size-36 {
@@ -136,8 +136,11 @@
 }
 .Cardbox {
   margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
   box-shadow: 0 0 6px 0px black;
-  width: fit-content;
+  padding: 1rem;
   margin-top: 1rem;
 }
 .cartContent {
@@ -154,11 +157,10 @@
   background-color: rgb(221 219 219);
 }
 .cartOrder {
-  width: 18vw;
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.5);
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: start;
 }
 .cartdetails {
@@ -289,51 +291,51 @@
   bottom: 4rem;
   left: 50%;
 }
-.Login-container{
-  background-image: url('https://wallpaperaccess.com/full/2593042.jpg');
+.Login-container {
+  background-image: url("https://wallpaperaccess.com/full/2593042.jpg");
   background-position: center;
-  background-size:cover;
-  backdrop-filter: blur( 5.5px );
+  background-size: cover;
+  backdrop-filter: blur(5.5px);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 90vh;
 }
-.Login-box{
-  background: rgba( 255, 255, 255, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 5.5px );
-  -webkit-backdrop-filter: blur( 5.5px );
+.Login-box {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.input-box-text{
+.input-box-text {
   margin: 10px 10px;
 }
-.input-box-text > input{
+.input-box-text > input {
   padding: 10px;
   padding-right: 39px;
   font-size: 16px;
   outline: none;
 }
-.input-box-password{
+.input-box-password {
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  margin:10px;
+  margin: 10px;
 }
-.input-box-password > input{
+.input-box-password > input {
   padding: 10px;
   border: none;
   outline: none;
   font-size: 16px;
 }
-.password-state{
+.password-state {
   margin: 0 5px;
 }
-.login-click-btn{
+.login-click-btn {
   padding: 10px 6.2rem;
   font-size: 18px;
   margin: 10px;
@@ -343,7 +345,7 @@
   outline: none;
   cursor: pointer;
 }
-.signup-click-btn{
+.signup-click-btn {
   padding: 10px 5.8rem;
   font-size: 18px;
   margin: 10px;
@@ -353,23 +355,23 @@
   outline: none;
   cursor: pointer;
 }
-.product-details{
+.product-details {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
-.product-image{
+.product-image {
   width: 400px;
   height: 406px;
   display: block;
 }
-.heart-product{
+.heart-product {
   position: absolute;
   top: 3px;
   right: 30px;
 }
-.product-addtoCart{
+.product-addtoCart {
   padding: 8px;
   font-size: 16px;
   color: white;
@@ -381,13 +383,122 @@
   outline: none;
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
 }
-.btn-logout{
+.btn-logout {
   background-color: red;
   color: white;
   padding: 0.5rem 1rem;
   font-size: 22px;
   outline: none;
   border: none;
+}
+.cart-display {
+  border: 1px solid black;
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+.address-box {
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.modalScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 5;
+  pointer-events: visible;
+}
+.modalBox {
+  background-color: white;
+  margin: 0 1rem;
+  padding: 1rem 2rem;
+  pointer-events: all;
+}
+.selectbox {
+  margin: 1rem auto;
+  display: block;
+  padding: 0.3rem;
+  font-size: 16px;
+  width: 100%;
+  background-color: white;
+}
+.input-box {
+  width: 100%;
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 7px;
+  outline: none;
+  font-size: 16px;
+}
+.button-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.btn-address {
+  padding: 5px 9px;
+  border: 1px solid var(--primary);
+  background-color: white;
+  border-radius: 7px;
+  color: var(--primary);
+  font-size: 18px;
+  margin: 0 1rem;
+}
+.btn-address-solid {
+  border-radius: 7px;
+  border: none;
+  padding: 6px 18px;
+  font-size: 18px;
+  background-color: var(--primary);
+  color: white;
+}
+.choose-addr {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+.choose-addr > input {
+  margin-right: 1rem;
+}
+.choose-addr > input[type="radio"] {
+  border: 0px;
+  width: 2em;
+  height: 2em;
+}
+.addr-label {
+  display: block;
+  text-align: start;
+}
+.btn-add-address {
+  border: none;
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 1rem;
+  padding: 5px;
+  cursor: pointer;
+}
+.btn-close {
+  display: block;
+  position: absolute;
+  bottom: 22px;
+  left: 100%;
+  border: none;
+  outline: none;
+  background-color: red;
+  padding: 6px 9px;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
 }
 @media only screen and (max-width: 840px) {
   .productbox {
@@ -418,30 +529,33 @@
   .cartContent {
     display: block;
   }
+  .Cardbox {
+    display: block;
+  }
   .toastBox {
     left: 25%;
   }
-  .Login-container{
+  .Login-container {
     height: 80vh;
   }
-  .Login-box{
+  .Login-box {
     box-shadow: none;
     background: none;
     box-shadow: none;
     border: none;
     backdrop-filter: none;
   }
-  .product-details{
+  .product-details {
     flex-direction: column;
   }
-  .product-image{
+  .product-image {
     width: 300px;
     height: 306px;
   }
-  .avatar-circleIcon{
+  .avatar-circleIcon {
     padding: 3px 12px;
   }
-  .mobileSize{
+  .mobileSize {
     font-size: 18px;
   }
 }

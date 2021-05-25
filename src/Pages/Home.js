@@ -1,29 +1,6 @@
-import React, { useEffect } from 'react';
-import axios from 'axios'
+import React from 'react';
 import { Link } from "react-router-dom";
-import { useCart } from '../Context/cart-context'
 export const Home = () => {
-  const { dispatch } = useCart()
-  const fetchUserFromServer = async (id) => {
-    if (id) {
-      try {
-        await axios.get(`https://ecomkart-backend.herokuapp.com/user/${id}`).then((response) => {
-          dispatch({
-            type: "GET_USER_DATA", payload: {
-              wishlist: response.data.user.wishlist,
-              cart: response.data.user.cart
-            }
-          });
-        });
-      } catch {
-        console.error("Error");
-      }
-    }
-  };
-  useEffect(() => {
-    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
-    fetchUserFromServer(loginStatus?.userID)
-  }, []);
   return (
     <div>
       <Link to={"/products"} style={{ textDecoration: "none" }}>

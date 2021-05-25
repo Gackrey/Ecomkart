@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { AuthApiLogin, AuthApiSignUp } from '../api/AuthHandler'
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
-    const [isUserLogin, setLogin] = useState(false);
+    const [isUserLogin, setLogin] = useState(true);
     useEffect(() => {
         const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
         loginStatus?.isUserLoggedIn && setLogin(true);

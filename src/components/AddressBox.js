@@ -13,7 +13,6 @@ const AddressBox = () => {
     screen: "none",
     box: "none",
   });
-  console.log("editAddrValue",editAddrValue);
   return (
     <div>
       <div className="address-box">

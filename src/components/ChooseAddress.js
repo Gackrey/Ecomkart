@@ -10,7 +10,6 @@ export const ChooseAddress = ({ state, addNew, setEdit }) => {
   }, [state]);
   function SetAddrFun(Id) {
     const found = Addresses.filter((addr) => addr.id === Id);
-    console.log(found[0]);
     dispatch({ type: "ADD_TO_SELETED_ADDRESS", payload: found[0] });
   }
   function closeBtn() {

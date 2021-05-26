@@ -23,7 +23,6 @@ export const AddAddress = ({ state, value }) => {
   useEffect(() => {
     const id = value?.id;
     if (id) {
-      console.log("working");
       setId(id)
       setName(value.name);
       setAddress(value.address);
@@ -79,6 +78,7 @@ export const AddAddress = ({ state, value }) => {
     resetData();
     closetab();
   }
+  console.log(city,State);
   return (
     <div className="modalScreen" style={{ display: ScreenDisplay }}>
       <div className="modalBox" style={{ display: boxDisplay }}>
@@ -102,6 +102,7 @@ export const AddAddress = ({ state, value }) => {
           onChange={(e) => {
             setState(e.target.value);
             setCityNumber(state_arr.indexOf(e.target.value));
+            setCity("")
           }}
           value={State === "" ? "---Select State---" : State}
           id="state"

@@ -1,30 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useCart } from "../Context/cart-context";
+import { useAuth } from "../Context/AuthProvider";
 export function ProductItem({ dataset }) {
+  const navigate = useNavigate();
   const { dispatch } = useCart();
+  const { isUserLogin } = useAuth();
+
+  function wishlistHandler() {
+    if (dataset.isWishlisted && isUserLogin) {
+      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Removed from Wishlist",
+      });
+    }
+    if (!dataset.isWishlisted && isUserLogin) {
+      dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
+      dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
+    }
+    if (!isUserLogin) navigate("/login");
+  }
+
+  function cartHandler() {
+    if (isUserLogin) {
+      dispatch({ type: "ADD_TO_CART", payload: dataset });
+      dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
+    } else navigate("/login");
+  }
   return (
     <div
       className="card"
       style={dataset.inStock ? { opacity: "1" } : { opacity: "0.5" }}
     >
       <div style={{ position: "absolute" }}>
-        <div
-          className="wishlist"
-          onClick={() => {
-            if (dataset.isWishlisted) {
-              dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
-              dispatch({
-                type: "SHOW_TOAST",
-                payload: "Removed from Wishlist"
-              });
-            }
-            if (!dataset.isWishlisted) {
-              dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
-              dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
-            }
-          }}
-        >
+        <div className="wishlist" onClick={wishlistHandler}>
           {dataset.isWishlisted ? (
             <span className="material-icons-outlined icon-color-red icon-size-36">
               favorite
@@ -51,11 +62,11 @@ export function ProductItem({ dataset }) {
                 fontSize: "14px",
                 fontWeight: "bold",
                 borderRadius: "5px",
-                display: "inline-block"
+                display: "inline-block",
               }}
             >
               {dataset.ratings}★
-        </p>
+            </p>
 
             <p style={{ fontSize: "18px" }}>
               ₹{dataset.price}
@@ -64,16 +75,16 @@ export function ProductItem({ dataset }) {
                   padding: "0 5px",
                   color: "gray",
                   textDecoration: "line-through 2px",
-                  fontSize: "14px"
+                  fontSize: "14px",
                 }}
               >
                 {Math.floor(dataset.price * 1.3)}.00
-          </small>
+              </small>
               <small
                 style={{ padding: "0 10px", color: "green", fontSize: "14px" }}
               >
                 30% off
-          </small>
+              </small>
             </p>
             <p>{dataset.fastDelivery ? "Fast Delivery" : "3 days minimum"}</p>
           </div>
@@ -83,13 +94,7 @@ export function ProductItem({ dataset }) {
             <button className="btn-addtoCart">Go to Cart</button>
           </Link>
         ) : dataset.inStock && !dataset.isinCart ? (
-          <button
-            className="btn-addtoCart"
-            onClick={() => {
-              dispatch({ type: "ADD_TO_CART", payload: dataset });
-              dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
-            }}
-          >
+          <button className="btn-addtoCart" onClick={cartHandler}>
             Add to Cart
           </button>
         ) : (

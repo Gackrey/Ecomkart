@@ -2,22 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../Context/cart-context";
-// import { SetProducts, SetUserData } from "../Utils/SetData";
 export const Home = () => {
   const { dispatch } = useCart();
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       await axios
-  //         .get("https://ecomkart-backend.herokuapp.com/products")
-  //         .then((response) => {
-  //           dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-  //         });
-  //     } catch {
-  //       console.error("Error");
-  //     }
-  //   })();
-  // }, [dispatch]);
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const id = loginStatus?.userID;

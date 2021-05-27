@@ -19,19 +19,6 @@ import "./styles.css";
 
 export default function App() {
   const { dispatch } = useCart();
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       await axios
-  //         .get("https://ecomkart-backend.herokuapp.com/products")
-  //         .then((response) => {
-  //           dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-  //         });
-  //     } catch {
-  //       console.error("Error");
-  //     }
-  //   })();
-  // }, [dispatch]);
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const id = loginStatus?.userID;

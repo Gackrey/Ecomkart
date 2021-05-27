@@ -7,15 +7,9 @@ export function reducerFunc(state, action) {
     case "CLEAR_FILTER":
       return { ...state, filterItems: state.itemsInCart };
     case "SET_PRODUCTS":
-      return {
-        ...state,
-        itemsInCart: action.payload,
-        filterItems: action.payload,
-      };
-    case "GET_USER_DATA":
-      let wishlistedId = action.payload.wishlist.map((item) => item._id);
-      let cartedId = action.payload.cart.map((item) => item._id);
-      let updatedData = state.itemsInCart.map((filteritem) => {
+      let wishlistedId = state.wishList.map((item) => item._id);
+      let cartedId = state.cartItems.map((item) => item._id);
+      let updatedData = action.payload.map((filteritem) => {
         let wishflag = false;
         let cartflag = false;
         wishlistedId.map((wishitem) => {
@@ -26,7 +20,13 @@ export function reducerFunc(state, action) {
         });
         return { ...filteritem, isWishlisted: wishflag, isinCart: cartflag };
       });
-      console.log(action.payload,cartedId,updatedData);
+
+      return {
+        ...state,
+        itemsInCart: updatedData,
+        filterItems: updatedData,
+      };
+    case "GET_USER_DATA":
       return {
         ...state,
         cartItems: action.payload.cart,
@@ -34,8 +34,6 @@ export function reducerFunc(state, action) {
         wishList: action.payload.wishlist,
         Addresses: action.payload.addresses,
         wishCount: action.payload.wishlist.length,
-        itemsInCart: updatedData,
-        filterItems: updatedData,
       };
     case "LOG_OUT":
       return {

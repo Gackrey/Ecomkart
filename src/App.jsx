@@ -22,7 +22,6 @@ export default function App() {
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const id = loginStatus?.userID;
-    console.log(id);
     (async function () {
       if (id) {
         try {

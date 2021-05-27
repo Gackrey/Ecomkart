@@ -1,6 +1,59 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useCart } from "../Context/cart-context";
+// import { SetProducts, SetUserData } from "../Utils/SetData";
 export const Home = () => {
+  const { dispatch } = useCart();
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       await axios
+  //         .get("https://ecomkart-backend.herokuapp.com/products")
+  //         .then((response) => {
+  //           dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+  //         });
+  //     } catch {
+  //       console.error("Error");
+  //     }
+  //   })();
+  // }, [dispatch]);
+  useEffect(() => {
+    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
+    const id = loginStatus?.userID;
+    (async function () {
+      if (id) {
+        try {
+          await axios
+            .get(`https://ecomkart-backend.herokuapp.com/user/${id}`)
+            .then((response) => {
+              dispatch({
+                type: "GET_USER_DATA",
+                payload: {
+                  wishlist: response.data.user.wishlist,
+                  cart: response.data.user.cart,
+                  addresses: response.data.user.addresses,
+                },
+              });
+            });
+        } catch {
+          console.error("Error");
+        }
+      }
+    })();
+    (async () => {
+      try {
+        await axios
+          .get("https://ecomkart-backend.herokuapp.com/products")
+          .then((response) => {
+            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+          });
+      } catch {
+        console.error("Error");
+      }
+    })();
+  }, [dispatch]);
+
   return (
     <div>
       <Link to={"/products"} style={{ textDecoration: "none" }}>
@@ -17,7 +70,7 @@ export const Home = () => {
           flexWrap: "wrap",
           width: "80%",
           margin: "auto",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Link to={"/products"} style={{ textDecoration: "none" }}>
@@ -82,4 +135,4 @@ export const Home = () => {
       </div>
     </div>
   );
-}
+};

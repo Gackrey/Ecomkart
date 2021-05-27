@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createContext, useContext, useReducer } from "react";
 import { reducerFunc } from "../Reducer/cart-reducer";
-import axios from "axios";
 
 const CartContext = createContext();
 export function CartProvider({ children }) {
@@ -16,19 +15,6 @@ export function CartProvider({ children }) {
     wishCount: 0,
     showToast: { state: false, msg: "" },
   });
-  useEffect(() => {
-    (async () => {
-      try {
-        await axios
-          .get("https://ecomkart-backend.herokuapp.com/products")
-          .then((response) => {
-            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-          });
-      } catch {
-        console.error("Error");
-      }
-    })()
-  }, []);
   return (
     <CartContext.Provider
       value={{

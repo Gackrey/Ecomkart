@@ -1,9 +1,9 @@
 import { Route, Navigate } from "react-router-dom";
 import React from "react"
-import { useAuth } from "./Context/AuthProvider";
 
 export function PrivateRoute({ path, ...props }) {
-  const { isUserLogin } = useAuth();
+  const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
+  const isUserLogin = loginStatus?.isUserLoggedIn
 
   return isUserLogin ? (
     <Route {...props} path={path} />

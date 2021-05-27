@@ -3,28 +3,32 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useCart } from "../Context/cart-context";
 import { useAuth } from "../Context/AuthProvider";
+import { addToServer, removeFromServer } from "../api/ServerHandler";
 export function ProductItem({ dataset }) {
   const navigate = useNavigate();
   const { dispatch } = useCart();
   const { isUserLogin } = useAuth();
 
-  function wishlistHandler() {
+  async function wishlistHandler() {
     if (dataset.isWishlisted && isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Removing from Wishlist" });
+      await removeFromServer("wishlist",dataset)
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
-      dispatch({
-        type: "SHOW_TOAST",
-        payload: "Removed from Wishlist",
-      });
+      dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
     }
     if (!dataset.isWishlisted && isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Adding to Wishlist" });
+      await addToServer("wishlist",dataset)
       dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
     }
     if (!isUserLogin) navigate("/login");
   }
 
-  function cartHandler() {
+  async function cartHandler() {
     if (isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Adding to Cart" });
+      await addToServer("cart",dataset)
       dispatch({ type: "ADD_TO_CART", payload: dataset });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
     } else navigate("/login");

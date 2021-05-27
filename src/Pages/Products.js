@@ -6,10 +6,8 @@ import { ProductItem } from "../components/ProductItem";
 import { Toast } from "../components/Toast";
 import SideFilterBar from '../components/SideFilterBar';
 import MobileFilter from '../components/MobileFilter'
-import AddDataToServer from '../AddDataToServer'
 export function Products() {
-  const { showToast,filterItems,cartItems,wishList } = useCart();
-  AddDataToServer(wishList,cartItems)
+  const { showToast,filterItems } = useCart();
   return (
     <div className="productbox">
       <SideFilterBar />

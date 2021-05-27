@@ -500,6 +500,13 @@
   font-weight: bold;
   border-radius: 50%;
 }
+.clear-filter{
+  border-bottom: 2px solid var(--primary);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: block;
+  width: fit-content;
+}
 @media only screen and (max-width: 840px) {
   .productbox {
     display: block;
@@ -557,5 +564,8 @@
   }
   .mobileSize {
     font-size: 18px;
+  }
+  .clear-filter {
+    margin-bottom: 0;
   }
 }

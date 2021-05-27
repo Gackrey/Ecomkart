@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { city_of_state, state_arr } from "../Database/States";
 import { useCart } from "../Context/cart-context";
+import { addToServer } from "../api/ServerHandler";
 export const AddAddress = ({ state, value }) => {
   const [city_number, setCityNumber] = useState(0);
   const [boxDisplay, setBoxDisplay] = useState(state.box);
@@ -50,7 +51,7 @@ export const AddAddress = ({ state, value }) => {
     setState("");
     setCity("");
   }
-  function SaveAddress() {
+  async function SaveAddress() {
     const addrr = {
       id: uuid(),
       name,
@@ -60,11 +61,14 @@ export const AddAddress = ({ state, value }) => {
       zip,
       phone,
     };
+    dispatch({ type: "SHOW_TOAST", payload: "Adding to addresses" });
+    await addToServer("address",addrr)
     dispatch({ type: "ADD_TO_ADDRESS", payload: addrr });
+    dispatch({ type: "SHOW_TOAST", payload: "Added to addresses" });
     resetData();
     closetab();
   }
-  function UpdateAddress(){
+  async function UpdateAddress(){
     const addrr = {
       id,
       name,
@@ -74,11 +78,13 @@ export const AddAddress = ({ state, value }) => {
       zip,
       phone,
     };
+    dispatch({ type: "SHOW_TOAST", payload: "Updating address" });
+    await addToServer("updateAddress",addrr)
     dispatch({ type: "EDIT_ADDRESS", payload: addrr });
+    dispatch({ type: "SHOW_TOAST", payload: "Updated address" });
     resetData();
     closetab();
   }
-  console.log(city,State);
   return (
     <div className="modalScreen" style={{ display: ScreenDisplay }}>
       <div className="modalBox" style={{ display: boxDisplay }}>

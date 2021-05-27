@@ -6,29 +6,34 @@ import Loader from "react-loader-spinner";
 import { useParams } from "react-router";
 import { useCart } from "../Context/cart-context";
 import { useAuth } from "../Context/AuthProvider";
+import { Toast } from "../components/Toast";
+import { addToServer, removeFromServer } from "../api/ServerHandler";
 export const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { isUserLogin } = useAuth();
-  const { itemsInCart, dispatch } = useCart();
+  const { showToast, itemsInCart, dispatch } = useCart();
   function getProduct(products, productId) {
     return products.find((product) => product._id === productId);
   }
-  function cartHandler() {
+  async function cartHandler() {
     if (isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Adding to Cart" });
+      await addToServer("cart", selectedProduct);
       dispatch({ type: "ADD_TO_CART", payload: selectedProduct });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
     } else navigate("/login");
   }
-  function wishlistHandler() {
+  async function wishlistHandler() {
     if (selectedProduct.isWishlisted && isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Removing from Wishlist" });
+      await removeFromServer("wishlist", selectedProduct);
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: selectedProduct });
-      dispatch({
-        type: "SHOW_TOAST",
-        payload: "Removed from Wishlist",
-      });
+      dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
     }
     if (!selectedProduct.isWishlisted && isUserLogin) {
+      dispatch({ type: "SHOW_TOAST", payload: "Adding to Wishlist" });
+      await addToServer("wishlist", selectedProduct);
       dispatch({ type: "ADD_TO_WISHLIST", payload: selectedProduct });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
     }
@@ -37,6 +42,7 @@ export const ProductDetails = () => {
   const selectedProduct = getProduct(itemsInCart, productId);
   return selectedProduct ? (
     <div className="product-details">
+      {showToast.state ? <Toast text={showToast.msg} /> : ""}
       <div style={{ position: "relative" }}>
         <img className="product-image" src={selectedProduct.image} alt="" />
         {selectedProduct.inStock && selectedProduct.isinCart ? (

@@ -34,8 +34,6 @@ export function AuthProvider({ children }) {
     lastname,
     email,
     password,
-    wishList,
-    cartItems
   ) {
     try {
       const response = await AuthApiSignUp(
@@ -43,8 +41,6 @@ export function AuthProvider({ children }) {
         lastname,
         email,
         password,
-        wishList,
-        cartItems
       );
       if (response.data.success) {
         setLogin(true);

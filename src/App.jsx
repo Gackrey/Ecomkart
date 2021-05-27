@@ -18,7 +18,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import "./styles.css";
 
 export default function App() {
-  const { dispatch } = useCart();
+  const { itemsInCart, dispatch } = useCart();
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const id = loginStatus?.userID;
@@ -31,8 +31,10 @@ export default function App() {
               dispatch({
                 type: "GET_USER_DATA",
                 payload: {
+                  allItems: itemsInCart,
                   wishlist: response.data.user.wishlist,
                   cart: response.data.user.cart,
+                  addresses: response.data.user.addresses,
                 },
               });
             });

@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import { WishlistItem } from "../components/WishlistItem";
 import { Toast } from "../components/Toast";
-import AddDataToServer from '../AddDataToServer'
 export function Wishlist() {
-  const { wishList,cartItems, showToast } = useCart();
-  AddDataToServer(wishList,cartItems)
+  const { wishList, showToast } = useCart();
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {showToast.state ? <Toast text={showToast.msg} /> : ""}

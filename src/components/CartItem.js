@@ -1,8 +1,34 @@
 import React from "react";
 import { useCart } from "../Context/cart-context";
+import { addToServer, removeFromServer } from "../api/ServerHandler";
 
 export function CartItem({ dataset }) {
   const { dispatch } = useCart();
+  async function removehandler() {
+    dispatch({ type: "SHOW_TOAST", payload: "Removing from Cart" });
+    await removeFromServer("cart", dataset);
+    dispatch({ type: "REMOVE_FROM_CART", payload: dataset });
+    dispatch({ type: "SHOW_TOAST", payload: "Removed from Cart" });
+  }
+  async function incHandler() {
+    dispatch({ type: "SHOW_TOAST", payload: "Adding an item" });
+    await addToServer("inc-cart", dataset);
+    dispatch({ type: "INCREMENT_CART_ITEM", payload: dataset });
+    dispatch({ type: "SHOW_TOAST", payload: "1 more item added" });
+  }
+  
+  async function decHandler() {
+    dispatch({ type: "SHOW_TOAST", payload: "Removing an item" });
+    await addToServer("dec-cart", dataset);
+    dispatch({ type: "DECREMENT_CART_ITEM", payload: dataset });
+    dispatch({ type: "SHOW_TOAST", payload: "1 more item removed" });
+  }
+  async function cartToWishlist() {
+    dispatch({ type: "SHOW_TOAST", payload: "Adding to Wishlist from Cart" });
+    await addToServer("cart-to-wish", dataset);
+    dispatch({ type: "ADD_TO_WISHLIST_FROM_CART", payload: dataset });
+    dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist from Cart" });
+  }
   return dataset.quantity > 0 ? (
     <div className="Cardbox">
       <div>
@@ -44,23 +70,11 @@ export function CartItem({ dataset }) {
           </small>
         </h3>
         <div>
-          <button
-            className="incdecbtn"
-            onClick={() => {
-              dispatch({ type: "DECREMENT_CART_ITEM", payload: dataset });
-              dispatch({ type: "SHOW_TOAST", payload: "1 more item removed" });
-            }}
-          >
+          <button className="incdecbtn" onClick={() => decHandler(dataset)}>
             -
           </button>
           <span style={{ margin: "0 5px" }}>{dataset.quantity}</span>
-          <button
-            className="incdecbtn"
-            onClick={() => {
-              dispatch({ type: "INCREMENT_CART_ITEM", payload: dataset });
-              dispatch({ type: "SHOW_TOAST", payload: "1 more item added" });
-            }}
-          >
+          <button className="incdecbtn" onClick={() => incHandler(dataset)}>
             +
           </button>
         </div>
@@ -68,15 +82,12 @@ export function CartItem({ dataset }) {
         <div
           style={{
             marginTop: "1.5rem",
-            textAlign:"start"
+            textAlign: "start",
           }}
         >
           <button
             className="btn btn-danger"
-            onClick={() => {
-              dispatch({ type: "REMOVE_FROM_CART", payload: dataset });
-              dispatch({ type: "SHOW_TOAST", payload: "Removed from Cart" });
-            }}
+            onClick={() => removehandler(dataset)}
           >
             <i className="fa fa-trash" aria-hidden="true"></i>
           </button>
@@ -92,16 +103,7 @@ export function CartItem({ dataset }) {
             <button
               className="btn btn-warning"
               style={{ margin: "0 1rem" }}
-              onClick={() => {
-                dispatch({
-                  type: "ADD_TO_WISHLIST_FROM_CART",
-                  payload: dataset,
-                });
-                dispatch({
-                  type: "SHOW_TOAST",
-                  payload: "Added to Wishlist from Cart",
-                });
-              }}
+              onClick={() => cartToWishlist(dataset)}
             >
               Move to Wishlist
             </button>

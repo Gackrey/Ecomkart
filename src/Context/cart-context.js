@@ -5,17 +5,6 @@ import axios from "axios";
 
 const CartContext = createContext();
 export function CartProvider({ children }) {
-  const fetchFromServer = async () => {
-    try {
-      await axios
-        .get("https://ecomkart-backend.herokuapp.com/products")
-        .then((response) => {
-          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-        });
-    } catch {
-      console.error("Error");
-    }
-  };
   const [state, dispatch] = useReducer(reducerFunc, {
     itemsInCart: [],
     wishList: [],
@@ -28,7 +17,17 @@ export function CartProvider({ children }) {
     showToast: { state: false, msg: "" },
   });
   useEffect(() => {
-    fetchFromServer();
+    (async () => {
+      try {
+        await axios
+          .get("https://ecomkart-backend.herokuapp.com/products")
+          .then((response) => {
+            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+          });
+      } catch {
+        console.error("Error");
+      }
+    })()
   }, []);
   return (
     <CartContext.Provider

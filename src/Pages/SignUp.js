@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useAuth } from "../Context/AuthProvider"
-import { useCart } from '../Context/cart-context'
 export const SignUp = () => {
     const navigate = useNavigate();
-    const { wishList, cartItems } = useCart();
     const [showpasswordState, setPassState] = useState(false);
     const { signinUser } = useAuth()
     const [firstname, setFirstname] = useState('');
@@ -13,9 +11,9 @@ export const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorState, setErrorState] = useState(false);
-    async function SignupHandler(e,firstname, lastname, email, password, wishList, cartItems) {
+    async function SignupHandler(e,firstname, lastname, email, password) {
         e.preventDefault()
-        const response = await signinUser(firstname, lastname, email, password, wishList, cartItems)
+        const response = await signinUser(firstname, lastname, email, password)
         if (response.success)
             navigate("/")
         else {
@@ -28,7 +26,7 @@ export const SignUp = () => {
     }
     return (
         <div className="Login-container">
-            <form className="Login-box" onSubmit={(e) => SignupHandler(e,firstname, lastname, email, password, wishList, cartItems)}>
+            <form className="Login-box" onSubmit={(e) => SignupHandler(e,firstname, lastname, email, password)}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <h1>Sign </h1>
                     <h1 style={{ color: "var(--primary)" }}>UP</h1>

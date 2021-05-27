@@ -302,6 +302,8 @@
   height: 90vh;
 }
 .Login-box {
+  width: min-content;
+  padding: 0 1rem;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(5.5px);
@@ -336,6 +338,7 @@
   margin: 0 5px;
 }
 .login-click-btn {
+  width: max-content;
   padding: 10px 6.2rem;
   font-size: 18px;
   margin: 10px;
@@ -346,6 +349,7 @@
   cursor: pointer;
 }
 .signup-click-btn {
+  width: max-content;
   padding: 10px 5.8rem;
   font-size: 18px;
   margin: 10px;
@@ -354,6 +358,17 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+.signup-disabled-btn {
+  width: max-content;
+  padding: 10px 5.8rem;
+  font-size: 18px;
+  margin: 10px;
+  background-color: rgb(228, 115, 74);
+  color: rgb(151, 151, 151);
+  border: none;
+  outline: none;
+  cursor:not-allowed;
 }
 .product-details {
   margin-top: 1rem;

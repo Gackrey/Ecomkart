@@ -6,12 +6,14 @@ export const Home = () => {
   const { dispatch } = useCart();
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
-    const id = loginStatus?.userID;
+    const token = loginStatus?.userID;
     (async function () {
-      if (id) {
+      if (token) {
         try {
           await axios
-            .get(`https://ecomkart-backend.herokuapp.com/user/${id}`)
+            .get(`https://ecomkart-backend.herokuapp.com/user/userDetails`, {
+              headers: { authorization: token },
+            })
             .then((response) => {
               dispatch({
                 type: "GET_USER_DATA",

@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-import { useCart } from "./Context/cart-context";
+import React from "react";
 import { Navbar } from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -18,42 +16,6 @@ import { PrivateRoute } from "./PrivateRoute";
 import "./styles.css";
 
 export default function App() {
-  const { dispatch } = useCart();
-  useEffect(() => {
-    const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
-    const id = loginStatus?.userID;
-    (async function () {
-      if (id) {
-        try {
-          await axios
-            .get(`https://ecomkart-backend.herokuapp.com/user/${id}`)
-            .then((response) => {
-              dispatch({
-                type: "GET_USER_DATA",
-                payload: {
-                  wishlist: response.data.user.wishlist,
-                  cart: response.data.user.cart,
-                  addresses: response.data.user.addresses,
-                },
-              });
-            });
-        } catch {
-          console.error("Error");
-        }
-      }
-    })();
-    (async () => {
-      try {
-        await axios
-          .get("https://ecomkart-backend.herokuapp.com/products")
-          .then((response) => {
-            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-          });
-      } catch {
-        console.error("Error");
-      }
-    })();
-  }, [dispatch]);
   return (
     <div className="App">
       <div className="app-body">

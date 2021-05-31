@@ -11,6 +11,7 @@
 * {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 .logoHeading {
   color: white;
@@ -522,6 +523,20 @@
   margin-bottom: 1rem;
   display: block;
   width: fit-content;
+}
+.circle{
+  position: fixed;
+  right: 19px;
+  bottom: 60px;
+  padding: 14px 17px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  z-index: 3;
+}
+.circle i{
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
 }
 @media only screen and (max-width: 840px) {
   .productbox {

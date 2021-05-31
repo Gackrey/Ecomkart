@@ -6,6 +6,7 @@ import { ProductItem } from "../components/ProductItem";
 import { Toast } from "../components/Toast";
 import SideFilterBar from "../components/SideFilterBar";
 import MobileFilter from "../components/MobileFilter";
+import ScrollToTop from "../components/ScrollToTop";
 import axios from "axios";
 export function Products() {
   const { showToast, filterItems, dispatch } = useCart();
@@ -50,6 +51,7 @@ export function Products() {
   }, [dispatch]);
   return (
     <div className="productbox">
+      <ScrollToTop />
       <SideFilterBar />
       <MobileFilter />
       <div

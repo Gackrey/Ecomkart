@@ -15,13 +15,13 @@ export function Products() {
     const token = loginStatus?.userID;
     (async function () {
       if (token) {
-        console.log("asd");
         try {
           await axios
             .get(`https://ecomkart-backend.herokuapp.com/user/userDetails`, {
               headers: { authorization: token },
             })
             .then((response) => {
+              console.log(response);
               dispatch({
                 type: "GET_USER_DATA",
                 payload: {
@@ -38,7 +38,6 @@ export function Products() {
     })();
     (async () => {
       try {
-        console.log("asd");
         await axios
           .get("https://ecomkart-backend.herokuapp.com/products")
           .then((response) => {

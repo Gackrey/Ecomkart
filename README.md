@@ -75,6 +75,8 @@ $ npm start
    * Remove from wishlist
    * Move from wishlist to cart
 
+Backend Repo link:-https://github.com/Gackrey/Ecomkart-backend
+
 ## Screenshots
 ### Desktop view
 ![ecomkart](https://user-images.githubusercontent.com/36769948/115062819-65b75300-9f08-11eb-8143-06da74f87fda.JPG)

@@ -212,21 +212,21 @@ export function reducerFunc(state, action) {
       if (action.check.stockChecker && !action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems.filter(
+          filterItems: state.itemsInCart.filter(
             (item) => item.inStock === true
           ),
         };
       } else if (!action.check.stockChecker && action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems.filter(
+          filterItems: state.itemsInCart.filter(
             (item) => item.fastDelivery === true
           ),
         };
       } else if (action.check.stockChecker && action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems
+          filterItems: state.itemsInCart
             .filter((item) => item.inStock === true)
             .filter((item) => item.fastDelivery === true),
         };
@@ -237,21 +237,21 @@ export function reducerFunc(state, action) {
       if (action.check.stockChecker && !action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems.filter(
+          filterItems: state.itemsInCart.filter(
             (item) => item.fastDelivery === true
           ),
         };
       } else if (!action.check.stockChecker && action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems.filter(
+          filterItems: state.itemsInCart.filter(
             (item) => item.inStock === true
           ),
         };
       } else if (!action.check.stockChecker && !action.check.deliveryChecker) {
         return {
           ...state,
-          filterItems: state.filterItems
+          filterItems: state.itemsInCart
             .filter((item) => item.inStock === true)
             .filter((item) => item.fastDelivery === true),
         };
@@ -260,7 +260,7 @@ export function reducerFunc(state, action) {
     case "RANGE_FILTER":
       return {
         ...state,
-        filterItems: state.filterItems.filter(
+        filterItems: state.itemsInCart.filter(
           (item) => Number(item.price) <= action.payload
         ),
       };

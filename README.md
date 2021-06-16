@@ -34,7 +34,9 @@ $ npm start
 │   ├── api
 │   ├── components 
 │   ├── Pages
-│   ├── Redux_files 
+│   ├── Database
+│   ├── Context
+│   ├── Reducer
 │   ├── App.js  
 │   ├── index.js  
 │   └── styles.css
@@ -74,7 +76,7 @@ $ npm start
    * Remove from wishlist
    * Move from wishlist to cart
 
-Backend Repo link:-https://github.com/Gackrey/Ecomkart-backend
+Backend Repo link :- https://github.com/Gackrey/Ecomkart-backend
 
 ## Screenshots
 ### Desktop view

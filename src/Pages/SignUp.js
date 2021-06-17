@@ -32,7 +32,6 @@ export const SignUp = () => {
     if (confirmpassword === password) setConPassErrorState(false);
     else setConPassErrorState(true);
   }, [passregex, password, confirmpassword]);
-  console.log(passErrorState, conPassErrorState);
   return (
     <div className="Login-container">
       <form

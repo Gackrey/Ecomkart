@@ -241,7 +241,14 @@ export function reducerFunc(state, action) {
             (item) => item.fastDelivery === true
           ),
         };
-      } else if (!action.check.stockChecker && action.check.deliveryChecker) {
+      } 
+      else if (action.check.stockChecker && action.check.deliveryChecker) {
+        return {
+          ...state,
+          filterItems: state.itemsInCart
+        };
+      } 
+      else if (!action.check.stockChecker && action.check.deliveryChecker) {
         return {
           ...state,
           filterItems: state.itemsInCart.filter(
@@ -267,7 +274,7 @@ export function reducerFunc(state, action) {
     case "PRODUCT_FILTER":
       return {
         ...state,
-        filterItems: state.filterItems.filter(
+        filterItems: state.itemsInCart.filter(
           (item) => item.category === action.payload
         ),
       };

@@ -21,7 +21,6 @@ export function Products() {
               headers: { authorization: token },
             })
             .then((response) => {
-              console.log(response);
               dispatch({
                 type: "GET_USER_DATA",
                 payload: {

@@ -117,7 +117,7 @@
   width: 80vw;
   height: 2.1rem;
   margin: auto;
-  display: flex;
+  display: none;
   margin-bottom: 10px;
 }
 .Search > input,
@@ -550,6 +550,12 @@
   width: 30vw;
 }
 @media only screen and (max-width: 840px) {
+  .Search{
+    display: none;
+  }
+  .Search-Below {
+    display: flex;
+  }
   .productbox {
     display: block;
   }

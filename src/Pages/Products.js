@@ -34,6 +34,9 @@ export function Products() {
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const token = loginStatus?.userID;
+    if(getFastDelivery.length > 0){
+      setLoading(true);
+    }
     (async function () {
       if (token) {
         try {
@@ -68,7 +71,7 @@ export function Products() {
         console.error("Error");
       }
     })();
-  }, [dispatch]);
+  }, [getFastDelivery.length,loading,dispatch]);
   return (
     <div className="productbox">
       <ScrollToTop />

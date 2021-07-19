@@ -62,7 +62,13 @@ export const Home = () => {
         }}
       >
         <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div className="home-card">
+          <div
+            className="home-card"
+            onClick={() => dispatch({
+              type: "PRODUCT_FILTER",
+              payload: "men clothing",
+            })}
+          >
             <div style={{ opacity: "0.7" }}>
               <img
                 src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
@@ -77,7 +83,13 @@ export const Home = () => {
         </Link>
 
         <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div className="home-card">
+          <div
+            className="home-card"
+            onClick={() => dispatch({
+              type: "PRODUCT_FILTER",
+              payload: "women clothing",
+            })}
+          >
             <div style={{ opacity: "0.7" }}>
               <img
                 src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
@@ -92,7 +104,13 @@ export const Home = () => {
         </Link>
 
         <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div className="home-card">
+          <div
+            className="home-card"
+            onClick={() => dispatch({
+              type: "PRODUCT_FILTER",
+              payload: "electronics",
+            })}
+          >
             <div style={{ opacity: "0.7" }}>
               <img
                 src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
@@ -107,7 +125,13 @@ export const Home = () => {
         </Link>
 
         <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div className="home-card">
+          <div
+            className="home-card"
+            onClick={() => dispatch({
+              type: "PRODUCT_FILTER",
+              payload: "jewellery",
+            })}
+          >
             <div style={{ opacity: "0.7" }}>
               <img
                 src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"

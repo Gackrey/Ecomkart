@@ -52,7 +52,7 @@ describe("Testing cart", () => {
   });
   test("Remove cart items if less than 1", () => {
     const initialState = {
-      filterItems: [{ _id: "111", quantity: 1, isinCart: true }],
+      itemsInCart: [{ _id: "111", quantity: 1, isinCart: true }],
       cartItems: [
         { _id: "111", quantity: 1 },
         { _id: "112", quantity: 1 },
@@ -66,7 +66,7 @@ describe("Testing cart", () => {
     };
     const state = reducerFunc(initialState, action);
     expect(state).toEqual({
-      filterItems: [{ _id: "111", quantity: 1, isinCart: false }],
+      itemsInCart: [{ _id: "111", quantity: 1, isinCart: false }],
       cartItems: [{ _id: "112", quantity: 1 }],
       wishList: [{ _id: "111", quantity: 1, isinCart: false }],
       cartCount: 2,
@@ -76,7 +76,6 @@ describe("Testing cart", () => {
     const initialState = {
       cartItems: [],
       itemsInCart: [{ _id: "111", quantity: 1, isinCart: false }],
-      filterItems: [{ _id: "111", quantity: 1, isinCart: false }],
       wishList: [{}],
       cartCount: 0,
     };
@@ -88,7 +87,6 @@ describe("Testing cart", () => {
     expect(state).toEqual({
       cartItems: [{ _id: "111" }],
       itemsInCart: [{ _id: "111", quantity: 1, isinCart: true }],
-      filterItems: [{ _id: "111", quantity: 1, isinCart: true }],
       wishList: [{}],
       cartCount: 1,
     });
@@ -97,7 +95,6 @@ describe("Testing cart", () => {
     const initialState = {
       cartItems: [{ _id: "111" }],
       itemsInCart: [{ _id: "111", quantity: 1, isinCart: true }],
-      filterItems: [{ _id: "111", quantity: 1, isinCart: true }],
       wishList: [{}],
       cartCount: 1,
     };
@@ -109,7 +106,6 @@ describe("Testing cart", () => {
     expect(state).toEqual({
       cartItems: [],
       itemsInCart: [{ _id: "111", quantity: 1, isinCart: false }],
-      filterItems: [{ _id: "111", quantity: 1, isinCart: false }],
       wishList: [{}],
       cartCount: 0,
     });
@@ -118,9 +114,6 @@ describe("Testing cart", () => {
     const initialState = {
       cartItems: [],
       itemsInCart: [
-        { _id: "111", quantity: 1, isWishlisted: true, isinCart: false },
-      ],
-      filterItems: [
         { _id: "111", quantity: 1, isWishlisted: true, isinCart: false },
       ],
       wishList: [{ _id: "111" }],
@@ -137,9 +130,6 @@ describe("Testing cart", () => {
       itemsInCart: [
         { _id: "111", quantity: 1, isWishlisted: false, isinCart: true },
       ],
-      filterItems: [
-        { _id: "111", quantity: 1, isWishlisted: false, isinCart: true },
-      ],
       wishList: [],
       cartCount: 1,
       wishCount: 0,
@@ -151,7 +141,6 @@ describe("Testing wishlist", () => {
     const initialState = {
       cartItems: [{ _id: "111", quantity: 1, isWishlisted: false }],
       itemsInCart: [{ _id: "111", quantity: 1, isWishlisted: false }],
-      filterItems: [{ _id: "111", quantity: 1, isWishlisted: false }],
       wishList: [],
       wishCount: 0,
     };
@@ -163,7 +152,6 @@ describe("Testing wishlist", () => {
     expect(state).toEqual({
       cartItems: [{ _id: "111", quantity: 1, isWishlisted: true }],
       itemsInCart: [{ _id: "111", quantity: 1, isWishlisted: true }],
-      filterItems: [{ _id: "111", quantity: 1, isWishlisted: true }],
       wishList: [{ _id: "111" }],
       wishCount: 1,
     });
@@ -172,7 +160,6 @@ describe("Testing wishlist", () => {
     const initialState = {
       cartItems: [{ _id: "111", quantity: 1, isWishlisted: true }],
       itemsInCart: [{ _id: "111", quantity: 1, isWishlisted: true }],
-      filterItems: [{ _id: "111", quantity: 1, isWishlisted: true }],
       wishList: [{ _id: "111" }],
       wishCount: 1,
     };
@@ -184,7 +171,6 @@ describe("Testing wishlist", () => {
     expect(state).toEqual({
       cartItems: [{ _id: "111", quantity: 1, isWishlisted: false }],
       itemsInCart: [{ _id: "111", quantity: 1, isWishlisted: false }],
-      filterItems: [{ _id: "111", quantity: 1, isWishlisted: false }],
       wishList: [],
       wishCount: 0,
     });
@@ -193,9 +179,6 @@ describe("Testing wishlist", () => {
     const initialState = {
       cartItems: [{ _id: "111" }],
       itemsInCart: [
-        { _id: "111", quantity: 1, isWishlisted: false, isinCart: true },
-      ],
-      filterItems: [
         { _id: "111", quantity: 1, isWishlisted: false, isinCart: true },
       ],
       wishList: [],
@@ -210,9 +193,6 @@ describe("Testing wishlist", () => {
     expect(state).toEqual({
       cartItems: [],
       itemsInCart: [
-        { _id: "111", quantity: 1, isWishlisted: true, isinCart: false },
-      ],
-      filterItems: [
         { _id: "111", quantity: 1, isWishlisted: true, isinCart: false },
       ],
       wishList: [{ _id: "111" }],

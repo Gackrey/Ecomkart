@@ -5,7 +5,16 @@ export function reducerFunc(state, action) {
     case "HIDE_TOAST":
       return { ...state, showToast: { state: false, msg: "" } };
     case "CLEAR_FILTER":
-      return { ...state, filterItems: state.itemsInCart };
+      return {
+        ...state,
+        dataFilters: {
+          sortBy: "",
+          showOutOfStock: true,
+          fastDelivery: false,
+          filterByCategoy: [],
+          priceFilter: 1000,
+        },
+      };
     case "SET_PRODUCTS":
       let wishlistedId = state.wishList.map((item) => item._id);
       let cartedId = state.cartItems.map((item) => item._id);
@@ -24,7 +33,6 @@ export function reducerFunc(state, action) {
       return {
         ...state,
         itemsInCart: updatedData,
-        filterItems: updatedData,
       };
     case "GET_USER_DATA":
       return {
@@ -42,7 +50,7 @@ export function reducerFunc(state, action) {
         cartCount: 0,
         wishList: [],
         wishCount: 0,
-        filterItems: state.itemsInCart.map((item) => {
+        itemsInCart: state.itemsInCart.map((item) => {
           return { ...item, isWishlisted: false, isinCart: false };
         }),
       };
@@ -68,7 +76,7 @@ export function reducerFunc(state, action) {
       } else {
         return {
           ...state,
-          filterItems: state.filterItems.map((item) =>
+          itemsInCart: state.itemsInCart.map((item) =>
             item._id === action.payload._id
               ? { ...item, isinCart: false }
               : item
@@ -77,8 +85,10 @@ export function reducerFunc(state, action) {
             (item) => item._id !== action.payload._id
           ),
           wishList: state.wishList.map((item) =>
-          item._id === action.payload._id ? { ...item, isinCart: false } : item
-        ),
+            item._id === action.payload._id
+              ? { ...item, isinCart: false }
+              : item
+          ),
           cartCount: state.cartCount - 1,
         };
       }
@@ -87,9 +97,6 @@ export function reducerFunc(state, action) {
         ...state,
         cartItems: state.cartItems.concat(action.payload),
         itemsInCart: state.itemsInCart.map((item) =>
-          item._id === action.payload._id ? { ...item, isinCart: true } : item
-        ),
-        filterItems: state.filterItems.map((item) =>
           item._id === action.payload._id ? { ...item, isinCart: true } : item
         ),
         wishList: state.wishList.map((item) =>
@@ -109,9 +116,6 @@ export function reducerFunc(state, action) {
         itemsInCart: state.itemsInCart.map((item) =>
           item._id === action.payload._id ? { ...item, isinCart: false } : item
         ),
-        filterItems: state.filterItems.map((item) =>
-          item._id === action.payload._id ? { ...item, isinCart: false } : item
-        ),
         cartCount: state.cartCount - 1,
       };
     case "ADD_TO_CART_FROM_WISHLIST":
@@ -119,11 +123,6 @@ export function reducerFunc(state, action) {
         ...state,
         wishList: state.wishList.filter(
           (item) => item._id !== action.payload._id
-        ),
-        filterItems: state.filterItems.map((item) =>
-          item._id === action.payload._id
-            ? { ...item, isWishlisted: false, isinCart: true }
-            : item
         ),
         itemsInCart: state.itemsInCart.map((item) =>
           item._id === action.payload._id
@@ -147,11 +146,6 @@ export function reducerFunc(state, action) {
             ? { ...item, isWishlisted: true }
             : item
         ),
-        filterItems: state.filterItems.map((item) =>
-          item._id === action.payload._id
-            ? { ...item, isWishlisted: true }
-            : item
-        ),
         wishList: state.wishList.concat(action.payload),
         wishCount: state.wishCount + 1,
       };
@@ -163,11 +157,6 @@ export function reducerFunc(state, action) {
         ),
         wishList: state.wishList.concat(action.payload),
         itemsInCart: state.itemsInCart.map((item) =>
-          item._id === action.payload._id
-            ? { ...item, isWishlisted: true, isinCart: false }
-            : item
-        ),
-        filterItems: state.filterItems.map((item) =>
           item._id === action.payload._id
             ? { ...item, isWishlisted: true, isinCart: false }
             : item
@@ -186,11 +175,6 @@ export function reducerFunc(state, action) {
             ? { ...item, isWishlisted: false }
             : item
         ),
-        filterItems: state.filterItems.map((item) =>
-          item._id === action.payload._id
-            ? { ...item, isWishlisted: false }
-            : item
-        ),
         cartItems: state.cartItems.map((item) =>
           item._id === action.payload._id
             ? { ...item, isWishlisted: false }
@@ -201,83 +185,48 @@ export function reducerFunc(state, action) {
     case "HIGH_TO_LOW":
       return {
         ...state,
-        filterItems: state.filterItems.sort((a, b) => b["price"] - a["price"]),
+        dataFilters: { ...state.dataFilters, sortBy: "HIGH_TO_LOW" },
       };
     case "LOW_TO_HIGH":
       return {
         ...state,
-        filterItems: state.filterItems.sort((a, b) => a["price"] - b["price"]),
+        dataFilters: { ...state.dataFilters, sortBy: "LOW_TO_HIGH" },
       };
     case "OUT_OF_STOCK":
-      if (action.check.stockChecker && !action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart.filter(
-            (item) => item.inStock === true
-          ),
-        };
-      } else if (!action.check.stockChecker && action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart.filter(
-            (item) => item.fastDelivery === true
-          ),
-        };
-      } else if (action.check.stockChecker && action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart
-            .filter((item) => item.inStock === true)
-            .filter((item) => item.fastDelivery === true),
-        };
-      }
-
-      return state;
+      return {
+        ...state,
+        dataFilters: { ...state.dataFilters, showOutOfStock: action.payload },
+      };
     case "FAST_DELIVERY":
-      if (action.check.stockChecker && !action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart.filter(
-            (item) => item.fastDelivery === true
-          ),
-        };
-      } 
-      else if (action.check.stockChecker && action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart
-        };
-      } 
-      else if (!action.check.stockChecker && action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart.filter(
-            (item) => item.inStock === true
-          ),
-        };
-      } else if (!action.check.stockChecker && !action.check.deliveryChecker) {
-        return {
-          ...state,
-          filterItems: state.itemsInCart
-            .filter((item) => item.inStock === true)
-            .filter((item) => item.fastDelivery === true),
-        };
-      }
-      return state;
+      return {
+        ...state,
+        dataFilters: { ...state.dataFilters, fastDelivery: action.payload },
+      };
     case "RANGE_FILTER":
       return {
         ...state,
-        filterItems: state.itemsInCart.filter(
-          (item) => Number(item.price) <= action.payload
-        ),
+        dataFilters: { ...state.dataFilters, priceFilter: action.payload },
       };
     case "PRODUCT_FILTER":
-      return {
-        ...state,
-        filterItems: state.itemsInCart.filter(
-          (item) => item.category === action.payload
-        ),
-      };
+      return state.dataFilters.filterByCategoy.includes(action.payload)
+        ? {
+            ...state,
+            dataFilters: {
+              ...state.dataFilters,
+              filterByCategoy: state.dataFilters.filterByCategoy.filter(
+                (item) => item !== action.payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            dataFilters: {
+              ...state.dataFilters,
+              filterByCategoy: state.dataFilters.filterByCategoy.concat(
+                action.payload
+              ),
+            },
+          };
     case "ADD_TO_ADDRESS":
       return {
         ...state,

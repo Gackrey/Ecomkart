@@ -8,12 +8,18 @@ export function CartProvider({ children }) {
     itemsInCart: [],
     wishList: [],
     cartItems: [],
-    filterItems: [],
     Addresses: [],
     selectedAddress: {},
     cartCount: 0,
     wishCount: 0,
     showToast: { state: false, msg: "" },
+    dataFilters: {
+      sortBy: "",
+      showOutOfStock: true,
+      fastDelivery: false,
+      filterByCategoy: [],
+      priceFilter: 1000,
+    },
   });
   return (
     <CartContext.Provider
@@ -21,12 +27,12 @@ export function CartProvider({ children }) {
         itemsInCart: state.itemsInCart,
         wishList: state.wishList,
         cartItems: state.cartItems,
-        filterItems: state.filterItems,
         Addresses: state.Addresses,
         selectedAddress: state.selectedAddress,
         cartCount: state.cartCount,
         wishCount: state.wishCount,
         showToast: state.showToast,
+        dataFilters: state.dataFilters,
         dispatch,
       }}
     >

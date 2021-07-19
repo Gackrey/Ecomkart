@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/cart-context";
 const MobileFilter = () => {
-  const { itemsInCart, dispatch } = useCart();
+  const { dispatch } = useCart();
   const [value, setValue] = useState(1000);
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
@@ -52,6 +52,9 @@ const MobileFilter = () => {
               document
                 .querySelectorAll('input[type="radio" i]')
                 .forEach((node) => (node.checked = false));
+              document
+                .querySelectorAll('input[type="checkbox" i]')
+                .forEach((node) => (node.checked = false));
             }}
           >
             CLEAR ALL
@@ -100,6 +103,9 @@ const MobileFilter = () => {
               document
                 .querySelectorAll('input[type="radio" i]')
                 .forEach((node) => (node.checked = false));
+              document
+                .querySelectorAll('input[type="checkbox" i]')
+                .forEach((node) => (node.checked = false));
             }}
           >
             CLEAR ALL
@@ -117,12 +123,11 @@ const MobileFilter = () => {
           <input
             type="checkbox"
             checked={stockChecker}
-            onChange={(e) => {
+            onChange={() => {
               setStockState(!stockChecker);
               dispatch({
                 type: "OUT_OF_STOCK",
-                payload: itemsInCart,
-                check: { stockChecker, deliveryChecker },
+                payload: !stockChecker,
               });
             }}
           ></input>{" "}
@@ -132,12 +137,11 @@ const MobileFilter = () => {
           <input
             type="checkbox"
             checked={deliveryChecker}
-            onChange={(e) => {
+            onChange={() => {
               setDeliveryState(!deliveryChecker);
               dispatch({
                 type: "FAST_DELIVERY",
-                payload: itemsInCart,
-                check: { stockChecker, deliveryChecker },
+                payload: !deliveryChecker,
               });
             }}
           ></input>{" "}
@@ -163,7 +167,7 @@ const MobileFilter = () => {
         </label>
         <label>
           <input
-            type="radio"
+            type="checkbox"
             name="productsort"
             onChange={() => {
               dispatch({
@@ -176,7 +180,7 @@ const MobileFilter = () => {
         </label>
         <label>
           <input
-            type="radio"
+            type="checkbox"
             name="productsort"
             onChange={() => {
               dispatch({
@@ -189,7 +193,7 @@ const MobileFilter = () => {
         </label>
         <label>
           <input
-            type="radio"
+            type="checkbox"
             name="productsort"
             onChange={() => {
               dispatch({
@@ -202,7 +206,7 @@ const MobileFilter = () => {
         </label>
         <label>
           <input
-            type="radio"
+            type="checkbox"
             name="productsort"
             onChange={() => {
               dispatch({

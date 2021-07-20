@@ -121,8 +121,18 @@ export function reducerFunc(state, action) {
     case "PAYMENT_SUCCESSFULL":
       return {
         ...state,
+        wishList: state.wishList.map((item) =>
+          action.payload.includes(item._id)
+            ? { ...item, isinCart: false }
+            : item
+        ),
+        itemsInCart: state.itemsInCart.map((item) =>
+          action.payload.includes(item._id)
+            ? { ...item, isinCart: false }
+            : item
+        ),
         cartItems: [],
-        cartCount: 0
+        cartCount: 0,
       };
     case "ADD_TO_CART_FROM_WISHLIST":
       return {

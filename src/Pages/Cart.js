@@ -6,9 +6,16 @@ import { Toast } from "../components/Toast";
 import AddressBox from "../components/AddressBox";
 import axios from "axios";
 import Tick from "../components/svg/tick.png";
+import { removeFromServer } from "../api/ServerHandler";
 export function Cart() {
   const { cartCount, cartItems, showToast, dispatch } = useCart();
   const [paymentState, setPaymentstate] = useState(false);
+  async function successHandler() {
+    const idArr = cartItems.map((item) => item._id);
+    await removeFromServer("payment-successful", idArr);
+    dispatch({ type: "PAYMENT_SUCCESSFULL", payload: idArr });
+    setPaymentstate(true);
+  }
   const cartCalculator = () =>
     cartItems.reduce(
       (acc, value) => {
@@ -44,9 +51,7 @@ export function Cart() {
           const captureResponse = await axios.post(url, {});
           const success = JSON.parse(captureResponse.data);
           if (success) {
-            dispatch({ type: "PAYMENT_SUCCESSFULL" });
-            setPaymentstate(true);
-            console.log("Payment Success");
+            successHandler()
           }
         } catch (err) {
           console.log(err);

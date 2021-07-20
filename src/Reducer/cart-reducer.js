@@ -118,6 +118,12 @@ export function reducerFunc(state, action) {
         ),
         cartCount: state.cartCount - 1,
       };
+    case "PAYMENT_SUCCESSFULL":
+      return {
+        ...state,
+        cartItems: [],
+        cartCount: 0
+      };
     case "ADD_TO_CART_FROM_WISHLIST":
       return {
         ...state,

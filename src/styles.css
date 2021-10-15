@@ -75,6 +75,7 @@
   margin-top: 10px;
   border: none;
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+  cursor: pointer;
 }
 .icon-size-36 {
   font-size: 36px;
@@ -156,6 +157,7 @@
   border: none;
   outline: none;
   background-color: rgb(221 219 219);
+  cursor: pointer;
 }
 .cartOrder {
   margin: auto;
@@ -406,6 +408,7 @@
   font-size: 22px;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 .cart-display {
   border: 1px solid black;
@@ -468,6 +471,7 @@
   color: var(--primary);
   font-size: 18px;
   margin: 0 1rem;
+  cursor: pointer;
 }
 .btn-address-solid {
   border-radius: 7px;
@@ -476,6 +480,7 @@
   font-size: 18px;
   background-color: var(--primary);
   color: white;
+  cursor: pointer;
 }
 .choose-addr {
   display: flex;
@@ -515,6 +520,7 @@
   color: white;
   font-weight: bold;
   border-radius: 50%;
+  cursor: pointer;
 }
 .clear-filter {
   border-bottom: 2px solid var(--primary);

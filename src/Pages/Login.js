@@ -20,6 +20,10 @@ export const Login = () => {
             setErrorState(true);
         }
     }
+    function autoFill() {
+        setEmail('test@gmail.com');
+        setPassword('Qwerty123')
+    }
     return (
         <div className="Login-container">
             <form className="Login-box" onSubmit={(e) => loginHandler(e, email, password)}>
@@ -40,6 +44,8 @@ export const Login = () => {
                     </div>
                 </div>
                 <button type="submit" className="login-click-btn">Log In</button>
+                <br/>
+                <button type="button" className="login-click-btn" onClick={autoFill}>Guest</button>
                 <p style={{ fontWeight: "bold" }}>Dont have a account?
                 <Link to="/signup" style={{ textDecoration: "none" }}>
                         Sign Up</Link>

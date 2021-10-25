@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { useCart } from "../Context/cart-context";
@@ -7,12 +7,36 @@ import { Toast } from "../components/Toast";
 import SideFilterBar from "../components/SideFilterBar";
 import MobileFilter from "../components/MobileFilter";
 import ScrollToTop from "../components/ScrollToTop";
+import { getSortedData, filterData, filterPrice } from "../Utils/DataFilter";
 import axios from "axios";
 export function Products() {
-  const { showToast, filterItems, dispatch } = useCart();
+  const { showToast, itemsInCart, dataFilters, dispatch } = useCart();
+  const getSorted = getSortedData(dataFilters.sortBy, itemsInCart);
+  const getFiltered = filterData(dataFilters.filterByCategoy, getSorted);
+  const getPriceFiltered = filterPrice(dataFilters.priceFilter, getFiltered);
+  const [loading, setLoading] = useState(false);
+  let getOutofStockFilter = [];
+  let getFastDelivery = [];
+  if (dataFilters.showOutOfStock) {
+    getOutofStockFilter = getPriceFiltered;
+  } else {
+    getOutofStockFilter = getPriceFiltered.filter(
+      (item) => item.inStock === true
+    );
+  }
+  if (!dataFilters.fastDelivery) {
+    getFastDelivery = getOutofStockFilter;
+  } else {
+    getFastDelivery = getOutofStockFilter.filter(
+      (item) => item.fastDelivery === true
+    );
+  }
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const token = loginStatus?.userID;
+    if(getFastDelivery.length > 0){
+      setLoading(true);
+    }
     (async function () {
       if (token) {
         try {
@@ -21,7 +45,6 @@ export function Products() {
               headers: { authorization: token },
             })
             .then((response) => {
-              console.log(response);
               dispatch({
                 type: "GET_USER_DATA",
                 payload: {
@@ -42,12 +65,13 @@ export function Products() {
           .get("https://ecomkart-backend.herokuapp.com/products")
           .then((response) => {
             dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+            setLoading(true);
           });
       } catch {
         console.error("Error");
       }
     })();
-  }, [dispatch]);
+  }, [getFastDelivery.length,loading,dispatch]);
   return (
     <div className="productbox">
       <ScrollToTop />
@@ -62,10 +86,15 @@ export function Products() {
         }}
       >
         {showToast.state ? <Toast text={showToast.msg} /> : ""}
-        {filterItems.length === 0 ? (
-          <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+        {loading ? (
+          ""
         ) : (
-          filterItems.map((product) => (
+          <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+        )}
+        {loading && getFastDelivery.length === 0 ? (
+          <h1>No products found</h1>
+        ) : (
+          getFastDelivery.map((product) => (
             <ProductItem key={product._id} dataset={product} />
           ))
         )}

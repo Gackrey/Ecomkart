@@ -3,8 +3,13 @@ import { useCart } from "../Context/cart-context";
 const SideFilterBar = () => {
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
-  const { itemsInCart, dispatch } = useCart();
+  const { dataFilters, dispatch } = useCart();
   const [value, setValue] = useState(1000);
+  document.querySelectorAll('input[type="checkbox" i]').forEach((node) => {
+    if (dataFilters.filterByCategoy[0] === node.name) {
+      node.checked = true;
+    }
+  });
   return (
     <div className="filterboxDesk">
       <h1 style={{ color: "gray" }}>Sort</h1>
@@ -17,7 +22,10 @@ const SideFilterBar = () => {
           setValue(1000);
           document
             .querySelectorAll('input[type="radio" i]')
-            .forEach((node) => node.checked = false);
+            .forEach((node) => (node.checked = false));
+          document
+            .querySelectorAll('input[type="checkbox" i]')
+            .forEach((node) => (node.checked = false));
         }}
       >
         CLEAR ALL
@@ -56,8 +64,7 @@ const SideFilterBar = () => {
             setStockState(!stockChecker);
             dispatch({
               type: "OUT_OF_STOCK",
-              payload: itemsInCart,
-              check: { stockChecker, deliveryChecker },
+              payload: !stockChecker,
             });
           }}
         ></input>{" "}
@@ -71,8 +78,7 @@ const SideFilterBar = () => {
             setDeliveryState(!deliveryChecker);
             dispatch({
               type: "FAST_DELIVERY",
-              payload: itemsInCart,
-              check: { stockChecker, deliveryChecker },
+              payload: !deliveryChecker,
             });
           }}
         ></input>{" "}
@@ -101,8 +107,8 @@ const SideFilterBar = () => {
 
       <label>
         <input
-          type="radio"
-          name="productsort"
+          type="checkbox"
+          name="men clothing"
           onChange={() => {
             dispatch({
               type: "PRODUCT_FILTER",
@@ -114,8 +120,8 @@ const SideFilterBar = () => {
       </label>
       <label>
         <input
-          type="radio"
-          name="productsort"
+          type="checkbox"
+          name="women clothing"
           onChange={() => {
             dispatch({
               type: "PRODUCT_FILTER",
@@ -127,8 +133,8 @@ const SideFilterBar = () => {
       </label>
       <label>
         <input
-          type="radio"
-          name="productsort"
+          type="checkbox"
+          name="jewellery"
           onChange={() => {
             dispatch({
               type: "PRODUCT_FILTER",
@@ -140,8 +146,8 @@ const SideFilterBar = () => {
       </label>
       <label>
         <input
-          type="radio"
-          name="productsort"
+          type="checkbox"
+          name="electronics"
           onChange={() => {
             dispatch({
               type: "PRODUCT_FILTER",

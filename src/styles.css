@@ -13,6 +13,11 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding-top: 10px;
+}
+
 .logoHeading {
   color: white;
   font-family: "Racing Sans One", cursive;
@@ -23,7 +28,6 @@
   background-color: var(--primary);
   color: white;
   padding: 0 20px;
-  border-bottom: 1px solid black;
 }
 .nav-body {
   display: flex;
@@ -96,7 +100,8 @@
   color: white;
 }
 .wishlist {
-  width: fit-content;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   position: absolute;
   background-color: rgba(177, 174, 174, 0.7);
@@ -141,7 +146,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  box-shadow: 0 0 6px 0px black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
   margin-top: 1rem;
 }
@@ -328,7 +333,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   margin: 10px;
 }
 .input-box-password > input {
@@ -411,7 +416,7 @@
   cursor: pointer;
 }
 .cart-display {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   width: 80%;
   margin: 1rem auto;
   padding: 1rem;
@@ -419,6 +424,7 @@
 .address-box {
   background-color: #eeeeee;
   display: flex;
+  padding: 10px 0;
   justify-content: space-around;
   align-items: center;
 }
@@ -565,7 +571,7 @@
 }
 .payment-success {
   padding: 1rem;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 .payment-success > .tick {
   width: 30px;

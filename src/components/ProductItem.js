@@ -35,7 +35,7 @@ export function ProductItem({ dataset }) {
   }
   return (
     <div
-      className="card"
+      className="card shadow"
       style={dataset.inStock ? { opacity: "1" } : { opacity: "0.5" }}
     >
       <div style={{ position: "absolute" }}>

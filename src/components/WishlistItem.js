@@ -18,7 +18,7 @@ export function WishlistItem({ dataset }) {
     dispatch({ type: "SHOW_TOAST", payload: "Added to Cart from Wishlist",});
   }
   return (
-    <div className="card">
+    <div className="card shadow">
       <div className="check">
         <button className="dismiss-card" onClick={() => addHandler(dataset)}>
           X

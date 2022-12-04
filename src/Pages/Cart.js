@@ -7,6 +7,8 @@ import AddressBox from "../components/AddressBox";
 import axios from "axios";
 import Tick from "../components/svg/tick.png";
 import { removeFromServer } from "../api/ServerHandler";
+import {API_URL} from '../Constants'
+
 export function Cart() {
   const { cartCount, cartItems, showToast, dispatch } = useCart();
   const [paymentState, setPaymentstate] = useState(false);
@@ -36,7 +38,7 @@ export function Cart() {
   async function razorPayHandler(e) {
     e.preventDefault();
     const PaymentAmount = totalCartPrice();
-    const orderUrl = `https://ecomkart-backend.herokuapp.com/razorpay/order/${PaymentAmount}`;
+    const orderUrl = `${API_URL}/razorpay/order/${PaymentAmount}`;
     const response = await axios.get(orderUrl);
     const { data } = response;
     const options = {
@@ -47,7 +49,7 @@ export function Cart() {
       handler: async (response) => {
         try {
           const paymentId = response.razorpay_payment_id;
-          const url = `https://ecomkart-backend.herokuapp.com/razorpay/capture/${paymentId}/${PaymentAmount}`;
+          const url = `${API_URL}/razorpay/capture/${paymentId}/${PaymentAmount}`;
           const captureResponse = await axios.post(url, {});
           const success = JSON.parse(captureResponse.data);
           if (success) {

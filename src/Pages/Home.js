@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../Context/cart-context";
+import {API_URL} from '../Constants'
+
 export const Home = () => {
   const { dispatch } = useCart();
   useEffect(() => {
@@ -11,7 +13,7 @@ export const Home = () => {
       if (token) {
         try {
           await axios
-            .get(`https://ecomkart-backend.herokuapp.com/user/userDetails`, {
+            .get(`${API_URL}/user/userDetails`, {
               headers: { authorization: token },
             })
             .then((response) => {
@@ -32,7 +34,7 @@ export const Home = () => {
     (async () => {
       try {
         await axios
-          .get("https://ecomkart-backend.herokuapp.com/products")
+          .get(`${API_URL}/products`)
           .then((response) => {
             dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
           });

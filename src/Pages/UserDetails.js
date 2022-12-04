@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useCart } from "../Context/cart-context";
 import { useAuth } from "../Context/AuthProvider";
+import {API_URL} from '../Constants'
+
 function DateHandler({ date }) {
   let newDate = new Date(date);
   newDate = String(newDate);
@@ -22,7 +24,7 @@ export const UserDetails = () => {
   const fetchUserFromServer = async (token) => {
     try {
       await axios
-        .get(`https://ecomkart-backend.herokuapp.com/user/userDetails`, {
+        .get(`${API_URL}user/userDetails`, {
           headers: { authorization: token },
         })
         .then((response) => {

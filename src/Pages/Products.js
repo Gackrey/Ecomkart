@@ -9,6 +9,8 @@ import MobileFilter from "../components/MobileFilter";
 import ScrollToTop from "../components/ScrollToTop";
 import { getSortedData, filterData, filterPrice } from "../Utils/DataFilter";
 import axios from "axios";
+import {API_URL} from '../Constants'
+
 export function Products() {
   const { showToast, itemsInCart, dataFilters, dispatch } = useCart();
   const getSorted = getSortedData(dataFilters.sortBy, itemsInCart);
@@ -41,7 +43,7 @@ export function Products() {
       if (token) {
         try {
           await axios
-            .get(`https://ecomkart-backend.herokuapp.com/user/userDetails`, {
+            .get(`${API_URL}/user/userDetails`, {
               headers: { authorization: token },
             })
             .then((response) => {
@@ -62,7 +64,7 @@ export function Products() {
     (async () => {
       try {
         await axios
-          .get("https://ecomkart-backend.herokuapp.com/products")
+          .get(`${API_URL}/products`)
           .then((response) => {
             dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
             setLoading(true);

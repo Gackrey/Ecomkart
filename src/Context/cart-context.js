@@ -17,7 +17,7 @@ export function CartProvider({ children }) {
       sortBy: "",
       showOutOfStock: true,
       fastDelivery: false,
-      filterByCategoy: [],
+      filterByCategory: [],
       priceFilter: 1000,
     },
   });

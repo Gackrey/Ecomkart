@@ -11,7 +11,7 @@ export function reducerFunc(state, action) {
           sortBy: "",
           showOutOfStock: true,
           fastDelivery: false,
-          filterByCategoy: [],
+          filterByCategory: [],
           priceFilter: 1000,
         },
       };
@@ -224,12 +224,12 @@ export function reducerFunc(state, action) {
         dataFilters: { ...state.dataFilters, priceFilter: action.payload },
       };
     case "PRODUCT_FILTER":
-      return state.dataFilters.filterByCategoy.includes(action.payload)
+      return state.dataFilters.filterByCategory.includes(action.payload)
         ? {
             ...state,
             dataFilters: {
               ...state.dataFilters,
-              filterByCategoy: state.dataFilters.filterByCategoy.filter(
+              filterByCategory: state.dataFilters.filterByCategory.filter(
                 (item) => item !== action.payload
               ),
             },
@@ -238,7 +238,7 @@ export function reducerFunc(state, action) {
             ...state,
             dataFilters: {
               ...state.dataFilters,
-              filterByCategoy: state.dataFilters.filterByCategoy.concat(
+              filterByCategory: state.dataFilters.filterByCategory.concat(
                 action.payload
               ),
             },

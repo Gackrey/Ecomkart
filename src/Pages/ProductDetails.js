@@ -1,13 +1,18 @@
 import React from "react";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import Loader from "react-loader-spinner";
+import { Grid } from "react-loader-spinner";
 import { useParams } from "react-router";
 import { useCart } from "../Context/cart-context";
 import { useAuth } from "../Context/AuthProvider";
 import { Toast } from "../components/Toast";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
+
+const offerList = [
+  "Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card",
+  "Bank Offer ₹20 Off on first prepaid transaction using UPI payments, minimum order value ₹750/",
+  "Bank Offer ₹20 Off on first prepaid transaction using RuPay debit card, minimum order value ₹750/-",
+];
 export const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -74,13 +79,9 @@ export const ProductDetails = () => {
           {selectedProduct.name}
         </h1>
         <p
+          className="ratings"
           style={{
-            padding: "2px 5px",
-            backgroundColor: "green",
-            width: "fit-content",
-            fontSize: "14px",
-            fontWeight: "bold",
-            borderRadius: "5px",
+            display: "block",
             marginLeft: "1rem",
           }}
         >
@@ -88,8 +89,8 @@ export const ProductDetails = () => {
         </p>
         <p
           style={{
-            fontSize: "25px",
-            marginLeft: "1rem",
+            fontSize: "22px",
+            margin: "10px 0 5px 1rem",
             textAlign: "start",
             fontWeight: "bold",
           }}
@@ -116,38 +117,23 @@ export const ProductDetails = () => {
         >
           Available Offers
         </p>
-        <div style={{ textAlign: "start", marginLeft: "1rem" }}>
-          <p>
-            <img
-              style={{ width: "1rem" }}
-              src="https://rukminim1.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-              alt=""
-            />
-            Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card
-          </p>
-
-          <p>
-            <img
-              style={{ width: "1rem" }}
-              src="https://rukminim1.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-              alt=""
-            />
-            Bank Offer ₹20 Off on first prepaid transaction using UPI payments,
-            minimum order value ₹750/
-          </p>
-          <p>
-            <img
-              style={{ width: "1rem" }}
-              src="https://rukminim1.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-              alt=""
-            />
-            Bank Offer ₹20 Off on first prepaid transaction using RuPay debit
-            card, minimum order value ₹750/-
-          </p>
+        <div
+          style={{ textAlign: "start", marginLeft: "1rem", marginTop: "10px" }}
+        >
+          {offerList.map((item, index) => (
+            <p style={{ marginBottom: 5 }} key={index}>
+              <img
+                style={{ width: "1rem" }}
+                src="https://rukminim1.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
+                alt=""
+              />
+              {item}
+            </p>
+          ))}
         </div>
       </div>
     </div>
   ) : (
-    <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+    <Grid color="#00BFFF" height={80} width={80} radius="12.5" />
   );
 };

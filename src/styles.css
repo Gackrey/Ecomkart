@@ -13,15 +13,54 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+input[type="radio"],input[type="checkbox"] {
+  cursor: pointer;
+  margin-right: 10px;
+}
+input[type="range"] {
+  cursor: pointer;
+  margin: 0 5px;
+}
+label{
+  color:rgb(17, 24, 39);
+  margin-bottom: 5px;
+}
+
+button{
+  border-radius: 4px;
+}
+.filterHeading{
+  font-weight: 500;
+  font-size: 20px;
+  margin: 5px 0;
+  color: gray;
+}
+.divider{
+  margin: 15px -20px;
+  border-bottom: 1px solid #0000001f;
+}
+
 .shadow {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding-top: 10px;
 }
 
+.card{
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 330px;
+}
 .logoHeading {
   color: white;
   font-family: "Racing Sans One", cursive;
   font-size: 35px;
+}
+.app-body{
+  position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 .navbar {
   width: initial;
@@ -37,7 +76,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.navelement {
+.navelement,.flexWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,7 +86,7 @@
   text-decoration: none;
 }
 .login-btn {
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 16px;
   color: var(--primary);
   background-color: white;
@@ -60,22 +99,24 @@
 .avatar-circleIcon {
   margin-left: 10px;
   cursor: pointer;
-  padding: 11px 18px;
   border: 1px solid var(--primary);
   background-color: black;
   border-radius: 50%;
-  width: fit-content;
-  height: fit-content;
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .avatar-circleIcon > span {
-  font-size: 24px;
+  font-size: 20px;
   color: yellow;
 }
 .btn-addtoCart {
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 10px;
+  color: white;
   width: 100%;
   margin-top: 10px;
   border: none;
@@ -99,6 +140,11 @@
 }
 .icon-color-white {
   color: white;
+  cursor: pointer;
+}
+
+.fa-sort,.fa-filter{
+  margin-right: 5px;
 }
 .wishlist {
   height: 40px;
@@ -106,8 +152,16 @@
   border-radius: 50%;
   position: absolute;
   background-color: rgba(177, 174, 174, 0.7);
-  left: 250px;
+  right: 10px;
   padding-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist > span{
+  cursor: pointer;
+  margin-bottom: 3px;
 }
 .Search {
   display: flex;
@@ -116,6 +170,23 @@
   width: 40vw;
   height: 2.1rem;
   background-color: white;
+  border-radius: 4px;
+}
+
+.ratings{
+  padding: 2px 5px;
+  background-color: #388e3c;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-block;
+  color:white
+}
+
+.card-image{
+  width: 250px;
+  object-fit: contain;
 }
 .Search-Below {
   align-items: center;
@@ -178,26 +249,33 @@
   margin: 5px 0px;
 }
 .soldout {
-  transform: translate(29px, -172px) rotate(-45deg);
+  transform:  rotate(-45deg);
   font-size: 3rem;
   color: var(--danger);
   position: absolute;
+  top: 35%;
+  left: 20%;
+}
+.productBoxWrapper{
+  background: #f3f6fe;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto
 }
 .productbox {
   display: grid;
   grid-template-columns: 1fr 5fr;
 }
 .filterboxDesk {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-top: none;
-  padding: 8px;
+  padding: 8px 20px;
   height: 100vh;
   position: sticky;
   text-align: start;
-  top: 0;
+  top: 70px;
 }
 .filterboxDesk > label {
-  display: block;
+  display: flex;
 }
 .filterboxMobile {
   display: none;
@@ -262,31 +340,31 @@
 .home-image {
   width: 100%;
 }
+.home-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  margin: auto;
+  justify-content: center
+}
 .home-card {
   cursor: pointer;
   position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid #ec75519c;
   margin: 1rem;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffd5c6;
 }
-.home-card:hover {
-  transform: scale(1.1);
-  transition: all 0.3s;
-}
+
 .image-size {
-  width: 240px;
-  height: 240px;
+  width: 100px;
+  height: 100px;
 }
 .text-overlay-position {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  color: black;
+  color:rgb(17, 24, 39);
+  font-size: 14px;
   font-weight: bold;
 }
 .toastBox {
@@ -312,7 +390,7 @@
 }
 .Login-box {
   width: min-content;
-  padding: 0 1rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(5.5px);
@@ -326,6 +404,7 @@
 .input-box-text > input {
   padding: 10px;
   padding-right: 39px;
+  border: none;
   font-size: 16px;
   outline: none;
 }
@@ -334,7 +413,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.5);
   margin: 10px;
 }
 .input-box-password > input {
@@ -395,6 +473,11 @@
   top: 3px;
   right: 30px;
 }
+.heart-product > span{
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+
 .product-addtoCart {
   padding: 8px;
   font-size: 16px;
@@ -530,13 +613,12 @@
   cursor: pointer;
 }
 .clear-filter {
-  border-bottom: 2px solid var(--primary);
   cursor: pointer;
-  margin-bottom: 1rem;
   display: block;
   width: fit-content;
 }
-.circle {
+.scrollToTop {
+  display: none;
   position: fixed;
   right: 19px;
   bottom: 60px;
@@ -544,8 +626,12 @@
   background-color: var(--primary);
   border-radius: 50%;
   z-index: 2;
+  cursor: pointer;
 }
-.circle i {
+.scrollToTop.show {
+  display: block;
+}
+.scrollToTop i {
   font-size: 26px;
   font-weight: bold;
   color: white;
@@ -648,6 +734,7 @@
   .product-image {
     width: 300px;
     height: 306px;
+    object-fit: contain;
   }
   .avatar-circleIcon {
     padding: 3px 12px;
@@ -655,8 +742,8 @@
   .mobileSize {
     font-size: 18px;
   }
-  .clear-filter {
-    margin-bottom: 0;
+  .user-details-box {
+    width: 80vw;
   }
   .user-details-box {
     width: 80vw;

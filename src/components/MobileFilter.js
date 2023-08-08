@@ -41,7 +41,7 @@ const MobileFilter = () => {
         style={sortButtonClicked ? { display: "block" } : { display: "none" }}
       >
         <div className="closeButton_filter_sort">
-          <h3>SORT BY</h3>
+          <div className="filterHeading">Sort</div>
           <span
             className="clear-filter"
             onClick={() => {
@@ -92,7 +92,7 @@ const MobileFilter = () => {
         style={filterButtonClicked ? { display: "block" } : { display: "none" }}
       >
         <div className="closeButton_filter_sort">
-          <h3>FILTER BY</h3>
+          <div className="filterHeading">Filter </div>
           <span
             className="clear-filter"
             onClick={() => {
@@ -130,7 +130,7 @@ const MobileFilter = () => {
                 payload: !stockChecker,
               });
             }}
-          ></input>{" "}
+          />{" "}
           Include Out of Stock
         </label>
         <label>
@@ -144,7 +144,7 @@ const MobileFilter = () => {
                 payload: !deliveryChecker,
               });
             }}
-          ></input>{" "}
+          />{" "}
           Fast Delivery Only
         </label>
         <label style={{ display: "block", marginTop: "1rem" }}>
@@ -162,7 +162,7 @@ const MobileFilter = () => {
                 payload: e.target.value,
               });
             }}
-          ></input>
+          />
           {value}
         </label>
         <label>
@@ -175,7 +175,7 @@ const MobileFilter = () => {
                 payload: "men clothing",
               });
             }}
-          ></input>
+          />
           Men Clothing
         </label>
         <label>
@@ -188,7 +188,7 @@ const MobileFilter = () => {
                 payload: "women clothing",
               });
             }}
-          ></input>{" "}
+          />{" "}
           Women Clothing
         </label>
         <label>
@@ -201,7 +201,7 @@ const MobileFilter = () => {
                 payload: "jewellery",
               });
             }}
-          ></input>{" "}
+          />{" "}
           jewellery
         </label>
         <label>
@@ -214,7 +214,7 @@ const MobileFilter = () => {
                 payload: "electronics",
               });
             }}
-          ></input>{" "}
+          />{" "}
           Electronics
         </label>
       </div>

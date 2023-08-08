@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
+import { Grid } from "react-loader-spinner";
 import { useCart } from "../Context/cart-context";
 import { ProductItem } from "../components/ProductItem";
 import { Toast } from "../components/Toast";
@@ -9,12 +8,12 @@ import MobileFilter from "../components/MobileFilter";
 import ScrollToTop from "../components/ScrollToTop";
 import { getSortedData, filterData, filterPrice } from "../Utils/DataFilter";
 import axios from "axios";
-import {API_URL} from '../Constants'
+import { API_URL } from "../Constants";
 
 export function Products() {
   const { showToast, itemsInCart, dataFilters, dispatch } = useCart();
   const getSorted = getSortedData(dataFilters.sortBy, itemsInCart);
-  const getFiltered = filterData(dataFilters.filterByCategoy, getSorted);
+  const getFiltered = filterData(dataFilters.filterByCategory, getSorted);
   const getPriceFiltered = filterPrice(dataFilters.priceFilter, getFiltered);
   const [loading, setLoading] = useState(false);
   let getOutofStockFilter = [];
@@ -36,7 +35,7 @@ export function Products() {
   useEffect(() => {
     const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));
     const token = loginStatus?.userID;
-    if(getFastDelivery.length > 0){
+    if (getFastDelivery.length > 0) {
       setLoading(true);
     }
     (async function () {
@@ -63,35 +62,27 @@ export function Products() {
     })();
     (async () => {
       try {
-        await axios
-          .get(`${API_URL}/products`)
-          .then((response) => {
-            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-            setLoading(true);
-          });
+        await axios.get(`${API_URL}/products`).then((response) => {
+          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+          setLoading(true);
+        });
       } catch {
         console.error("Error");
       }
     })();
-  }, [getFastDelivery.length,loading,dispatch]);
+  }, [getFastDelivery.length, loading, dispatch]);
+
   return (
     <div className="productbox">
       <ScrollToTop />
       <SideFilterBar />
       <MobileFilter />
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          margin: "auto",
-        }}
-      >
+      <div className="productBoxWrapper">
         {showToast.state ? <Toast text={showToast.msg} /> : ""}
         {loading ? (
           ""
         ) : (
-          <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+          <Grid color="#00BFFF" height={80} width={80} radius="12.5" />
         )}
         {loading && getFastDelivery.length === 0 ? (
           <h1>No products found</h1>

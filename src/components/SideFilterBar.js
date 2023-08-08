@@ -1,35 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../Context/cart-context";
+import { useLocation } from "react-router-dom";
+
 const SideFilterBar = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const productQuery = searchParams.get("type");
+
   const [stockChecker, setStockState] = useState(true);
   const [deliveryChecker, setDeliveryState] = useState(false);
-  const { dataFilters, dispatch } = useCart();
+  const { dispatch } = useCart();
   const [value, setValue] = useState(1000);
-  document.querySelectorAll('input[type="checkbox" i]').forEach((node) => {
-    if (dataFilters.filterByCategoy[0] === node.name) {
-      node.checked = true;
-    }
-  });
+
+  useEffect(() => {
+    dispatch({ type: "CLEAR_FILTER" });
+    document.querySelectorAll('input[type="checkbox" i]').forEach((node) => {
+      if (productQuery === node.name) {
+        node.checked = true;
+
+        dispatch({
+          type: "PRODUCT_FILTER",
+          payload: productQuery,
+        });
+      }
+    });
+  }, [productQuery]);
+
   return (
     <div className="filterboxDesk">
-      <h1 style={{ color: "gray" }}>Sort</h1>
-      <span
-        className="clear-filter"
-        onClick={() => {
-          dispatch({ type: "CLEAR_FILTER" });
-          setStockState(true);
-          setDeliveryState(false);
-          setValue(1000);
-          document
-            .querySelectorAll('input[type="radio" i]')
-            .forEach((node) => (node.checked = false));
-          document
-            .querySelectorAll('input[type="checkbox" i]')
-            .forEach((node) => (node.checked = false));
-        }}
-      >
-        CLEAR ALL
-      </span>
+      <div className="flexWrapper">
+        <div className="filterHeading">Sort</div>
+        <span
+          className="clear-filter"
+          onClick={() => {
+            dispatch({ type: "CLEAR_FILTER" });
+            setStockState(true);
+            setDeliveryState(false);
+            setValue(1000);
+            document
+              .querySelectorAll('input[type="radio" i]')
+              .forEach((node) => (node.checked = false));
+            document
+              .querySelectorAll('input[type="checkbox" i]')
+              .forEach((node) => (node.checked = false));
+          }}
+        >
+          CLEAR ALL
+        </span>
+      </div>
       <label>
         <input
           type="radio"
@@ -39,7 +57,7 @@ const SideFilterBar = () => {
               type: "LOW_TO_HIGH",
             });
           }}
-        ></input>
+        />
         Price - Low to High
       </label>
       <label>
@@ -51,11 +69,11 @@ const SideFilterBar = () => {
               type: "HIGH_TO_LOW",
             });
           }}
-        ></input>{" "}
+        />{" "}
         Price - High to Low
       </label>
-      <br />
-      <h1 style={{ color: "gray" }}>Filters</h1>
+      <div className="divider" />
+      <div className="filterHeading">Filters</div>
       <label>
         <input
           type="checkbox"
@@ -84,8 +102,9 @@ const SideFilterBar = () => {
         ></input>{" "}
         Fast Delivery Only
       </label>
+      <div className="divider" />
       <label style={{ display: "block", marginTop: "1rem" }}>
-        Price Range: <br />0
+        <div className="filterHeading">Price </div> 0
         <input
           type="range"
           min="0"
@@ -102,8 +121,8 @@ const SideFilterBar = () => {
         ></input>
         {value}
       </label>
-
-      <h1 style={{ color: "gray" }}>Products</h1>
+      <div className="divider" />
+      <div className="filterHeading">Products</div>
 
       <label>
         <input
@@ -115,7 +134,7 @@ const SideFilterBar = () => {
               payload: "men clothing",
             });
           }}
-        ></input>
+        />
         Men Clothing
       </label>
       <label>
@@ -128,7 +147,7 @@ const SideFilterBar = () => {
               payload: "women clothing",
             });
           }}
-        ></input>{" "}
+        />{" "}
         Women Clothing
       </label>
       <label>
@@ -141,7 +160,7 @@ const SideFilterBar = () => {
               payload: "jewellery",
             });
           }}
-        ></input>{" "}
+        />{" "}
         jewellery
       </label>
       <label>
@@ -154,7 +173,7 @@ const SideFilterBar = () => {
               payload: "electronics",
             });
           }}
-        ></input>{" "}
+        />{" "}
         Electronics
       </label>
     </div>

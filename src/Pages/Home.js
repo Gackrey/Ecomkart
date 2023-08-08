@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../Context/cart-context";
-import {API_URL} from '../Constants'
+import { API_URL } from "../Constants";
+import { homePageData } from "../Database/Home";
 
 export const Home = () => {
   const { dispatch } = useCart();
@@ -33,11 +34,9 @@ export const Home = () => {
     })();
     (async () => {
       try {
-        await axios
-          .get(`${API_URL}/products`)
-          .then((response) => {
-            dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-          });
+        await axios.get(`${API_URL}/products`).then((response) => {
+          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+        });
       } catch {
         console.error("Error");
       }
@@ -63,89 +62,24 @@ export const Home = () => {
           justifyContent: "center",
         }}
       >
-        <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div
-            className="home-card"
-            onClick={() => dispatch({
-              type: "PRODUCT_FILTER",
-              payload: "men clothing",
-            })}
+        {homePageData.map((homeItem) => (
+          <Link
+            key={homeItem.payloadText}
+            to={`/products?type=${homeItem.payloadText}`}
+            style={{ textDecoration: "none" }}
           >
-            <div style={{ opacity: "0.7" }}>
-              <img
-                src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
-                className="image-size"
-                alt="Men's Clothing"
-              />
+            <div className="home-card">
+              <div style={{ opacity: "0.7" }}>
+                <img
+                  src={homeItem.img}
+                  className="image-size"
+                  alt={homeItem.text}
+                />
+              </div>
             </div>
-            <div className="text-overlay-position">
-              <div>Men's Clothing</div>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div
-            className="home-card"
-            onClick={() => dispatch({
-              type: "PRODUCT_FILTER",
-              payload: "women clothing",
-            })}
-          >
-            <div style={{ opacity: "0.7" }}>
-              <img
-                src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
-                className="image-size"
-                alt="Women's Clothing"
-              />
-            </div>
-            <div className="text-overlay-position">
-              <div>Women's Clothing</div>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div
-            className="home-card"
-            onClick={() => dispatch({
-              type: "PRODUCT_FILTER",
-              payload: "electronics",
-            })}
-          >
-            <div style={{ opacity: "0.7" }}>
-              <img
-                src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
-                className="image-size"
-                alt="Electronics"
-              />
-            </div>
-            <div className="text-overlay-position">
-              <div>Electronics</div>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={"/products"} style={{ textDecoration: "none" }}>
-          <div
-            className="home-card"
-            onClick={() => dispatch({
-              type: "PRODUCT_FILTER",
-              payload: "jewellery",
-            })}
-          >
-            <div style={{ opacity: "0.7" }}>
-              <img
-                src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
-                className="image-size"
-                alt="Jewellary"
-              />
-            </div>
-            <div className="text-overlay-position">
-              <div>Jewellary</div>
-            </div>
-          </div>
-        </Link>
+            <div className="text-overlay-position">{homeItem.text}</div>
+          </Link>
+        ))}
       </div>
     </div>
   );

@@ -12,13 +12,13 @@ export function ProductItem({ dataset }) {
   async function wishlistHandler() {
     if (dataset.isWishlisted && isUserLogin) {
       dispatch({ type: "SHOW_TOAST", payload: "Removing from Wishlist" });
-      await removeFromServer("wishlist",dataset)
+      await removeFromServer("wishlist", dataset);
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
       dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
     }
     if (!dataset.isWishlisted && isUserLogin) {
       dispatch({ type: "SHOW_TOAST", payload: "Adding to Wishlist" });
-      await addToServer("wishlist",dataset)
+      await addToServer("wishlist", dataset);
       dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
     }
@@ -28,7 +28,7 @@ export function ProductItem({ dataset }) {
   async function cartHandler() {
     if (isUserLogin) {
       dispatch({ type: "SHOW_TOAST", payload: "Adding to Cart" });
-      await addToServer("cart",dataset)
+      await addToServer("cart", dataset);
       dispatch({ type: "ADD_TO_CART", payload: dataset });
       dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
     } else navigate("/login");
@@ -38,18 +38,16 @@ export function ProductItem({ dataset }) {
       className="card shadow"
       style={dataset.inStock ? { opacity: "1" } : { opacity: "0.5" }}
     >
-      <div style={{ position: "absolute" }}>
-        <div className="wishlist" onClick={wishlistHandler}>
-          {dataset.isWishlisted ? (
-            <span className="material-icons-outlined icon-color-red icon-size-36">
-              favorite
-            </span>
-          ) : (
-            <span className="material-icons-outlined icon-color-gray icon-size-36">
-              favorite_border
-            </span>
-          )}
-        </div>
+      <div className="wishlist" onClick={wishlistHandler}>
+        {dataset.isWishlisted ? (
+          <span className="material-icons-outlined icon-color-red icon-size-30">
+            favorite
+          </span>
+        ) : (
+          <span className="material-icons-outlined icon-color-gray icon-size-30">
+            favorite_border
+          </span>
+        )}
       </div>
       <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
         <img className="card-image" src={dataset.image} alt="" />
@@ -58,19 +56,7 @@ export function ProductItem({ dataset }) {
         <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
           <div style={{ marginTop: "30px", color: "black" }}>
             <h3>{dataset.name}</h3>
-            <p
-              style={{
-                padding: "2px 5px",
-                backgroundColor: "green",
-                width: "fit-content",
-                fontSize: "14px",
-                fontWeight: "bold",
-                borderRadius: "5px",
-                display: "inline-block",
-              }}
-            >
-              {dataset.ratings}★
-            </p>
+            <p className="ratings">{dataset.ratings}★</p>
 
             <p style={{ fontSize: "18px" }}>
               ₹{dataset.price}
@@ -101,10 +87,9 @@ export function ProductItem({ dataset }) {
           <button className="btn-addtoCart" onClick={cartHandler}>
             Add to Cart
           </button>
-        ) : (
-          <h2 className="soldout">Sold Out</h2>
-        )}
+        ) : null}
       </div>
+      {!dataset.inStock && <h2 className="soldout">Sold Out</h2>}
     </div>
   );
 }

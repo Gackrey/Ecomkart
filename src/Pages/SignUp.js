@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Context/AuthProvider";
+
+const passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,15}$/;
+
 export const SignUp = () => {
   const navigate = useNavigate();
   const [showpasswordState, setPassState] = useState(false);
@@ -15,7 +18,7 @@ export const SignUp = () => {
   const [emailErrorState, setEmailErrorState] = useState(false);
   const [passErrorState, setPassErrorState] = useState(false);
   const [conPassErrorState, setConPassErrorState] = useState(false);
-  const passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,15}$/;
+
   async function SignupHandler(e, firstname, lastname, email, password) {
     e.preventDefault();
     const response = await signinUser(firstname, lastname, email, password);
@@ -31,7 +34,8 @@ export const SignUp = () => {
   useEffect(() => {
     if (confirmpassword === password) setConPassErrorState(false);
     else setConPassErrorState(true);
-  }, [passregex, password, confirmpassword]);
+  }, [password, confirmpassword]);
+
   return (
     <div className="Login-container">
       <form

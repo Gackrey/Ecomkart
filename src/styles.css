@@ -13,6 +13,25 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+
+:root{
+  --main-transition: all 0.2s linear;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(127, 127, 127, 0.8);
+  border-radius: 10px;
+}
+
 input[type="radio"],input[type="checkbox"] {
   cursor: pointer;
   margin-right: 10px;
@@ -81,6 +100,11 @@ button{
   align-items: center;
   justify-content: space-between;
 }
+
+.flexWrapper > p{
+  width: 50%;
+  margin-bottom: 10px;
+}
 .navbuttons {
   margin: 0 1rem;
   text-decoration: none;
@@ -113,7 +137,7 @@ button{
   color: yellow;
 }
 .btn-addtoCart {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   font-weight: bold;
   color: white;
@@ -122,6 +146,27 @@ button{
   border: none;
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
   cursor: pointer;
+}
+
+.btn-disabled-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.btn-disabled-wrapper > div{
+  margin-right: 5px;
+}
+.btn-disabled {
+  padding: 10px;
+  background: rgb(201, 200, 200);
+  opacity: 0.7;
+  cursor:not-allowed;
+}
+.btn-disabled-cart {
+  border: 1px solid rgb(201, 200, 200);
+  background: rgb(201, 200, 200);
+  opacity: 0.7;
+  cursor:not-allowed;
 }
 .icon-size-36 {
   font-size: 36px;
@@ -151,12 +196,15 @@ button{
   width: 40px;
   border-radius: 50%;
   position: absolute;
-  background-color: rgba(177, 174, 174, 0.7);
   right: 10px;
   padding-top: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.wishlist-bgcolor {
+  background-color: rgba(177, 174, 174, 0.7);
 }
 
 .wishlist > span{
@@ -221,16 +269,21 @@ button{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
   margin-top: 1rem;
+  border-radius: 4px;
 }
 .cartContent {
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
 .incdecbtn {
-  padding: 1px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
   color: purple;
-  font-size: 22px;
-  border-radius: 50%;
+  font-size: 28px;
+  border-radius: 10px;
   border: none;
   outline: none;
   background-color: rgb(221 219 219);
@@ -238,7 +291,8 @@ button{
 }
 .cartOrder {
   margin: auto;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid #dadada;
+  border-radius: 4px;
   margin-top: 1rem;
   padding: 1.5rem;
   text-align: start;
@@ -256,6 +310,13 @@ button{
   top: 35%;
   left: 20%;
 }
+.productBoxWrapperHome{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto
+}
+
 .productBoxWrapper{
   background: #f3f6fe;
   display: flex;
@@ -340,6 +401,12 @@ button{
 .home-image {
   width: 100%;
 }
+.tag-image {
+  width: 1rem;
+  position: relative;
+  top: 3px;
+  left: -2px;
+}
 .home-card-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -356,11 +423,14 @@ button{
   height: 110px;
   border-radius: 50%;
   background: #ffd5c6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-size {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 .text-overlay-position {
   color:rgb(17, 24, 39);
@@ -371,7 +441,7 @@ button{
   display: flex;
   align-items: center;
   padding: 5px 15px;
-  border: 1px solid green;
+  border: 1px solid red;
   background-color: var(--success);
   position: fixed;
   bottom: 4rem;
@@ -463,6 +533,10 @@ button{
   justify-content: center;
   flex-direction: row;
 }
+
+.custom-dot-list-style{
+  bottom: -5px !important;
+}
 .product-image {
   width: 400px;
   height: 406px;
@@ -491,6 +565,7 @@ button{
   background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
 }
 .btn-logout {
+  margin-top: 10px;
   background-color: red;
   color: white;
   padding: 0.5rem 1rem;
@@ -500,12 +575,14 @@ button{
   cursor: pointer;
 }
 .cart-display {
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid #dadada;
   width: 80%;
+  border-radius: 4px;
   margin: 1rem auto;
   padding: 1rem;
 }
 .address-box {
+  border-radius: 4px;
   background-color: #eeeeee;
   display: flex;
   padding: 10px 0;
@@ -526,6 +603,8 @@ button{
 }
 .modalBox {
   background-color: white;
+  border-radius: 4px;
+  width: 450px;
   margin: 0 1rem;
   padding: 1rem 2rem;
   pointer-events: all;
@@ -549,6 +628,7 @@ button{
   font-size: 16px;
 }
 .button-box {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -601,7 +681,7 @@ button{
 .btn-close {
   display: block;
   position: absolute;
-  bottom: 22px;
+  bottom: 10px;
   left: 100%;
   border: none;
   outline: none;
@@ -636,18 +716,73 @@ button{
   font-weight: bold;
   color: white;
 }
-.user-details-page {
-  width: 100vw;
-  height: 90vh;
-  display: grid;
-  place-items: center;
+.user-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 69px);
+  width: 100%;
 }
-.user-details-box {
-  border: 2px solid gray;
-  border-radius: 10px;
-  padding: 1rem;
-  width: 30vw;
+.tabs {
+  width: 600px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 8px;
 }
+.tab-list {
+  padding-left: 0;
+  background: var(--primary);
+  color:  #fff;
+  transition: var(--main-transition);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  cursor: pointer;
+  padding: 20px;
+  width: 260px;
+  transition: var(--main-transition);
+}
+
+.tab-list-item:first-child{
+  border-top-left-radius: 7px;
+}
+.tab-list-item:last-child{
+  border-top-right-radius: 7px;
+}
+@media screen and (max-width: 560px) {
+  .tab-list-item {
+    min-width: 100%;
+  }
+  .tabs {
+    width: auto;
+  }
+}
+
+.tab-list-item:hover {
+  background: #0056b3;
+  transition: var(--main-transition);
+}
+.tab-content {
+  padding: 20px;
+  text-align: left;
+  background-color: #fff;
+  min-height: 30vh;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.tab-list-active {
+  background-color:  #fff;
+  color: rgb(65, 61, 61);
+  transition: var(--main-transition);
+}
+.tab-list-active:hover {
+  background:  #fff;
+}
+
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -738,9 +873,6 @@ button{
   }
   .avatar-circleIcon {
     padding: 3px 12px;
-  }
-  .mobileSize {
-    font-size: 18px;
   }
   .user-details-box {
     width: 80vw;

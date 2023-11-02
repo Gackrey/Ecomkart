@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 const MobileFilter = () => {
   const { dispatch } = useCart();
   const [value, setValue] = useState(1000);

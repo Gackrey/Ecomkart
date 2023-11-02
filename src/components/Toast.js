@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { useCart } from "../Context/cart-context";
-export function Toast({ text }) {
+import React, { useEffect } from "react";
+import { useCart } from "../Context/cart";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export function Toast({ text, isPending }) {
   const { dispatch } = useCart();
-  const toastRef = useRef(null);
+
   useEffect(() => {
     let timerid = setTimeout(() => {
-      toastRef.current.style.display = "none";
       dispatch({ type: "HIDE_TOAST" });
     }, 1000);
 
@@ -14,9 +16,16 @@ export function Toast({ text }) {
     };
   });
 
-  return (
-    <div ref={toastRef} className="toastBox">
-      <p>{text}</p>
-    </div>
-  );
+  if (isPending) {
+    toast.info(text, {
+      theme: "dark",
+      toastId: "pending",
+    });
+  } else {
+    toast.success(text, {
+      theme: "dark",
+      toastId: "done",
+    });
+  }
+  return <ToastContainer />;
 }

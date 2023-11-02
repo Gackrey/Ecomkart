@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { CartItem } from "../components/CartItem";
 import { Toast } from "../components/Toast";
 import AddressBox from "../components/AddressBox";
 import axios from "axios";
-import Tick from "../components/svg/tick.png";
 import { removeFromServer } from "../api/ServerHandler";
-import {API_URL} from '../Constants'
+import { API_URL } from "../Constants";
 
 export function Cart() {
   const { cartCount, cartItems, showToast, dispatch } = useCart();
   const [paymentState, setPaymentstate] = useState(false);
+
   async function successHandler() {
     const idArr = cartItems.map((item) => item._id);
+
     await removeFromServer("payment-successful", idArr);
     dispatch({ type: "PAYMENT_SUCCESSFULL", payload: idArr });
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Payment Successfull",
+      pending: false,
+    });
     setPaymentstate(true);
   }
   const cartCalculator = () =>
@@ -53,7 +59,12 @@ export function Cart() {
           const captureResponse = await axios.post(url, {});
           const success = JSON.parse(captureResponse.data);
           if (success) {
-            successHandler()
+            dispatch({
+              type: "SHOW_TOAST",
+              payload: "Payment Processing",
+              pending: true,
+            });
+            successHandler();
           }
         } catch (err) {
           console.log(err);
@@ -65,13 +76,17 @@ export function Cart() {
   }
   return (
     <div>
-      {showToast.state ? <Toast text={showToast.msg} /> : ""}
+      {showToast.state ? (
+        <Toast text={showToast.msg} isPending={showToast.isPending} />
+      ) : (
+        ""
+      )}
       <div
         className="wrapper"
         style={{ display: paymentState ? "flex" : "none" }}
       >
         <div className="payment-success">
-          <img src={Tick} alt="tick" className="tick" />
+          <img src="/img/tick.png" alt="tick" className="tick" />
           <h1 className="text">Payment Successful</h1>
           <h3 className="text">Thanks for Shopping with Us</h3>
           <button onClick={() => setPaymentstate(false)}>OK</button>

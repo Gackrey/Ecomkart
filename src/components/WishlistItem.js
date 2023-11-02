@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
+import { LoadingCartBtn } from "./LoadingButton";
 
 export function WishlistItem({ dataset }) {
   const { dispatch } = useCart();
+  const [cartLoader, setCartLoader] = useState(false);
   async function addHandler() {
-    dispatch({ type: "SHOW_TOAST", payload: "Removing from Wishlist" });
-    await removeFromServer("wishlist",dataset)
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Removing from Wishlist",
+      pending: true,
+    });
+    await removeFromServer("wishlist", dataset);
     dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
-    dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Removed from Wishlist",
+      pending: false,
+    });
   }
-  async function wishlistToCart(){
-    dispatch({ type: "SHOW_TOAST", payload: "Adding to Cart from Wishlist",});
-    await addToServer("wish-to-cart",dataset)
+  async function wishlistToCart() {
+    setCartLoader(true);
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Adding to Cart from Wishlist",
+      pending: true,
+    });
+    await addToServer("wish-to-cart", dataset);
     dispatch({ type: "ADD_TO_CART_FROM_WISHLIST", payload: dataset });
-    dispatch({ type: "SHOW_TOAST", payload: "Added to Cart from Wishlist",});
+    setCartLoader(false);
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Added to Cart from Wishlist",
+      pending: false,
+    });
   }
   return (
     <div className="card shadow">
@@ -51,10 +71,10 @@ export function WishlistItem({ dataset }) {
           </Link>
         ) : dataset.inStock && !dataset.isinCart ? (
           <button
-            className="btn-addtoCart"
+            className={`btn-addtoCart ${cartLoader ? "btn-disabled" : ""}`}
             onClick={() => wishlistToCart(dataset)}
           >
-            Add to Cart
+            {cartLoader ? <LoadingCartBtn /> : <span>Add to Cart</span>}
           </button>
         ) : (
           <button

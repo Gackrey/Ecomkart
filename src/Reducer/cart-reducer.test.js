@@ -1,10 +1,12 @@
-import { reducerFunc } from "./cart-reducer";
+import { reducerFunc } from "./cart";
 describe("Testing toast", () => {
   test("Show toast", () => {
     const initialState = { showToast: { state: false, msg: "" } };
-    const action = { type: "SHOW_TOAST", payload: "welcome" };
+    const action = { type: "SHOW_TOAST", payload: "welcome", pending: false };
     const state = reducerFunc(initialState, action);
-    expect(state).toEqual({ showToast: { state: true, msg: "welcome" } });
+    expect(state).toEqual({
+      showToast: { state: true, msg: "welcome", pending: false },
+    });
   });
   test("Hide toast", () => {
     const initialState = { showToast: { state: true, msg: "welcome" } };
@@ -380,5 +382,4 @@ describe("Testing address", () => {
       selectedAddress: {},
     });
   });
-
 });

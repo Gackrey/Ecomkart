@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { city_of_state, state_arr } from "../Database/States";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { addToServer } from "../api/ServerHandler";
 export const AddAddress = ({ state, value }) => {
   const [city_number, setCityNumber] = useState(0);
@@ -24,7 +24,7 @@ export const AddAddress = ({ state, value }) => {
   useEffect(() => {
     const id = value?.id;
     if (id) {
-      setId(id)
+      setId(id);
       setName(value.name);
       setAddress(value.address);
       setZip(value.zip);
@@ -43,7 +43,7 @@ export const AddAddress = ({ state, value }) => {
     setScreenDisplay("none");
   }
   function resetData() {
-    setId("")
+    setId("");
     setName("");
     setAddress("");
     setZip("");
@@ -61,14 +61,22 @@ export const AddAddress = ({ state, value }) => {
       zip,
       phone,
     };
-    dispatch({ type: "SHOW_TOAST", payload: "Adding to addresses" });
-    await addToServer("address",addrr)
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Adding to addresses",
+      pending: true,
+    });
+    await addToServer("address", addrr);
     dispatch({ type: "ADD_TO_ADDRESS", payload: addrr });
-    dispatch({ type: "SHOW_TOAST", payload: "Added to addresses" });
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Added to addresses",
+      pending: false,
+    });
     resetData();
     closetab();
   }
-  async function UpdateAddress(){
+  async function UpdateAddress() {
     const addrr = {
       id,
       name,
@@ -78,17 +86,25 @@ export const AddAddress = ({ state, value }) => {
       zip,
       phone,
     };
-    dispatch({ type: "SHOW_TOAST", payload: "Updating address" });
-    await addToServer("updateAddress",addrr)
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Updating address",
+      pending: true,
+    });
+    await addToServer("updateAddress", addrr);
     dispatch({ type: "EDIT_ADDRESS", payload: addrr });
-    dispatch({ type: "SHOW_TOAST", payload: "Updated address" });
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Updated address",
+      pending: false,
+    });
     resetData();
     closetab();
   }
   return (
     <div className="modalScreen" style={{ display: ScreenDisplay }}>
       <div className="modalBox" style={{ display: boxDisplay }}>
-        <h2>{editState ? "EDIT" : "ADD NEW"} ADDRESS</h2>
+        <h3>{editState ? "Edit" : "Add New"} Address</h3>
         <input
           type="text"
           className="input-box"
@@ -108,7 +124,7 @@ export const AddAddress = ({ state, value }) => {
           onChange={(e) => {
             setState(e.target.value);
             setCityNumber(state_arr.indexOf(e.target.value));
-            setCity("")
+            setCity("");
           }}
           value={State === "" ? "---Select State---" : State}
           id="state"
@@ -152,7 +168,7 @@ export const AddAddress = ({ state, value }) => {
         <div className="button-box">
           <button
             className="btn-address-solid"
-            onClick={editState ?UpdateAddress: SaveAddress }
+            onClick={editState ? UpdateAddress : SaveAddress}
           >
             {editState ? "Update" : "Save"}
           </button>

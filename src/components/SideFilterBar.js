@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { useLocation } from "react-router-dom";
 
 const SideFilterBar = () => {
@@ -24,7 +24,7 @@ const SideFilterBar = () => {
         });
       }
     });
-  }, [productQuery]);
+  }, [productQuery, dispatch]);
 
   return (
     <div className="filterboxDesk">

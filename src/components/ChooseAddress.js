@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { removeFromServer } from "../api/ServerHandler";
 export const ChooseAddress = ({ state, addNew, setEdit }) => {
   const { Addresses, selectedAddress, dispatch } = useCart();
@@ -28,10 +28,18 @@ export const ChooseAddress = ({ state, addNew, setEdit }) => {
     setEdit(selAdd);
   }
   async function DelAddr(address) {
-    dispatch({ type: "SHOW_TOAST", payload: "Removing from addresses" });
-    await removeFromServer("address",address)
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Removing from addresses",
+      pending: true,
+    });
+    await removeFromServer("address", address);
     dispatch({ type: "REMOVE_FROM_ADDRESS", payload: address });
-    dispatch({ type: "SHOW_TOAST", payload: "Removed from addresses" });
+    dispatch({
+      type: "SHOW_TOAST",
+      payload: "Removed from addresses",
+      pending: false,
+    });
     const selectedId = selectedAddress?.id;
     if (selectedId) {
       if (selectedId === address.id)
@@ -45,7 +53,7 @@ export const ChooseAddress = ({ state, addNew, setEdit }) => {
         tabIndex={1}
         style={{ display: boxDisplay, textAlign: "start" }}
       >
-        <h2>CHOOSE ADDRESS</h2>
+        <h3>Choose Address</h3>
         <div style={{ position: "relative" }}>
           <button className="btn-close" onClick={closeBtn}>
             X

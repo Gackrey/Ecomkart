@@ -1,36 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { useAuth } from "../Context/AuthProvider";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
+import { LoadingCartBtn, WishListLoader } from "./LoadingButton";
+
 export function ProductItem({ dataset }) {
   const navigate = useNavigate();
   const { dispatch } = useCart();
   const { isUserLogin } = useAuth();
+  const [wishListLoader, setWishListLoader] = useState(false);
+  const [cartLoader, setCartLoader] = useState(false);
 
   async function wishlistHandler() {
     if (dataset.isWishlisted && isUserLogin) {
-      dispatch({ type: "SHOW_TOAST", payload: "Removing from Wishlist" });
+      setWishListLoader(true);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Removing from Wishlist",
+        pending: true,
+      });
       await removeFromServer("wishlist", dataset);
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: dataset });
-      dispatch({ type: "SHOW_TOAST", payload: "Removed from Wishlist" });
+      setWishListLoader(false);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Removed from Wishlist",
+        pending: false,
+      });
     }
     if (!dataset.isWishlisted && isUserLogin) {
-      dispatch({ type: "SHOW_TOAST", payload: "Adding to Wishlist" });
+      setWishListLoader(true);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Adding to Wishlist",
+        pending: true,
+      });
       await addToServer("wishlist", dataset);
       dispatch({ type: "ADD_TO_WISHLIST", payload: dataset });
-      dispatch({ type: "SHOW_TOAST", payload: "Added to Wishlist" });
+      setWishListLoader(false);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Added to Wishlist",
+        pending: false,
+      });
     }
     if (!isUserLogin) navigate("/login");
   }
 
   async function cartHandler() {
     if (isUserLogin) {
-      dispatch({ type: "SHOW_TOAST", payload: "Adding to Cart" });
+      setCartLoader(true);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Adding to Cart",
+        pending: true,
+      });
       await addToServer("cart", dataset);
       dispatch({ type: "ADD_TO_CART", payload: dataset });
-      dispatch({ type: "SHOW_TOAST", payload: "Added to Cart" });
+      setCartLoader(false);
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: "Added to Cart",
+        pending: false,
+      });
     } else navigate("/login");
   }
   return (
@@ -38,8 +72,13 @@ export function ProductItem({ dataset }) {
       className="card shadow"
       style={dataset.inStock ? { opacity: "1" } : { opacity: "0.5" }}
     >
-      <div className="wishlist" onClick={wishlistHandler}>
-        {dataset.isWishlisted ? (
+      <div
+        className={`wishlist ${wishListLoader ? "" : "wishlist-bgcolor"}`}
+        onClick={wishlistHandler}
+      >
+        {wishListLoader ? (
+          <WishListLoader />
+        ) : dataset.isWishlisted ? (
           <span className="material-icons-outlined icon-color-red icon-size-30">
             favorite
           </span>
@@ -84,8 +123,12 @@ export function ProductItem({ dataset }) {
             <button className="btn-addtoCart">Go to Cart</button>
           </Link>
         ) : dataset.inStock && !dataset.isinCart ? (
-          <button className="btn-addtoCart" onClick={cartHandler}>
-            Add to Cart
+          <button
+            disabled={cartLoader}
+            className={`btn-addtoCart ${cartLoader ? "btn-disabled" : ""}`}
+            onClick={cartHandler}
+          >
+            {cartLoader ? <LoadingCartBtn /> : <span>Add to Cart</span>}
           </button>
         ) : null}
       </div>

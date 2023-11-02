@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AddAddress } from "./AddAddress";
 import { ChooseAddress } from "./ChooseAddress";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 const AddressBox = () => {
   const [addAddrState, setAddAddrState] = useState({
     screen: "none",

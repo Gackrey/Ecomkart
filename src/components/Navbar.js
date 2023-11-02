@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useCart } from "../Context/cart-context";
+import { useCart } from "../Context/cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Context/AuthProvider";
-import searchSvg from "./svg/search.svg";
+
 export function Navbar() {
   const navigate = useNavigate();
   const { cartCount, wishCount } = useCart();
@@ -51,8 +51,8 @@ export function Navbar() {
             onChange={(e) => setSearchContent(e.target.value)}
             onKeyDown={searchHandler}
           ></input>
-          <button onClick={btnsearchHandler}>
-            <img src={searchSvg} alt="search" />
+          <button style={{ marginRight: 10 }} onClick={btnsearchHandler}>
+            <img src="/img/search.svg" alt="search" />
           </button>
         </div>
         <div className="navelement">
@@ -120,8 +120,8 @@ export function Navbar() {
           onChange={(e) => setSearchContent(e.target.value)}
           onKeyDown={searchHandler}
         ></input>
-        <button onClick={btnsearchHandler}>
-          <img src={searchSvg} alt="search" />
+        <button style={{ marginRight: 10 }} onClick={btnsearchHandler}>
+          <img src="/img/search.svg" alt="search" />
         </button>
       </div>
     </div>

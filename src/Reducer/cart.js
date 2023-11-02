@@ -1,7 +1,14 @@
 export function reducerFunc(state, action) {
   switch (action.type) {
     case "SHOW_TOAST":
-      return { ...state, showToast: { state: true, msg: action.payload } };
+      return {
+        ...state,
+        showToast: {
+          state: true,
+          msg: action.payload,
+          isPending: action.pending,
+        },
+      };
     case "HIDE_TOAST":
       return { ...state, showToast: { state: false, msg: "" } };
     case "CLEAR_FILTER":
@@ -34,7 +41,7 @@ export function reducerFunc(state, action) {
         ...state,
         itemsInCart: updatedData,
       };
-    case "GET_USER_DATA":
+    case "SET_USER_DATA":
       return {
         ...state,
         cartItems: action.payload.cart,

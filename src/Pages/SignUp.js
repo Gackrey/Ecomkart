@@ -151,7 +151,7 @@ export const SignUp = () => {
           Sign Up
         </button>
         <p style={{ fontWeight: "bold" }}>
-          Already a member?
+          Already a member?{" "}
           <Link to="/login" style={{ textDecoration: "none" }}>
             Log In
           </Link>

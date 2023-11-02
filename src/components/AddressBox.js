@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import { AddAddress } from "./AddAddress";
 import { ChooseAddress } from "./ChooseAddress";
 import { useCart } from "../Context/cart";
+
 const AddressBox = () => {
-  const [addAddrState, setAddAddrState] = useState({
-    screen: "none",
-    box: "none",
-  });
-  const { Addresses, selectedAddress } = useCart();
-  const [editAddrValue, setEditAddr] = useState({});
-  const [chooseAddrState, setChooseAddrState] = useState({
-    screen: "none",
-    box: "none",
-  });
+  const { selectedAddress } = useCart();
+  const [chooseAddrState, setChooseAddrState] = useState(false);
+
   return (
     <div>
       <div className="address-box">
@@ -32,19 +25,14 @@ const AddressBox = () => {
         )}
         <button
           className="btn-address"
-          onClick={() =>
-            Addresses.length === 0
-              ? setAddAddrState({ screen: "flex", box: "block" })
-              : setChooseAddrState({ screen: "flex", box: "block" })
-          }
+          onClick={() => setChooseAddrState(true)}
         >
-          {Addresses.length === 0 ? "Add Address" : "Change Address"}
+          {selectedAddress ? "Change Address" : "Add Address"}
         </button>
-        <AddAddress state={addAddrState} value={editAddrValue} />
+
         <ChooseAddress
           state={chooseAddrState}
-          addNew={setAddAddrState}
-          setEdit={setEditAddr}
+          onClose={() => setChooseAddrState(false)}
         />
       </div>
     </div>

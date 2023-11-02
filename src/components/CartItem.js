@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../Context/cart";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { LoadingCartBtn, WishListLoader } from "./LoadingButton";
+import { FaTrash } from "react-icons/fa";
 
 export function CartItem({ dataset }) {
   const { dispatch } = useCart();
@@ -74,14 +75,9 @@ export function CartItem({ dataset }) {
         <h3 style={{ textAlign: "start" }}>
           {dataset.name}
           <span
+            className="ratings"
             style={{
-              padding: "2px 5px",
-              backgroundColor: "green",
-              width: "fit-content",
-              fontSize: "14px",
-              fontWeight: "bold",
-              borderRadius: "5px",
-              marginLeft: "1rem",
+              marginLeft: "5px",
             }}
           >
             {dataset.ratings}★
@@ -105,7 +101,7 @@ export function CartItem({ dataset }) {
             30% off
           </small>
         </h3>
-        <div>
+        <div style={{ width: "inherit", marginTop: 10 }}>
           <button className="incdecbtn" onClick={() => decHandler(dataset)}>
             -
           </button>
@@ -124,29 +120,25 @@ export function CartItem({ dataset }) {
           }}
         >
           <button
-            className={`btn btn-danger ${
+            className={`delete-btn pointer ${
               deleteLoader ? "btn-disabled-cart" : ""
             }`}
             disabled={deleteLoader}
             onClick={() => removehandler(dataset)}
           >
-            {deleteLoader ? (
-              <WishListLoader radius={17} />
-            ) : (
-              <i className="fa fa-trash" aria-hidden="true"></i>
-            )}
+            {deleteLoader ? <WishListLoader radius={17} /> : <FaTrash />}
           </button>
           {dataset.isWishlisted ? (
             <button
               disabled="true"
-              className="btn btn-warning btn-disabled-cart"
+              className="warning-btn btn-disabled-cart"
               style={{ margin: "0 1rem" }}
             >
               Already in Wishlist
             </button>
           ) : (
             <button
-              className={`btn btn-warning ${
+              className={`warning-btn pointer ${
                 moveToWishlistLoader ? "btn-disabled-cart" : ""
               }`}
               style={{ margin: "0 1rem" }}

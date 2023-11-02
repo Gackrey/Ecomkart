@@ -9,6 +9,7 @@ import { Toast } from "../components/Toast";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { useFilteredProducts } from "../Utils/FilteredProducts";
 import CarouselWrapper from "../components/CarouselWrapper";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 const offerList = [
   "Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card",
@@ -104,13 +105,9 @@ export const ProductDetails = () => {
           )}
           <div className="heart-product" onClick={wishlistHandler}>
             {selectedProduct.isWishlisted ? (
-              <span className="material-icons-outlined icon-color-red icon-size-36">
-                favorite
-              </span>
+              <MdFavorite size={36} className="icon-color-red" />
             ) : (
-              <span className="material-icons-outlined icon-color-gray icon-size-36">
-                favorite_border
-              </span>
+              <MdFavoriteBorder size={36} className="icon-color-gray" />
             )}
           </div>
         </div>

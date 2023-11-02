@@ -1,61 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useCart } from "../Context/cart";
-import { removeFromServer } from "../api/ServerHandler";
-export const ChooseAddress = ({ state, addNew, setEdit }) => {
-  const { Addresses, selectedAddress, dispatch } = useCart();
-  const [boxDisplay, setBoxDisplay] = useState(state.box);
-  const [ScreenDisplay, setScreenDisplay] = useState(state.screen);
-  useEffect(() => {
-    setBoxDisplay(state.box);
-    setScreenDisplay(state.screen);
-  }, [state]);
+
+export const ChooseAddress = ({ state, onClose }) => {
+  const { Addresses, dispatch } = useCart();
+
   function SetAddrFun(Id) {
     const found = Addresses.filter((addr) => addr.id === Id);
     dispatch({ type: "ADD_TO_SELETED_ADDRESS", payload: found[0] });
   }
-  function closeBtn() {
-    setBoxDisplay("none");
-    setScreenDisplay("none");
-  }
-  function NewAddr() {
-    closeBtn();
-    setEdit({});
-    addNew({ screen: "flex", box: "block" });
-  }
-  function EditAddr(selAdd) {
-    closeBtn();
-    addNew({ screen: "flex", box: "block" });
-    setEdit(selAdd);
-  }
-  async function DelAddr(address) {
-    dispatch({
-      type: "SHOW_TOAST",
-      payload: "Removing from addresses",
-      pending: true,
-    });
-    await removeFromServer("address", address);
-    dispatch({ type: "REMOVE_FROM_ADDRESS", payload: address });
-    dispatch({
-      type: "SHOW_TOAST",
-      payload: "Removed from addresses",
-      pending: false,
-    });
-    const selectedId = selectedAddress?.id;
-    if (selectedId) {
-      if (selectedId === address.id)
-        dispatch({ type: "REMOVE_FROM_SELETED_ADDRESS" });
-    }
-  }
+
   return (
-    <div className="modalScreen" style={{ display: ScreenDisplay }}>
+    <div className="modalScreen" style={{ display: state ? "flex" : "none" }}>
       <div
         className="modalBox"
         tabIndex={1}
-        style={{ display: boxDisplay, textAlign: "start" }}
+        style={{ display: state ? "block" : "none", textAlign: "start" }}
       >
         <h3>Choose Address</h3>
         <div style={{ position: "relative" }}>
-          <button className="btn-close" onClick={closeBtn}>
+          <button className="btn-close" onClick={onClose}>
             X
           </button>
         </div>
@@ -70,7 +33,7 @@ export const ChooseAddress = ({ state, addNew, setEdit }) => {
                 />
                 <div>
                   <label className="addr-label" htmlFor="address">
-                    {addr.name}
+                    <strong>{addr.name}</strong>
                   </label>
                   <label className="addr-label" htmlFor="address">
                     {addr.address}
@@ -81,27 +44,10 @@ export const ChooseAddress = ({ state, addNew, setEdit }) => {
                   <label className="addr-label" htmlFor="address">
                     Phone Number: {addr.phone}
                   </label>
-                  <div className="button-box">
-                    <button
-                      className="btn-address-solid"
-                      onClick={() => EditAddr(addr)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn-address"
-                      onClick={() => DelAddr(addr)}
-                    >
-                      Delete
-                    </button>
-                  </div>
                 </div>
               </div>
             ))
           : ""}
-        <button className="btn-add-address" onClick={NewAddr}>
-          + Add New Address
-        </button>
       </div>
     </div>
   );

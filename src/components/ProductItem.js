@@ -5,6 +5,7 @@ import { useCart } from "../Context/cart";
 import { useAuth } from "../Context/AuthProvider";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { LoadingCartBtn, WishListLoader } from "./LoadingButton";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 export function ProductItem({ dataset }) {
   const navigate = useNavigate();
@@ -79,13 +80,9 @@ export function ProductItem({ dataset }) {
         {wishListLoader ? (
           <WishListLoader />
         ) : dataset.isWishlisted ? (
-          <span className="material-icons-outlined icon-color-red icon-size-30">
-            favorite
-          </span>
+          <MdFavorite size={36} className="icon-color-red" />
         ) : (
-          <span className="material-icons-outlined icon-color-gray icon-size-30">
-            favorite_border
-          </span>
+          <MdFavoriteBorder size={36} className="icon-color-gray" />
         )}
       </div>
       <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>

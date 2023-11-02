@@ -3,10 +3,10 @@ import { v4 as uuid } from "uuid";
 import { city_of_state, state_arr } from "../Database/States";
 import { useCart } from "../Context/cart";
 import { addToServer } from "../api/ServerHandler";
-export const AddAddress = ({ state, value }) => {
+
+export const AddAddress = ({ state, value, onClose }) => {
   const [city_number, setCityNumber] = useState(0);
-  const [boxDisplay, setBoxDisplay] = useState(state.box);
-  const [ScreenDisplay, setScreenDisplay] = useState(state.screen);
+
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -16,10 +16,6 @@ export const AddAddress = ({ state, value }) => {
   const [city, setCity] = useState("");
   const [editState, setEditState] = useState(false);
   const { dispatch } = useCart();
-  useEffect(() => {
-    setBoxDisplay(state.box);
-    setScreenDisplay(state.screen);
-  }, [state]);
 
   useEffect(() => {
     const id = value?.id;
@@ -38,10 +34,7 @@ export const AddAddress = ({ state, value }) => {
       setEditState(false);
     }
   }, [value]);
-  function closetab() {
-    setBoxDisplay("none");
-    setScreenDisplay("none");
-  }
+
   function resetData() {
     setId("");
     setName("");
@@ -74,7 +67,7 @@ export const AddAddress = ({ state, value }) => {
       pending: false,
     });
     resetData();
-    closetab();
+    onClose();
   }
   async function UpdateAddress() {
     const addrr = {
@@ -99,11 +92,12 @@ export const AddAddress = ({ state, value }) => {
       pending: false,
     });
     resetData();
-    closetab();
+    onClose();
   }
+
   return (
-    <div className="modalScreen" style={{ display: ScreenDisplay }}>
-      <div className="modalBox" style={{ display: boxDisplay }}>
+    <div className="modalScreen" style={{ display: state ? "flex" : "none" }}>
+      <div className="modalBox" style={{ display: state ? "block" : "none" }}>
         <h3>{editState ? "Edit" : "Add New"} Address</h3>
         <input
           type="text"
@@ -172,7 +166,7 @@ export const AddAddress = ({ state, value }) => {
           >
             {editState ? "Update" : "Save"}
           </button>
-          <button className="btn-address" onClick={closetab}>
+          <button className="btn-address" onClick={onClose}>
             Cancel
           </button>
         </div>

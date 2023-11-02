@@ -12,7 +12,6 @@ export function Products() {
   const { showToast } = useCart();
   const { productList, loading } = useFilteredProducts();
 
-  console.log("productList", productList);
   return (
     <div className="productbox">
       <ScrollToTop />
@@ -29,7 +28,7 @@ export function Products() {
         ) : (
           ""
         )}
-        {loading && productList.length === 0 ? (
+        {!loading && productList.length === 0 ? (
           <h1>No products found</h1>
         ) : (
           productList.map((product) => (

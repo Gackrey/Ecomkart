@@ -33,6 +33,8 @@ export const useFilteredProducts = (randomCount) => {
   useEffect(() => {
     if (filteredProductList.length === 0) {
       setLoading(true);
+    } else {
+      setLoading(false);
     }
 
     if (randomCount && filteredProductList.length > 0) {

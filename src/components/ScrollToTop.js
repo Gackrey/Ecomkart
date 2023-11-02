@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,7 +21,7 @@ const ScrollToTop = () => {
       className={`scrollToTop ${isVisible ? "show" : "hide"}`}
       onClick={() => window.scrollTo(0, 0)}
     >
-      <i className="fas fa-arrow-up"></i>
+      <FaArrowUp color="#fff" size={26}/>
     </div>
   );
 };

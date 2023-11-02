@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/cart";
+import { FaFilter, FaSort } from "react-icons/fa";
 const MobileFilter = () => {
   const { dispatch } = useCart();
   const [value, setValue] = useState(1000);
@@ -24,7 +25,8 @@ const MobileFilter = () => {
             document.querySelector("body").style.overflow = "hidden";
           }}
         >
-          <i className="fa fa-sort"></i>Sort
+          <FaSort />
+          Sort
         </div>
         <div
           className="div_filters"
@@ -33,7 +35,8 @@ const MobileFilter = () => {
             document.querySelector("body").style.overflow = "hidden";
           }}
         >
-          <i className="fa fa-filter"></i>Filter
+          <FaFilter />
+          Filter
         </div>
       </div>
       <div

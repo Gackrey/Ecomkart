@@ -3,6 +3,8 @@ import { useCart } from "../Context/cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Context/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -65,9 +67,7 @@ export function Navbar() {
                 marginRight: "10px",
               }}
             >
-              <span className=" material-icons-outlined icon-size-30  icon-color-white ">
-                favorite
-              </span>
+              <MdFavorite size={30} className="icon-mt-5 icon-color-white" />
               <span
                 className="count"
                 style={{
@@ -82,10 +82,10 @@ export function Navbar() {
           </Link>
           <Link to={"/cart"}>
             <div className="badge">
-              <i
-                className="fa fa-shopping-cart fa-2x icon-color-white"
-                aria-hidden="true"
-              ></i>
+              <FaShoppingCart
+                size={36}
+                className="icon-mt-5 icon-color-white"
+              />
               <span
                 className="count"
                 style={{

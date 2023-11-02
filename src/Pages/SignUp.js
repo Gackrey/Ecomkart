@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Context/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,15}$/;
 
@@ -99,11 +100,7 @@ export const SignUp = () => {
             className="password-state"
             onClick={() => setPassState(!showpasswordState)}
           >
-            {showpasswordState ? (
-              <i className="fas fa-eye-slash"></i>
-            ) : (
-              <i className="fas fa-eye"></i>
-            )}
+            {showpasswordState ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
         <p
@@ -129,11 +126,7 @@ export const SignUp = () => {
             className="password-state"
             onClick={() => setConPassState(!showConPasswordState)}
           >
-            {showConPasswordState ? (
-              <i className="fas fa-eye-slash"></i>
-            ) : (
-              <i className="fas fa-eye"></i>
-            )}
+            {showConPasswordState ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
         <p

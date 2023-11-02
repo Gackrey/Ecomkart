@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 export const Login = () => {
   const navigate = useNavigate();
   const { loginUserWithCredentials } = useAuth();
@@ -54,11 +55,7 @@ export const Login = () => {
             className="password-state"
             onClick={() => setPassState(!showpasswordState)}
           >
-            {showpasswordState ? (
-              <i className="fas fa-eye-slash"></i>
-            ) : (
-              <i className="fas fa-eye"></i>
-            )}
+            {showpasswordState ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
         <button type="submit" className="login-click-btn">

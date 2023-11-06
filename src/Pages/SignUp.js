@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth } from "../Context/AuthProvider";
+import { useAuth } from "@ecomkart/context/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const passregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,15}$/;

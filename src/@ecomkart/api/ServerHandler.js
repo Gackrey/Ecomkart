@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_URL} from '../Constants'
+import { API_URL } from "../constants";
 
 export async function addToServer(route, data) {
   const localUser = JSON.parse(localStorage.getItem("AuthDetails"));

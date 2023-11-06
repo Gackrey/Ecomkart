@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Grid } from "react-loader-spinner";
 import { useParams } from "react-router";
-import { useCart } from "../Context/cart";
-import { useAuth } from "../Context/AuthProvider";
-import { Toast } from "../components/Toast";
-import { addToServer, removeFromServer } from "../api/ServerHandler";
-import { useFilteredProducts } from "../Utils/FilteredProducts";
-import CarouselWrapper from "../components/CarouselWrapper";
+import { useCart, useAuth } from "@ecomkart/context";
+import { Toast } from "@ecomkart/core/Toast";
+import { addToServer, removeFromServer } from "@ecomkart/api/ServerHandler";
+import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
+import CarouselWrapper from "@ecomkart/core/CarouselWrapper";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const offerList = [
   "Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit Card",
@@ -91,7 +91,14 @@ export const ProductDetails = () => {
           ""
         )}
         <div style={{ position: "relative" }}>
-          <img className="product-image" src={selectedProduct.image} alt="" />
+          <LazyLoadImage
+            width={400}
+            height={406}
+            className="card-image"
+            src={selectedProduct.image}
+            alt="Product Item"
+          />
+
           {selectedProduct.inStock && selectedProduct.isinCart ? (
             <Link to={"/cart"}>
               <button className="product-addtoCart">Go to Cart</button>

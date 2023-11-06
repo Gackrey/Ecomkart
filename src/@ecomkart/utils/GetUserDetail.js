@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../Constants";
+import { API_URL } from "@ecomkart/constants";
 
 export const getUserDetail = (cartDispatch, userDispatch) => {
   const loginStatus = JSON.parse(localStorage?.getItem("AuthDetails"));

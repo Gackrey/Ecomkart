@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useCart } from "../../Context/cart";
-import { removeFromServer } from "../../api/ServerHandler";
-import { AddAddress } from "../../components/AddAddress";
+import { useCart } from "@ecomkart/context/cart";
+import { removeFromServer } from "@ecomkart/api/ServerHandler";
+import { AddAddress } from "@ecomkart/core/AddAddress";
 
 export const AddressTab = () => {
   const { Addresses, selectedAddress, dispatch } = useCart();

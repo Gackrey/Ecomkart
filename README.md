@@ -29,14 +29,17 @@ $ npm start
 ```
 .              
 ├── public                
+│   └── img              
 │   └── index.html              
 ├── src
-│   ├── api
-│   ├── components 
+│   ├── @ecomkart
+|   │   ├── api
+|   │   ├── constants 
+|   │   ├── context
+|   │   ├── core
+|   │   ├── reducer
+|   │   ├── utils
 │   ├── Pages
-│   ├── Database
-│   ├── Context
-│   ├── Reducer
 │   ├── App.js  
 │   ├── index.js  
 │   └── styles.css
@@ -80,7 +83,7 @@ Backend Repo link :- https://github.com/Gackrey/Ecomkart-backend
 
 ## Screenshots
 ### Desktop view
-![ecomkart](https://user-images.githubusercontent.com/36769948/115062819-65b75300-9f08-11eb-8143-06da74f87fda.JPG)
+![ecomkart](https://github.com/Gackrey/Ecomkart/assets/36769948/34ffd532-c56c-41d9-ae28-f28834a6446f)
 
 ### Mobile view
-![mobile](https://user-images.githubusercontent.com/36769948/115062854-6d76f780-9f08-11eb-9a6c-d8bbe4d767ac.JPG)
+![mobile](https://github.com/Gackrey/Ecomkart/assets/36769948/fbb94623-f45c-4ce6-8291-13f561b50875)

@@ -1,7 +1,8 @@
 import React from "react";
-import { useCart } from "../Context/cart";
-import { ProductItem } from "../components/ProductItem";
+import { useCart } from "@ecomkart/context/cart";
+import { ProductItem } from "@ecomkart/core/ProductItem";
 import { useLocation } from "react-router-dom";
+
 export const Search = () => {
   const query = new URLSearchParams(useLocation().search).get("query");
   const { itemsInCart } = useCart();

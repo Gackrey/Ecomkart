@@ -105,6 +105,12 @@ button{
   justify-content: space-between;
 }
 
+.home-loading-wrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .flexWrapper > p{
   width: 50%;
   margin-bottom: 10px;
@@ -240,7 +246,6 @@ margin-top: 5px;
 }
 
 .card-image{
-  width: 250px;
   object-fit: contain;
 }
 .Search-Below {
@@ -359,10 +364,13 @@ margin-top: 5px;
   font-size: 20px;
   padding: 10px;
   width: 44vw;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.div_filters:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
 }
 .sortBox,
 .filterBox {
@@ -410,6 +418,7 @@ margin-top: 5px;
 }
 .home-image {
   width: 100%;
+  aspect-ratio: 80/21;
 }
 .tag-image {
   width: 1rem;
@@ -438,10 +447,6 @@ margin-top: 5px;
   justify-content: center;
 }
 
-.image-size {
-  width: 90px;
-  height: 90px;
-}
 .text-overlay-position {
   color:rgb(17, 24, 39);
   font-size: 14px;
@@ -548,8 +553,6 @@ margin-top: 5px;
   bottom: -5px !important;
 }
 .product-image {
-  width: 400px;
-  height: 406px;
   display: block;
 }
 .heart-product {

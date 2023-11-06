@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChooseAddress } from "./ChooseAddress";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 
 const AddressBox = () => {
   const { selectedAddress } = useCart();

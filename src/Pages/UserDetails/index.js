@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../../components/Tabs";
+import Tabs from "@ecomkart/core/Tabs";
 import { UserTab } from "./User";
 import { AddressTab } from "./Address";
 

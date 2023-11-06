@@ -1,12 +1,12 @@
 import React from "react";
 import { Grid } from "react-loader-spinner";
-import { useCart } from "../Context/cart";
-import { ProductItem } from "../components/ProductItem";
-import { Toast } from "../components/Toast";
-import SideFilterBar from "../components/SideFilterBar";
-import MobileFilter from "../components/MobileFilter";
-import ScrollToTop from "../components/ScrollToTop";
-import { useFilteredProducts } from "../Utils/FilteredProducts";
+import { useCart } from "@ecomkart/context/cart";
+import { ProductItem } from "@ecomkart/core/ProductItem";
+import { Toast } from "@ecomkart/core/Toast";
+import SideFilterBar from "@ecomkart/core/SideFilterBar";
+import MobileFilter from "@ecomkart/core/MobileFilter";
+import ScrollToTop from "@ecomkart/core/ScrollToTop";
+import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
 
 export function Products() {
   const { showToast } = useCart();

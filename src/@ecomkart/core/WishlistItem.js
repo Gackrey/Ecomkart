@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { LoadingCartBtn } from "./LoadingButton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export function WishlistItem({ dataset }) {
   const { dispatch } = useCart();
@@ -44,7 +45,12 @@ export function WishlistItem({ dataset }) {
           X
         </button>
       </div>
-      <img className="card-image" src={dataset.image} alt="" />
+      <LazyLoadImage
+        width={250}
+        className="card-image"
+        src={dataset.image}
+        alt="Product"
+      />
       <div className="card-body" style={{ marginTop: "30px" }}>
         <h3>{dataset.name}</h3>
         <p style={{ fontSize: "18px" }}>

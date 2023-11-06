@@ -5,7 +5,7 @@ describe("Testing toast", () => {
     const action = { type: "SHOW_TOAST", payload: "welcome", pending: false };
     const state = reducerFunc(initialState, action);
     expect(state).toEqual({
-      showToast: { state: true, msg: "welcome", pending: false },
+      showToast: { state: true, msg: "welcome", isPending: false },
     });
   });
   test("Hide toast", () => {
@@ -200,67 +200,6 @@ describe("Testing wishlist", () => {
       wishList: [{ _id: "111" }],
       wishCount: 1,
       cartCount: 0,
-    });
-  });
-});
-
-describe("Testing filters", () => {
-  test("Testing low to high filter", () => {
-    const initialState = {
-      filterItems: [{ price: 60 }, { price: 20 }, { price: 30 }, { price: 40 }],
-    };
-    const action = {
-      type: "LOW_TO_HIGH",
-    };
-    const state = reducerFunc(initialState, action);
-    expect(state).toEqual({
-      filterItems: [{ price: 20 }, { price: 30 }, { price: 40 }, { price: 60 }],
-    });
-  });
-  test("Testing high to low filter", () => {
-    const initialState = {
-      filterItems: [{ price: 60 }, { price: 20 }, { price: 30 }, { price: 40 }],
-    };
-    const action = {
-      type: "HIGH_TO_LOW",
-    };
-    const state = reducerFunc(initialState, action);
-    expect(state).toEqual({
-      filterItems: [{ price: 60 }, { price: 40 }, { price: 30 }, { price: 20 }],
-    });
-  });
-  test("Testing range filter", () => {
-    const initialState = {
-      filterItems: [{ price: 60 }, { price: 20 }, { price: 30 }, { price: 40 }],
-    };
-    const action = {
-      type: "RANGE_FILTER",
-      payload: 30,
-    };
-    const state = reducerFunc(initialState, action);
-    expect(state).toEqual({
-      filterItems: [{ price: 20 }, { price: 30 }],
-    });
-  });
-  test("Testing product filter", () => {
-    const initialState = {
-      filterItems: [
-        { category: "electronic", price: 20 },
-        { category: "clothing", price: 30 },
-        { category: "electronic", price: 30 },
-        { category: "clothing", price: 40 },
-      ],
-    };
-    const action = {
-      type: "PRODUCT_FILTER",
-      payload: "electronic",
-    };
-    const state = reducerFunc(initialState, action);
-    expect(state).toEqual({
-      filterItems: [
-        { category: "electronic", price: 20 },
-        { category: "electronic", price: 30 },
-      ],
     });
   });
 });

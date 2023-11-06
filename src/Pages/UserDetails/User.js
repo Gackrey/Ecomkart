@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { useCart } from "../../Context/cart";
-import { useAuth } from "../../Context/AuthProvider";
-import { useUser } from "../../Context/user";
+import { useCart, useAuth, useUser } from "@ecomkart/context";
 
 function DateHandler({ date }) {
   let newDate = new Date(date);

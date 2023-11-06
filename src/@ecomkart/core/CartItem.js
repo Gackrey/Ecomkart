@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { LoadingCartBtn, WishListLoader } from "./LoadingButton";
 import { FaTrash } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export function CartItem({ dataset }) {
   const { dispatch } = useCart();
@@ -69,7 +70,7 @@ export function CartItem({ dataset }) {
   return dataset.quantity > 0 ? (
     <div className="Cardbox">
       <div>
-        <img style={{ height: "175px" }} src={dataset.image} alt="" />
+        <LazyLoadImage height={175} src={dataset.image} alt="" />
       </div>
       <div style={{ width: "fit-content" }}>
         <h3 style={{ textAlign: "start" }}>

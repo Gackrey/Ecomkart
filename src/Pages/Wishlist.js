@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Context/cart";
-import { WishlistItem } from "../components/WishlistItem";
-import { Toast } from "../components/Toast";
+import { useCart } from "@ecomkart/context/cart";
+import { WishlistItem } from "@ecomkart/core/WishlistItem";
+import { Toast } from "@ecomkart/core/Toast";
 
 export function Wishlist() {
   const { wishList, showToast } = useCart();

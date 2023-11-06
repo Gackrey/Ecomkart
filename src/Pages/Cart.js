@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../Context/cart";
-import { CartItem } from "../components/CartItem";
-import { Toast } from "../components/Toast";
-import AddressBox from "../components/AddressBox";
+import { useCart } from "@ecomkart/context/cart";
+import { CartItem } from "@ecomkart/core/CartItem";
+import { Toast } from "@ecomkart/core/Toast";
+import AddressBox from "@ecomkart/core/AddressBox";
 import axios from "axios";
-import { removeFromServer } from "../api/ServerHandler";
-import { API_URL } from "../Constants";
+import { removeFromServer } from "@ecomkart/api/ServerHandler";
+import { API_URL } from "@ecomkart/constants";
 
 export function Cart() {
   const { cartCount, cartItems, showToast, dispatch } = useCart();

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { AuthApiLogin, AuthApiSignUp } from "../api/AuthHandler";
 export const AuthContext = createContext();
+
 export function AuthProvider({ children }) {
   const [isUserLogin, setLogin] = useState(false);
   useEffect(() => {
@@ -29,18 +30,13 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function signinUser(
-    firstname,
-    lastname,
-    email,
-    password,
-  ) {
+  async function signinUser(firstname, lastname, email, password) {
     try {
       const response = await AuthApiSignUp(
         firstname,
         lastname,
         email,
-        password,
+        password
       );
       if (response.data.success) {
         setLogin(true);
@@ -55,7 +51,7 @@ export function AuthProvider({ children }) {
         return { success: response.data.success };
       }
     } catch (error) {
-      console.log("Sahi username password nahi pata kya?", error);
+      console.error("Sahi username password nahi pata kya?", error);
       return { success: false };
     }
   }

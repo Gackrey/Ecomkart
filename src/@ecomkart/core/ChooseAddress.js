@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 
 export const ChooseAddress = ({ state, onClose }) => {
   const { Addresses, dispatch } = useCart();

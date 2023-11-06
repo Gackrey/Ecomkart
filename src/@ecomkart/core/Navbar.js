@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth } from "../Context/AuthProvider";
+import { useAuth } from "../context/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 

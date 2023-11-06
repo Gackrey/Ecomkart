@@ -1,16 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { homePageData } from "../Database/Home";
-import { useFilteredProducts } from "../Utils/FilteredProducts";
-import { ProductItem } from "../components/ProductItem";
+import { homePageData } from "@ecomkart/constants/home";
+import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
+import { ProductItem } from "@ecomkart/core/ProductItem";
+import { Grid } from "react-loader-spinner";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const Home = () => {
-  const { randomProducts } = useFilteredProducts(4);
+  const { randomProducts, loading } = useFilteredProducts(4);
 
   return (
     <div>
       <Link to="/products" style={{ textDecoration: "none" }}>
-        <img src="/img/banner.jpg" className="home-image" alt="" />
+        <LazyLoadImage
+          height={480}
+          className="home-image"
+          src="/img/banner.jpg"
+          alt="banner"
+        />
       </Link>
       <h1>Featured Categories</h1>
       <div
@@ -30,9 +37,10 @@ export const Home = () => {
           >
             <div className="home-card">
               <div style={{ opacity: "0.7" }}>
-                <img
+                <LazyLoadImage
+                  width={90}
+                  height={90}
                   src={homeItem.img}
-                  className="image-size"
                   alt={homeItem.text}
                 />
               </div>
@@ -42,11 +50,17 @@ export const Home = () => {
         ))}
       </div>
 
-      <div className="productBoxWrapperHome">
-        {randomProducts.map((product) => (
-          <ProductItem key={product._id} dataset={product} />
-        ))}
-      </div>
+      {!loading && randomProducts.length === 4 ? (
+        <div className="productBoxWrapperHome">
+          {randomProducts.map((product) => (
+            <ProductItem key={product._id} dataset={product} />
+          ))}
+        </div>
+      ) : (
+        <div className="home-loading-wrapper">
+          <Grid color="#00BFFF" height={80} width={80} radius="12.5" />
+        </div>
+      )}
     </div>
   );
 };

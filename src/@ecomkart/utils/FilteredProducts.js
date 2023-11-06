@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "@ecomkart/context/cart";
 import { filterData, filterPrice, getSortedData } from "./DataFilter";
 
 export const useFilteredProducts = (randomCount) => {

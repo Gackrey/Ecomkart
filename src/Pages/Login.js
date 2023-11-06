@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../Context/AuthProvider";
+import { useAuth } from "@ecomkart/context/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 export const Login = () => {
   const navigate = useNavigate();
   const { loginUserWithCredentials } = useAuth();

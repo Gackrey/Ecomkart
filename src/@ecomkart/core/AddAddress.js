@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { city_of_state, state_arr } from "../Database/States";
-import { useCart } from "../Context/cart";
+import { city_of_state, state_arr } from "../constants/states";
+import { useCart } from "../context/cart";
 import { addToServer } from "../api/ServerHandler";
 
 export const AddAddress = ({ state, value, onClose }) => {

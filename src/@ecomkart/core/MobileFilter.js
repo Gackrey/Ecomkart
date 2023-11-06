@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 import { FaFilter, FaSort } from "react-icons/fa";
 const MobileFilter = () => {
   const { dispatch } = useCart();

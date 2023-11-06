@@ -13,14 +13,14 @@ export function getSortedData(sortBy, Products) {
     }
   } else return Products;
 }
-export function filterData(filterByCategoy, Products) {
+export function filterData(filterByCategory, Products) {
   let updatedProducts = [...Products];
-  if (filterByCategoy.length > 0) {
+  if (filterByCategory.length > 0) {
     updatedProducts = updatedProducts.filter((prod) =>
-      filterByCategoy.includes(prod.category)
+      filterByCategory.includes(prod.category)
     );
   }
-  if (filterByCategoy.length === 0) return Products;
+  if (filterByCategory.length === 0) return Products;
   return updatedProducts;
 }
 export function filterPrice(price, Products) {

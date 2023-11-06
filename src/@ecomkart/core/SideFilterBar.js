@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../Context/cart";
+import { useCart } from "../context/cart";
 import { useLocation } from "react-router-dom";
 
 const SideFilterBar = () => {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useCart } from "../Context/cart";
-import { useAuth } from "../Context/AuthProvider";
+import { useCart } from "../context/cart";
+import { useAuth } from "../context/AuthProvider";
 import { addToServer, removeFromServer } from "../api/ServerHandler";
 import { LoadingCartBtn, WishListLoader } from "./LoadingButton";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export function ProductItem({ dataset }) {
   const navigate = useNavigate();
@@ -85,11 +86,24 @@ export function ProductItem({ dataset }) {
           <MdFavoriteBorder size={36} className="icon-color-gray" />
         )}
       </div>
-      <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
-        <img className="card-image" src={dataset.image} alt="" />
+      <Link
+        to={`/product/${dataset._id}`}
+        style={{ textDecoration: "none" }}
+        aria-label={dataset.name}
+      >
+        <LazyLoadImage
+          width={250}
+          className="card-image"
+          src={dataset.image}
+          alt="Product"
+        />
       </Link>
       <div className="card-body">
-        <Link to={`/product/${dataset._id}`} style={{ textDecoration: "none" }}>
+        <Link
+          to={`/product/${dataset._id}`}
+          style={{ textDecoration: "none" }}
+          aria-label={dataset.name}
+        >
           <div style={{ marginTop: "30px", color: "black" }}>
             <h3>{dataset.name}</h3>
             <p className="ratings">{dataset.ratings}★</p>

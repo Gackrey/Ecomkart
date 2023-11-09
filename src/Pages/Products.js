@@ -6,7 +6,7 @@ import { Toast } from "@ecomkart/core/Toast";
 import SideFilterBar from "@ecomkart/core/SideFilterBar";
 import MobileFilter from "@ecomkart/core/MobileFilter";
 import ScrollToTop from "@ecomkart/core/ScrollToTop";
-import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
+import { useFilteredProducts } from "@ecomkart/hooks/useFilteredProducts";
 
 export function Products() {
   const { showToast } = useCart();

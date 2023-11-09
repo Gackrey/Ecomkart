@@ -17,6 +17,7 @@ export const ChooseAddress = ({ state, onClose }) => {
         style={{ display: state ? "block" : "none", textAlign: "start" }}
       >
         <h3>Choose Address</h3>
+        <p className="disabled-text">* Visit Profile page to add addresses</p>
         <div style={{ position: "relative" }}>
           <button className="btn-close" onClick={onClose}>
             X

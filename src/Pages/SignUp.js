@@ -38,126 +38,134 @@ export const SignUp = () => {
   }, [password, confirmpassword]);
 
   return (
-    <div className="Login-container">
-      <form
-        className="Login-box"
-        onSubmit={(e) => SignupHandler(e, firstname, lastname, email, password)}
-      >
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <h1>Sign </h1>
-          <h1 style={{ color: "var(--primary)" }}>UP</h1>
-        </div>
-        <div className="input-box-text">
-          <input
-            type="text"
-            required
-            placeholder="First Name"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="input-box-text">
-          <input
-            type="text"
-            required
-            placeholder="Last Name"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
-        <div className="input-box-text">
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <p
-          style={{
-            display: emailErrorState ? "block" : "none",
-            color: "red",
-            fontWeight: "bold",
-          }}
-        >
-          Enter a valid email
-        </p>
-
-        <div className="input-box-password">
-          <input
-            required
-            type={showpasswordState ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              if (passregex.test(e.target.value)) setPassErrorState(false);
-              else setPassErrorState(true);
-            }}
-          />
-          <div
-            className="password-state"
-            onClick={() => setPassState(!showpasswordState)}
-          >
-            {showpasswordState ? <FaEyeSlash /> : <FaEye />}
-          </div>
-        </div>
-        <p
-          style={{
-            display: passErrorState ? "block" : "none",
-            color: "red",
-            fontSize: "14px",
-          }}
-        >
-          Password must be of 8-15 chararters and must contain at least an
-          Uppercase letter, a lowercase letter and a number.
-        </p>
-
-        <div className="input-box-password">
-          <input
-            required
-            type={showConPasswordState ? "text" : "password"}
-            placeholder="Confirm Password"
-            value={confirmpassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <div
-            className="password-state"
-            onClick={() => setConPassState(!showConPasswordState)}
-          >
-            {showConPasswordState ? <FaEyeSlash /> : <FaEye />}
-          </div>
-        </div>
-        <p
-          style={{
-            display: conPassErrorState ? "block" : "none",
-            color: "red",
-            wordBreak: "break-word",
-            fontSize: "14px",
-          }}
-        >
-          Password doesn't match
-        </p>
-        <button
-          type="submit"
-          className={
-            conPassErrorState === false && passErrorState === false
-              ? "signup-click-btn"
-              : "signup-disabled-btn "
+    <div className="login-container">
+      <img className="wave" src="/img/wave.svg" alt="wave" />
+      <div className="login-box-wrapper">
+        <form
+          className="login-box"
+          onSubmit={(e) =>
+            SignupHandler(e, firstname, lastname, email, password)
           }
-          disabled={conPassErrorState === true || passErrorState === true}
         >
-          Sign Up
-        </button>
-        <p style={{ fontWeight: "bold" }}>
-          Already a member?{" "}
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            Log In
-          </Link>
-        </p>
-        <br />
-      </form>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h1>Sign </h1>
+            <h1 style={{ marginLeft: 5, color: "var(--primary)" }}>UP</h1>
+          </div>
+          <div className="input-box-text">
+            <input
+              type="text"
+              required
+              placeholder="First Name"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
+          <div className="input-box-text">
+            <input
+              type="text"
+              required
+              placeholder="Last Name"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
+          <div className="input-box-text">
+            <input
+              type="email"
+              required
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <p
+            style={{
+              display: emailErrorState ? "block" : "none",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            Enter a valid email
+          </p>
+
+          <div className="input-box-password">
+            <input
+              required
+              type={showpasswordState ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (passregex.test(e.target.value)) setPassErrorState(false);
+                else setPassErrorState(true);
+              }}
+            />
+            <div
+              className="password-state"
+              onClick={() => setPassState(!showpasswordState)}
+            >
+              {showpasswordState ? <FaEyeSlash /> : <FaEye />}
+            </div>
+          </div>
+          <p
+            style={{
+              display: passErrorState ? "block" : "none",
+              color: "red",
+              fontSize: "14px",
+            }}
+          >
+            Password must be of 8-15 chararters and must contain at least an
+            Uppercase letter, a lowercase letter and a number.
+          </p>
+
+          <div className="input-box-password">
+            <input
+              required
+              type={showConPasswordState ? "text" : "password"}
+              placeholder="Confirm Password"
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <div
+              className="password-state"
+              onClick={() => setConPassState(!showConPasswordState)}
+            >
+              {showConPasswordState ? <FaEyeSlash /> : <FaEye />}
+            </div>
+          </div>
+          <p
+            style={{
+              display: conPassErrorState ? "block" : "none",
+              color: "red",
+              wordBreak: "break-word",
+              fontSize: "14px",
+            }}
+          >
+            Password doesn't match
+          </p>
+          <button
+            type="submit"
+            className={
+              conPassErrorState === false && passErrorState === false
+                ? "signup-click-btn"
+                : "signup-disabled-btn "
+            }
+            disabled={conPassErrorState === true || passErrorState === true}
+          >
+            Sign Up
+          </button>
+          <p className="disabled-text">
+            Already a member?{" "}
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              Log In
+            </Link>
+          </p>
+          <br />
+        </form>
+      </div>
+      <div className="login-banner-wrapper">
+        <img className="banner" src="/img/login-logo.svg" alt="banner" />
+      </div>
     </div>
   );
 };

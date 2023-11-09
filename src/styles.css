@@ -16,6 +16,11 @@
 
 :root{
   --main-transition: all 0.2s linear;
+  --disabled-text-color: rgb(149, 156, 169)
+}
+
+body {
+  overflow: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -73,6 +78,12 @@ button{
   background-color: #fff;
   border-radius: 8px;
   width: 330px;
+}
+
+.search-icon{
+  position: relative;
+  top: 2px;
+  margin-right: 10px;
 }
 .logoHeading {
   color: white;
@@ -224,7 +235,8 @@ margin-top: 5px;
   cursor: pointer;
   margin-bottom: 3px;
 }
-.Search {
+.search {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,6 +244,27 @@ margin-top: 5px;
   height: 2.1rem;
   background-color: white;
   border-radius: 4px;
+}
+
+.found-wrapper{
+  position: absolute;
+  width: 40vw;
+  top: 35px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+
+.found-wrapper-item{
+  padding: 3px 8px;
+}
+.found-wrapper-item > a{
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.found-wrapper-item:not(:last-child){
+  border-bottom: 1px solid #dadada;
 }
 
 .ratings{
@@ -248,7 +281,8 @@ margin-top: 5px;
 .card-image{
   object-fit: contain;
 }
-.Search-Below {
+.search-mobile {
+  position: relative;
   align-items: center;
   justify-content: center;
   background-color: white;
@@ -258,16 +292,16 @@ margin-top: 5px;
   display: none;
   margin-bottom: 10px;
 }
-.Search > input,
-.Search-Below > input {
+.search > input,
+.search-mobile > input {
   padding-left: 5px;
   width: 100%;
   height: 1.8rem;
   border: none;
   outline: none;
 }
-.Search > button,
-.Search-Below > button {
+.search > button,
+.search-mobile > button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -463,25 +497,51 @@ margin-top: 5px;
   left: 50%;
   z-index: 4;
 }
-.Login-container {
-  background-image: url("https://wallpaperaccess.com/full/2593042.jpg");
-  background-position: center;
-  background-size: cover;
-  backdrop-filter: blur(5.5px);
+
+.disabled-text{
+  font-size: 14px;
+  color:var(--disabled-text-color)
+}
+.my-10{
+  margin:10px 0;
+}
+
+.login-container  {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: #00a2fe;
+}
+
+.login-container > .wave {
+  transform: rotate(90deg);
+  position: absolute;
+  top: 37%;
+  left: 0;
+  color: #d50909;
+}
+.login-box-wrapper {
+  width: 40%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  background-color: #f3f6fe;
 }
-.Login-box {
-  width: min-content;
+.login-banner-wrapper {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-banner-wrapper > .banner {
+  width: 100%;
+  height: 700px;
+}
+
+.login-box {
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(5.5px);
-  -webkit-backdrop-filter: blur(5.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .input-box-text {
   margin: 10px 10px;
@@ -757,6 +817,7 @@ margin-top: 5px;
   color: white;
 }
 .user-details{
+  background: #f3f6fe;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -769,9 +830,10 @@ margin-top: 5px;
   border-radius: 8px;
 }
 .tab-list {
+  display: flex;
   padding-left: 0;
-  background: var(--primary);
-  color:  #fff;
+  background-color:  #fff;
+  color: rgb(65, 61, 61);
   transition: var(--main-transition);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -782,7 +844,8 @@ margin-top: 5px;
   list-style: none;
   cursor: pointer;
   padding: 20px;
-  width: 260px;
+  width: 300px;
+  max-width: 300px;
   transition: var(--main-transition);
 }
 
@@ -792,17 +855,9 @@ margin-top: 5px;
 .tab-list-item:last-child{
   border-top-right-radius: 7px;
 }
-@media screen and (max-width: 560px) {
-  .tab-list-item {
-    min-width: 100%;
-  }
-  .tabs {
-    width: auto;
-  }
-}
 
 .tab-list-item:hover {
-  background: #0056b3;
+  background:  #fff;
   transition: var(--main-transition);
 }
 .tab-content {
@@ -815,12 +870,56 @@ margin-top: 5px;
 }
 
 .tab-list-active {
-  background-color:  #fff;
-  color: rgb(65, 61, 61);
+  background: var(--primary);
+  color:  #fff;
   transition: var(--main-transition);
 }
 .tab-list-active:hover {
-  background:  #fff;
+  background: #0056b3;
+}
+
+@media screen and (max-width: 550px) {
+  .flexWrapper {
+   display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-container  {
+   display: block;
+  }
+  
+  .login-box-wrapper{
+    width: 100%;
+  }
+
+  .login-container > .wave,
+  .login-banner-wrapper {
+    display: none;
+  }
+
+  .tabs {
+    width: 100%;
+    box-shadow:none;
+    border-radius: 0;
+  }
+  .tab-list {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .tab-list-item {
+    width: 50%;
+  }
+
+  .tab-list-item:first-child{
+    border-top-left-radius: 0;
+  }
+  .tab-list-item:last-child{
+    border-top-right-radius: 0;
+  }
+  .tab-list-active:hover {
+    background: var(--primary);
+  }
 }
 
 .wrapper {
@@ -853,10 +952,10 @@ margin-top: 5px;
   cursor: pointer;
 }
 @media only screen and (max-width: 840px) {
-  .Search {
+  .search {
     display: none;
   }
-  .Search-Below {
+  .search-mobile {
     display: flex;
   }
   .productbox {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { homePageData } from "@ecomkart/constants/home";
-import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
+import { useFilteredProducts } from "@ecomkart/hooks/useFilteredProducts";
 import { ProductItem } from "@ecomkart/core/ProductItem";
 import { Grid } from "react-loader-spinner";
 import { LazyLoadImage } from "react-lazy-load-image-component";

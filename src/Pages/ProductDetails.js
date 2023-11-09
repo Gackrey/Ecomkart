@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import { useCart, useAuth } from "@ecomkart/context";
 import { Toast } from "@ecomkart/core/Toast";
 import { addToServer, removeFromServer } from "@ecomkart/api/ServerHandler";
-import { useFilteredProducts } from "@ecomkart/utils/FilteredProducts";
+import { useFilteredProducts } from "@ecomkart/hooks/useFilteredProducts";
 import CarouselWrapper from "@ecomkart/core/CarouselWrapper";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -94,7 +94,7 @@ export const ProductDetails = () => {
           <LazyLoadImage
             width={400}
             height={406}
-            className="card-image"
+            className="product-image"
             src={selectedProduct.image}
             alt="Product Item"
           />

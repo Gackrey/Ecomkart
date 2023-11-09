@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCart } from "../context/cart";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
+import SearchBar from "./SearchBar";
 
 export function Navbar() {
-  const navigate = useNavigate();
   const { cartCount, wishCount } = useCart();
   const { isUserLogin } = useAuth();
   function GetIcon() {
@@ -19,15 +18,7 @@ export function Navbar() {
       return "_";
     }
   }
-  const [searchContent, setSearchContent] = useState("");
-  function searchHandler(e) {
-    if (e.keyCode === 13) {
-      if (searchContent !== "") navigate(`/search?query=${searchContent}`);
-    }
-  }
-  function btnsearchHandler() {
-    if (searchContent !== "") navigate(`/search?query=${searchContent}`);
-  }
+
   return (
     <div className="navbar">
       <div className="nav-body">
@@ -45,18 +36,7 @@ export function Navbar() {
             </small>
           </div>
         </Link>
-        <div className="Search">
-          <input
-            type="text"
-            placeholder="Search by product name"
-            value={searchContent}
-            onChange={(e) => setSearchContent(e.target.value)}
-            onKeyDown={searchHandler}
-          ></input>
-          <button style={{ marginRight: 10 }} onClick={btnsearchHandler}>
-            <img src="/img/search.svg" alt="search" />
-          </button>
-        </div>
+        <SearchBar />
         <div className="navelement">
           <Link to={"/wishlist"}>
             <div
@@ -112,18 +92,7 @@ export function Navbar() {
           )}
         </div>
       </div>
-      <div className="Search-Below">
-        <input
-          type="text"
-          placeholder="Search by product name"
-          value={searchContent}
-          onChange={(e) => setSearchContent(e.target.value)}
-          onKeyDown={searchHandler}
-        ></input>
-        <button style={{ marginRight: 10 }} onClick={btnsearchHandler}>
-          <img src="/img/search.svg" alt="search" />
-        </button>
-      </div>
+      <SearchBar isSmallScreen />
     </div>
   );
 }

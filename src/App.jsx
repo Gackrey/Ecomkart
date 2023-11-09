@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Navbar } from "@ecomkart/core/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import {
   Home,
   UserDetails,
@@ -22,6 +22,7 @@ import { API_URL } from "@ecomkart/constants";
 export default function App() {
   const { dispatch: cartDispatch } = useCart();
   const { dispatch: userDispatch } = useUser();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     getUserDetail(cartDispatch, userDispatch);
@@ -39,9 +40,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="app-body">
+      {!["/login", "/signup"].includes(pathname) ? <div className="app-body">
         <Navbar />
-      </div>
+      </div> : null}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />

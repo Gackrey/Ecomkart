@@ -19,10 +19,6 @@
   --disabled-text-color: rgb(149, 156, 169)
 }
 
-body {
-  overflow: hidden;
-}
-
 body::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -821,7 +817,7 @@ margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 69px);
+  height: calc(100vh - 70px);
   width: 100%;
 }
 .tabs {

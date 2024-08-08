@@ -1,1 +1,1 @@
-export const API_URL = 'https://mauve-octopus-tie.cyclic.app'
+export const API_URL = 'https://ecomkart-backend.onrender.com'

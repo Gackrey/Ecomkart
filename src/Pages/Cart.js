@@ -57,8 +57,8 @@ export function Cart() {
           const paymentId = response.razorpay_payment_id;
           const url = `${API_URL}/razorpay/capture/${paymentId}/${PaymentAmount}`;
           const captureResponse = await axios.post(url, {});
-          const success = JSON.parse(captureResponse.data);
-          if (success) {
+
+          if (captureResponse.data) {
             dispatch({
               type: "SHOW_TOAST",
               payload: "Payment Processing",
